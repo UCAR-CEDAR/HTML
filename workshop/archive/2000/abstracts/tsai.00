@@ -1,0 +1,27 @@
+Surname: Tsai
+First Name: Lung-Chih
+Status= other
+Institution: Center for Space and Remote Sensing Research, National Central 
+University
+E-mail: lctsai@csrsr.ncu.edu.tw
+----------------------------------------
+Title: 
+Ionospheric Tomography with the Global Positioning System
+----------------------------------------
+Authors: 
+L.-C. Tsai, and W. H. Tsai
+----------------------------------------
+Abstract: 
+Measuring the GPS signals and determining the path TECs from
+both of ground systems and a satellite receiver in Low Earth
+orbit can provide a powerful means for tomographic reconst-
+ruction of the ionosphere. In practice, the TEC data from a
+network of ground-based GPS receivers can provide detailed 
+information on the horizontal structure; OTOH, the available
+occulting TEC data are sensitive to small vertical structure
+of approximately a few kilometers. We have implemented the 
+SVD method and the MART algorithm to regularize the inverse 
+problem associated with ionospheric stochastic tomography.
+
+----------------------------------------
+Discipline Category: Ionosphere

@@ -1,0 +1,1472 @@
+     9 Beginning year (universal time)          Beg Yr      byear  1.     yr                       F9.1 ,2X 11
+    10 Year (universal time)                    Yr          year   1.     yr                       F9.1 ,2X 11
+    19 Beginning month/day (universal time)     Beg mmdd    bmd    1.     mmdd                     F9.1 ,2X 11
+    20 Month/day (universal time)               mmdd        md     1.     mmdd                     F9.1 ,2X 11
+    21 Day number of year (universal time)      Day No      dayno  1.     day                      F9.1 ,2X 11
+    28 Beginning hour/min (universal time)      Beg hhmm    bhm    1.     hhmm        29   -1.     F9.1 ,2X 11
+    29 Beginning additional increment to hhmm   Beg TimeInc bhmi   1.E-02 s           28   -1.     F9.2 ,2X 11
+    30 Hour/min (universal time)                hhmm        hm     1.     hhmm        31   -1.     F9.1 ,2X 11
+    31 Additional increment to hour/min UT      Beg TimeInc hmi    1.E-02 s           30   -1.     F9.1 ,2X 11
+    34 Time past 0000 UT                        Time > 0UT  uth    1.E-03 hour                     F9.3 ,2X 11
+    36 Time past 0000 UT                        Time > 0UT  uts    1.E+01 s           37    1.E-03 F9.0 ,2X 11
+    37 Additional increment to time past 0 UT   Beg TimeInc utsi   1.E-03 s           36    1.E+01 F9.3 ,2X 11
+    42 Local solar time diff (=SLT-UT) +E lon   SLT-UT      slt-ut 1.     hhmm                     F9.3 ,2X 11
+    44 Local solar time                         SLT         lst    1.E-03 hour                     F9.3 ,2X 11
+    47 Local solar time at conjugate point      SLT@Conj    lstc   1.E-03 hour                     F9.2 ,2X 11
+    54 Magnetic local time                      Mag Local   Tmlt   1.E-03 hour                     F9.2 ,2X 11
+    60 Integration time for these data          Int Time    inttms 1.     s                        F9.1 ,2X 11
+    61 Integration time for these data          Int Time    inttmm 1.     min                      F9.1 ,2X 11
+    62 Integration time for these data          Int Time    datntd 1.     day                      F9.1 ,2X 11
+    66 Time increment between rows              DT rows     dtrow  1.     s                        F9.0 ,2x 11
+    70 Sampling interval (time between sampls)  Sampl Ntvl  smpint 1.     s                        F9.1 ,2X 11
+    95 Cycle sequence number (e.g., 5th cycle)  Cyc No      cycn   1.                              F9.0 ,2X 11
+    96 Position number within cycle             Pos No      posn   1.                              F9.0 ,2X 11
+   106 Minimum altitude                         Min Alt     altb   1.     km         107    1.E-04 E12.5,2X 14
+   107 Additional increment to min alt          Min Alt Inc alti   1.E-01 m          106    1.E+03 E12.5,2X 14
+   108 Maximum altitude                         Max Alt     alte   1.     km         109    1.E-04 E12.5,2X 14
+   109 Additional increment to max alt          Max Alt Inc altei  1.E-01 m          108    1.E+03 E12.5,2X 14
+   110 Altitude (height)                        Altitude    gdalt  1.     km         111    1.E-04 F9.2 ,2X 11
+   111 Additional increment to altitude         Alt Inc     gdalti 1.E-01 m          110    1.E+03 E12.5,2X 14
+   112 Normalizing altitude                     Nmlz Alt    rhaltn 1.     km         113    1.E-04 E12.5,2X 14
+   113 Additional increment to normalizing alt  Nmlz AltInc rhalti 1.E-01 m          112    1.E+03 E12.5,2X 14
+   115 Altitude averaging interval              Alt AvgNtvl altav  1.     km         116    1.E-04 E12.5,2X 14
+   116 Additional increment to ht avgng intrvl  Alt Avg Inc altavi 1.E-01 m          115    1.E+03 E12.5,2X 14
+   117 Virtual height                           Virt Ht     altv   1.E-01 km         115    1.E+03 E12.5,2X 14
+   120 Range                                    Range       range  1.     km         121    1.E-04 F9.2 ,2X 11
+   121 Additional increment to range            Range Inc   rangei 1.E-01 m          120    1.E+03 E12.5,2X 14
+   125 Width of range gate                      Rng Gate    rgate  1.     km         126    1.E-04 E12.5,2X 14
+   126 Additional increment to rnge gate width  Rng GateInc rgatei 1.E-01 m          125    1.E+03 E12.5,2X 14
+   127 Range gate number                        Rng Gate No rgatn  1.                              F9.0 ,2X 11
+   130 Mean azimuth angle (0=geog N,90=east)    Az          azm    1.E-02 deg                      F9.2 ,2X 11
+   132 Beginning azimuth (0=geog N,90=east)     Beg Az      az1    1.E-02 deg                      F9.2 ,2X 11
+   133 Ending azimuth (0=geog N,90=east)        End Az      az2    1.E-02 deg                      F9.2 ,2X 11
+   135 Variation in azimuth (end Az - beg Az)   Az Change   daz    1.E-02 deg                      F9.2 ,2X 11
+   140 Elevation angle (0=horizontal,90=vert)   El          elm    1.E-02 deg                      F9.2 ,2X 11
+   142 Beginning elevation angle                Beg El      el1    1.E-02 deg                      F9.2 ,2X 11
+   143 Ending elevation angle                   End El      el2    1.E-02 deg                      F9.2 ,2X 11
+   145 Variation in elevation (end El-beg El)   El Change   del    1.E-02 deg                      F9.2 ,2X 11
+   150 Horiz great crcl dist from ref lat/lon   G Circ Dst  gcdist 1.     km                       E12.5,2X 14
+   153 Reference geod latitude (N hemi=pos)     Ref Gd Lat  gdlatr 1.E-02 deg                      E12.5,2X 14
+   156 Reference geodetic longitude             Ref Gd Lon  gdlonr 1.E-02 deg                      E12.5,2X 14
+   160 Geodetic latitude of measurement         Geod Lat    gdlat  1.E-02 deg                      F9.2 ,2X 11
+   170 Geodetic longitude of measurement        Geod Lon    glon   1.E-02 deg                      F9.2 ,2X 11
+   180 Solar zenith angle in measurement vol    Sol Zenith  szen   1.E-02 deg                      E12.5,2X 14
+   183 Conjugate solar zenith angle             Cnj Sol Zen szenc  1.E-02 deg                      E12.5,2X 14
+   186 Shadow height                            Shadow Ht   sdwht  1.     km                       E12.5,2X 14
+   190 Half scattering angle (bistatic system)  1/2 Scat A  hsa    1.E-02 deg                      E12.5,2X 14
+   204 Northward component of geomagnetic fld   Bn          bn     1.E-08 T                        E12.5,2X 14
+   206 Eastward component of geomagnetic field  Be          be     1.E-08 T                        E12.5,2X 14
+   208 Downward component of geomagnetic field  Bd          bd     1.E-08 T                        E12.5,2X 14
+   210 Geomagnetic field strength               Bmag        bmag   1.E-08 T                        E12.5,2X 14
+   213 Geomagnetic field east declination       Bdec        bdec   1.E-02 deg                      E12.5,2X 14
+   216 Geomagnetic field downward inclination   Binc        binc   1.E-02 deg                      E12.5,2X 14
+   218 L value in measurement volume            L Shell     lshell 1.E-02                          E12.5,2X 14
+   220 Dip latitude in measurement volume       Dip Lat     diplat 1.E-02 deg                      E12.5,2X 14
+   222 Invariant latitude in measurement vol    Inv Lat     invlat 1.E-02 deg                      F9.2 ,2X 11
+   224 Geomagnetic (centered dipole) latitude   Geom Lat    gdilat 1.E-02 deg                      E12.5,2X 14
+   225 PACE magnetic latitude of meas volume    PACE Lat    paclat 1.E-02 deg                      F9.2 ,2X 11
+   226 Apex latitude in measurement volume      Apex Lat    aplat  1.E-02 deg                      E12.5,2X 14
+   230 PACE magnetic azimuth                    PACE Az     pacaz  1.E-02 deg                      F9.2 ,2X 11
+   244 Geomagnetic (cntrd dipol) east longitud  Geom Lon    gdilon 1.E-02 deg                      E12.5,2X 14
+   245 PACE magnetic longitude of meas volume   PACE Lon    paclon 1.E-02 deg                      F9.2 ,2X 11
+   246 Apex longitude in measurement volume     Apex Lon    aplon  1.E-02 deg                      E12.5,2X 14
+   277 Begin X Geocentric Solar Magnetospheric  X GSM beg   xgsmb  1.E-02 Re                       E12.5,2X 14
+   278 End X   Geocentric Solar Magnetospheric  X GSM end   xgsme  1.E-02 Re                       E12.5,2X 14
+   279 Begin Y Geocentric Solar Magnetospheric  Y GSM beg   ygsmb  1.E-02 Re                       E12.5,2X 14
+   280 End Y   Geocentric Solar Magnetospheric  Y GSM end   ygsme  1.E-02 Re                       E12.5,2X 14
+   281 Begin Z Geocentric Solar Magnetospheric  Z GSM beg   zgsmb  1.E-02 Re                       E12.5,2X 14
+   282 End Z   Geocentric Solar Magnetospheric  Z GSM end   zgsme  1.E-02 Re                       E12.5,2X 14
+   283 Begin X Geocentric Solar Ecliptic        X GSE beg   xgseb  1.E-02 Re                       E12.5,2X 14
+   284 End X   Geocentric Solar Ecliptic        X GSE end   xgsee  1.E-02 Re                       E12.5,2X 14
+   285 Begin Y Geocentric Solar Ecliptic        Y GSE beg   ygseb  1.E-02 Re                       E12.5,2X 14
+   286 End Y   Geocentric Solar Ecliptic        Y GSE end   ygsee  1.E-02 Re                       E12.5,2X 14
+   288 Begin Z Geocentric Solar Ecliptic        Z GSE beg   zgseb  1.E-02 Re                       E12.5,2X 14
+   288 End Z   Geocentric Solar Ecliptic        Z GSE end   zgsee  1.E-02 Re                       E12.5,2X 14
+   292 X Coord Geocentric Solar Magnetospheric  X GSM       xgsm   1.E-02 Re                       E12.5,2X 14
+   293 Y Coord Geocentric Solar Magnetospheric  Y GSM       ygsm   1.E-02 Re                       E12.5,2X 14
+   294 Z Coord Geocentric Solar Magnetospheric  Z GSM       zgsm   1.E-02 Re                       E12.5,2X 14
+   295 X Coordinate Geocentric Solar Ecliptic   X GSE       xgse   1.E-02 Re                       E12.5,2X 14
+   296 Y Coordinate Geocentric Solar Ecliptic   Y GSE       ygse   1.E-02 Re                       E12.5,2X 14
+   297 Z Coordinate Geocentric Solar Ecliptic   Z GSE       zgse   1.E-02 Re                       E12.5,2X 14
+   310 Kp Index                                 Kp          kp     1.E-01                          F9.2 ,2X 11
+   320 Ae Index (1 or 2.5 min sample)           Ae          ae     1.     nT                       E12.5,2X 14
+   321 Al Index (1 or 2.5 min sample)           Al          al     1.     nT                       E12.5,2X 14
+   322 Au Index (1 or 2.5 min sample)           Au          au     1.     nT                       E12.5,2X 14
+   323 Ao Index (1 or 2.5 min sample)           Ao          ao     1.     nT                       E12.5,2X 14
+   324 Ae Index (hourly mean)                   Ae (hr)     aem    1.     nT                       E12.5,2X 14
+   325 Al Index (hourly mean)                   Al (hr)     alm    1.     nT                       E12.5,2X 14
+   326 Au Index (hourly mean)                   Au (hr)     aum    1.     nT                       E12.5,2X 14
+   327 Ao Index (hourly mean)                   Ao (hr)     aom    1.     nT                       E12.5,2X 14
+   330 Dst index                                Dst         dst    1.     nT                       F9.2 ,2X 11
+   335 ap index (3-hourly)                      ap          ap3    1.                              F9.0 ,2X 11
+   340 AP index (daily)                         AP          ap     1.                              F9.0 ,2X 11
+   341 aa index                                 aa          aa     1.                              E12.5,2X 14
+   350 F10.7 solar flux (Sa)                    F10.7 (Sa)  f107a  1.E-23 W/m2/Hz                  E12.5,2X 14
+   351 F10.7 solar flux qualifier               F10.7q(Sa)  f107qa 1.                              F9.0 ,2X 11
+   352 F10.7 Multiday average                   F10.7a(Sa)  fbara  1.E-23 W/m2/Hz                  E12.5,2X 14
+   353 352's avg code: 1=>81day ; 2=13mon       352 Avg Typ fbarta 1.                              F9.0 ,2X 11
+   354 F10.7 solar flux observed (Ottawa)       F10.7 Obs   f10.7  1.E-23 W/m2/Hz                  E12.5,2X 14
+   355 F10.7 solar flux qualifier observed      F10.7q      f10.7q 1.                              F9.0 ,2X 11
+   356 F10.7 Multiday average observed          F10.7a      fbar   1.E-23 W/m2/Hz                  E12.5,2X 14
+   357 356's avg code: 1=>81day ; 2=13mon       356 Avg Typ fbart  1.                              F9.0 ,2X 11
+   360 Sunspot number                           Sunspot no  sspotn 1.                              F9.0 ,2X 11
+   365 Estimated Hemispheric Power Input        Hem Power   epow   1.E+08 W                        E12.5,2X 14
+   366 Estimated Hemispheric Power Index        Hem PwrIndx epowi  1.                              E12.5,2X 14
+   367 Estimated Hemispheric Power Qualifier    Hem PwrQual epowq  1.                              E12.5,2X 14
+   401 Lag to the first range gate              Lag1        lag1   1.E-06 sec                      E12.5,2X 14
+   402 Pulse length                             Pulse Len   pl     1.E-06 sec                      E12.5,2X 14
+   404 Density sampling time                    Den Smpl Tm denst  1.E-06 sec                      E12.5,2X 14
+   406 Spectral sampling time                   Spct Smpl T spcst  1.E-06 sec                      E12.5,2X 14
+   407 Interpulse Period                        IPP         ipp    1.E-06 sec                      E12.5,2X 14
+   410 Signal to noise ratio                    S/N         sn     1.E-02                          E12.5,2X 14
+   411 Signal to noise ratio                    S/N         snp3   1.E-03                          F9.3 ,2X 11
+   412 log10 (signal to noise ratio)            lg(S/N)     snl    1.E-03 lg                       F9.2 ,2X 11
+   413 No samples available in time average     N Smpl Aval nsampa 1.                              E12.5,2X 14
+   414 No samples used in time average          No Smpl     nsamp  1.E+04            415    1.     E12.5,2X 14
+   415 No smpls in time avg; or 414 incremnt    N Smpl Inc  nsampi 1.                414    1.E+04 E12.5,2X 14
+   417 No samples used in Fourier transform     N Smpl/FFT  nsmfft 1.                              E12.5,2X 14
+   418 No ACF lags calculated                   No Lags     nlags  1.                              E12.5,2X 14
+   420 Reduced-chi square of fit                Chi Sqr     chisq  1.E-03                          E12.5,2X 14
+   421 Reduced-chi square of fit                Chi Sqr     chip1  1.E-01                          E12.5,2X 14
+   430 Goodness of fit                          Goodnes Fit gfit   1.                              E12.5,2X 14
+   431 Code baud length                         Cod baud l  cbadl  1.                              F9.0 ,2X 11
+   432 No. bauds in code                        Cod baud n  cbadn  1.                              F9.0 ,2X 11
+   433 Code type (0=non,1=cmplmntry)            Cod type    codt   1.                              F9.0 ,2X 11
+   434 No incoherent integrations               N Inc Int   iin    1.                              F9.0 ,2X 11
+   440 Cloud cover (0-8=clr-ovcst;9=obscured)   Cloud Cover cloudc 1.     okta                     E12.5,2X 14
+   451 Jicamarca data quality code 1            JRO Dat QC1 jidqc1 1.                              E12.5,2X 14
+   452 Jicamarca data quality code 2            JRO Dat QC2 jidqc2 1.                              E12.5,2X 14
+   453 Jicamarca data quality code 3            JRO Dat QC3 jidqc3 1.                              E12.5,2X 14
+   454 Jicamarca data quality code 4            JRO Dat QC4 jidqc4 1.                              E12.5,2X 14
+   455 Jicamarca data quality code 5            JRO Dat QC5 jidqc5 1.                              E12.5,2X 14
+   456 Arecibo data quality code 1 (IFIT)       ARO Dat QC1 aodqc1 1.                              E12.5,2X 14
+   457 Arecibo data quality code 2              ARO Dat QC2 aodqc2 1.                              E12.5,2X 14
+   458 Arecibo data quality code 3              ARO Dat QC3 aodqc3 1.                              E12.5,2X 14
+   459 Arecibo data quality code 4              ARO Dat QC4 aodqc4 1.                              E12.5,2X 14
+   460 Arecibo data quality code 5              ARO Dat QC5 aodqc5 1.                              E12.5,2X 14
+   461 Millstone Hill data quality code 1       MLH Dat QC1 mhdqc1 1.                              E12.5,2X 14
+   462 Millstone Hill data quality code 2       MLH Dat QC2 mhdqc2 1.                              E12.5,2X 14
+   463 Millstone Hill data quality code 3       MLH Dat QC3 mhdqc3 1.                              E12.5,2X 14
+   464 Millstone Hill data quality code 4       MLH Dat QC4 mhdqc4 1.                              E12.5,2X 14
+   465 Millstone Hill data quality code 5       MLH Dat QC5 mhdqc5 1.                              E12.5,2X 14
+   466 St. Santin data quality code 1           STS Dat QC1 ssdqc1 1.                              E12.5,2X 14
+   467 St. Santin data quality code 2           STS Dat QC2 ssdqc2 1.                              E12.5,2X 14
+   468 St. Santin data quality code 3           STS Dat QC3 ssdqc3 1.                              E12.5,2X 14
+   469 St. Santin data quality code 4           STS Dat QC4 ssdqc4 1.                              E12.5,2X 14
+   470 St. Santin data quality code 5           STS Dat QC5 ssdqc5 1.                              E12.5,2X 14
+   471 Chatanika/Sondrestrom data qual code 1   CHT/SON QC1 chdqc1 1.                              E12.5,2X 14
+   472 Chatanika/Sondrestrom data qual code 2   CHT/SON QC2 chdqc2 1.                              E12.5,2X 14
+   473 MUSCOX Fit Code                          Fit Code    chdqc3 1.                              E12.5,2X 14
+   474 Res. Vel. Pairing Code                   RV Pair CD  chdqc4 1.                              E12.5,2X 14
+   475 Chatinika/Sondrestrom data qual code 5   CHT/SON QC5 chdqc5 1.                              E12.5,2X 14
+   476 EISCAT data quality code 1               EIS Dat QC1 eidqc1 1.                              E12.5,2X 14
+   477 EISCAT data quality code 2               EIS Dat QC2 eidqc2 1.                              E12.5,2X 14
+   478 EISCAT data quality code 3               EIS Dat QC3 eidqc3 1.                              E12.5,2X 14
+   479 EISCAT data quality code 4               EIS Dat QC4 eidqc4 1.                              E12.5,2X 14
+   480 EISCAT data quality code 5               EIS Dat QC5 eidqc5 1.                              E12.5,2X 14
+   482 System temperature                       Tsys        systmp 1.     K          483    1.E-04 F9.1 ,2X 11
+   483 Additional increment to system temp      Tsys Inc    systmi 1.E-04 K          482    1.     F9.1 ,2X 11
+   484 Calibration temperature                  Cal Temp    caltmp 1.     K                        E12.5,2X 14
+   486 Peak power                               Peak Power  power  1.     kW                       F9.2 ,2X 11
+   490 Transmitted frequency                    Xmit Freq   tfreq  1.E+05 Hz                       E12.5,2X 14
+   492 Received doppler frequency offset        R Dop Foff  rcdfo  1.     Hz                       E12.5,2X 14
+   494 Receiver bandwidth                       Rec Bandw   rcbw   1.     kHz                      E12.5,2X 14
+   496 Receiver delay time                      Rec Delay   rcdt   1.E-06 sec                      E12.5,2X 14
+   500 Uncorrected electron density (Te/Ti=1)   Raw Ne      pop    1.E+09 m-3                      E12.5,2X 14
+   505 log10 (uncorrected electron density)     lg(RawNe)   popl   1.E-03 lg(m-3)                  F9.4 ,2X 11
+   510 Electron density                         Ne          ne     1.E+09 m-3        511    1.E+05 E12.5,2X 14
+   511 Additional increment to code 510 (Ne)    Ne Inc      nei    1.E+05 m-3        510    1.E+09 E12.5,2X 14
+   512 Electron density                         Ne          ne8    1.E+08 m-3                      E12.5,2X 14
+   520 log10 (Ne in m-3)                        lg(Ne)      nel    1.E-03 lg(m-3)                  F9.3 ,2X 11
+   530 Maximum electron density                 Max Ne      nemax  1.E+09 m-3                      E12.5,2X 14
+   535 log10 (max Ne in m-3)                    lg(MaxNe)   nemaxl 1.E-03 lg(m-3)                  E12.5,2X 14
+   536 log10 (max uncorrected Ne in m-3)        lg(RawNmax) popmxl 1.E-03 lg(m-3)                  F9.4 ,2X 11
+   540 Height of maximum electron density       Ht Max Ne   hmax   1.     km                       E12.5,2X 14
+   550 Ion temperature                          Ti          ti     1.     K                        F9.1 ,2X 11
+   552 Ion temperature                          Ti          tip1   1.E-01 K                        F9.1 ,2X 11
+   560 Electron temperature                     Te          te     1.     K                        F9.1 ,2X 11
+   570 Temperature ratio (Te/Ti)                Te/Ti       tr     1.E-03                          F9.4 ,2X 11
+   580 Line of sight ion velocity (pos = away)  Vilos       vo     1.     m/s        581    1.E-04 F9.1 ,2X 11
+   581 Additional increment to code 580         Vilos Inc   voi    1.E-04 m/s        580    1.     F9.1 ,2X 11
+   585 Ion Velocity spread (spectral width)     Vi Spread   vos    1.     m/s                      F9.1 ,2X 11
+   590 Bisector ion vel (bistatic sys,pos=up)   Vi Bisect   vobi   1.     m/s                      E12.5,2X 14
+   600 Velocity direction - local azimuth       Vel Az      voaz   1.E-02 deg                      E12.5,2X 14
+   610 Velocity direction - local elevation     Vel El      voel   1.E-02 deg                      E12.5,2X 14
+   620 Ion Composition - [O+]/Ne                [O+]/Ne     po+    1.E-03                          E12.5,2X 14
+   630 Ion Composition - [NO+]/Ne               [NO+]/Ne    pno+   1.E-03                          E12.5,2X 14
+   640 Ion Composition - [O2+]/Ne               [O2+]/Ne    po2+   1.E-03                          E12.5,2X 14
+   650 Ion Composition - [HE+]/Ne               [HE+]/Ne    phe+   1.E-03                          E12.5,2X 14
+   660 Ion Composition - [H+]/Ne                [H+]/Ne     ph+    1.E-03                          F9.4 ,2X 11
+   690 Ion Composition - [mol wt 28 to 32]/Ne   [N-0]/Ne    pm+    1.E-03                          E12.5,2X 14
+   691 Mean mol wt for ions from 28 to 32       [N-O] GMW   mmwt30 1.E-02 AMU                      E12.5,2X 14
+   710 Ion-neutral collision frequency          Col Freq    co     1.     s-1                      E12.5,2X 14
+   720 log10 (ion-neutral collision frequency)  lg(ColF)    col    1.E-03 lg(s-1)                  E12.5,2X 14
+   800 Line of sight neutral vel (pos = away)   Vnlos       vnlu   1.     m/s        801    1.E-04 E12.5,2X 14
+   801 Additional increment to Neutral Vlos     Vnlos Inc   vnlui  1.E-04 m/s        800    1.     E12.5,2X 14
+   802 Line of sight neutral vel (pos = away)   Vnlos       vnlu2  1.E-02 m/s                      E12.5,2X 14
+   803 Line of sight neutral vel (pos = away)   Vnlos       vnlu3  1.E-03 m/s                      E12.5,2X 14
+   805 Neutral velocity spread                  Vn Spread   vnus   1.E-02 m/s                      E12.5,2X 14
+   806 Neutral velocity spread                  Vn Spread   vnus3  1.E-03 m/s                      E12.5,2X 14
+   810 Neutral temperature                      Tn          tn     1.     K                        F9.1 ,2X 11
+   811 Model Neutral temperature                Tn Model    tnm    1.                              F9.1 ,2X 11
+   820 Exospheric temperature                   Tinf        tinf   1.     K                        F9.1 ,2X 11
+   821 Model Exospheric temperature             Tinf Model  tinfm  1.     K                        F9.1 ,2X 11
+   830 log10 (neutral mass density)             lg(Mn)      mol    1.E-03 lg(Kg/m3                 E12.5,2X 14
+   840 log10 (neutral number density)           lg(Nn)      ntotl  1.E-03 lg(m-3)                  E12.5,2X 14
+   842 log10 (relative neutral number density)  lg(Nmrel)   nrtotl 1.E-03 lg                       E12.5,2X 14
+   850 log10 (N2 number density)                lg([N2])    nn2l   1.E-03 lg(m-3)                  E12.5,2X 14
+   860 log10 (O2 number density)                lg([O2])    no2l   1.E-03 lg(m-3)                  E12.5,2X 14
+   870 log10 (O number density)                 lg([O])     nol    1.E-03 lg(m-3)                  E12.5,2X 14
+   880 log10 (AR number density)                lg([AR])    narl   1.E-03 lg(m-3)                  E12.5,2X 14
+   890 log10 (HE number density)                lg([HE])    nhel   1.E-03 lg(m-3)                  E12.5,2X 14
+   900 log10 (H number density)                 lg([H])     nhl    1.E-03 lg(m-3)                  E12.5,2X 14
+   901 log10 (NO number density)                lg([NO])    nnol   1.E-03 lg(m-3)                  E12.5,2X 14
+   902 log10 (N(4S) number density)             lg([N(4S)]) nn4sl  1.E-03 lg(m-3)                  E12.5,2X 14
+   903 log10 (N(2D) number density)             lg([N(2D)]) nn2dl  1.E-03 lg(m-3)                  E12.5,2X 14
+   904 log10 (Na number density)                lg([Na])    nnal   1.E-03 lg(m-3)                  E12.5,2X 14
+   905 log10 (Fe number density)                lg([Fe])    nfel   1.E-03 lg(m-3)                  E12.5,2X 14
+   910 log10 (Neutral pressure)                 lg(Pn)      npresl 1.E-03 lg(Pa)                   E12.5,2X 14
+   920 Pressure scale height                    P Scale Ht  psh    1.E+01 m                        E12.5,2X 14
+   921 Number of coefficients in analysis       No Coeffs   nc     1.                              F9.0 ,2X 11
+   922 Number of directions in analysis         No Dirs     nd     1.                              F9.0 ,2X 11
+   923 Groves coefficient number                GrovsCoefNo gcn    1.                              F9.0 ,2X 11
+   924 Groves coefficient                       Grovs Coef  gc     1.E-02 m/s                      F9.2 ,2X 11
+   925 Number of hours filled in harm anal      No hr filld nhf    1.     hr                       F9.0 ,2X 11
+   935 Mean eastward neutral wind               Mean Vne    vnea   1.E-02 m/s                      F9.2 ,2X 11
+   936 Mean northward neutral wind              Mean Vnn    vnna   1.E-02 m/s                      F9.2 ,2X 11
+   937 Mean neutral temperature                 Mean Tn     tna    1.E-01 K                        F9.1 ,2X 11
+   939 Mean ion temperature                     Mean Ti     tia    1.E-01 K                        F9.1 ,2X 11
+   940 24-h eastward neutral wind amplitude     24h Vne Amp vne24a 1.E-02 m/s                      F9.2 ,2X 11
+   941 24-h northwrd neutral wind amplitude     24h Vnn Amp vnn24a 1.E-02 m/s                      F9.2 ,2X 11
+   942 24-h neutral temperature amplitude       24h Tn Amp  tn24a  1.E-02 K                        F9.2 ,2X 11
+   943 24-h eastward neutral wind amplitude     24h Vne Amp vne2a1 1.E-01 m/s                      F9.1 ,2X 11
+   944 24-h ion temperature amplitude           24h Ti Amp  ti24a  1.E-02 K                        F9.2 ,2X 11
+   945 24-h max eastward neutral wind phase     24h Vne Phs vne24p 1.E-03 hr                       F9.3 ,2X 11
+   946 24-h max northwrd neutral wind phase     24h Vnn Phs vnn24p 1.E-03 hr                       F9.3 ,2X 11
+   947 24-h max neutral temperature phase       24h Tn Phs  tn24p  1.E-03 hr                       F9.3 ,2X 11
+   948 24-h northward neutral wind amplitude    24h Vnn Amp vnn2p1 1.E-01 m/s                      F9.1 ,2X 11
+   949 24-h max ion temperature phase           24h Ti Phs  ti24p  1.E-03 hr                       F9.3 ,2X 11
+   950 12-h eastward neutral wind amplitude     12h Vne Amp vne12a 1.E-02 m/s                      E12.5,2X 14
+   951 12-h northward neutrl wind amplitude     12h Vnn Amp vnn12a 1.E-02 m/s                      E12.5,2X 14
+   952 12-h neutral temperature amplitude       12h Tn Amp  tn12a  1.E-02 K                        E12.5,2X 14
+   953 log10 (12-h geopotential amplitude)      lg(12h Gp)  pt12al 1.E-03 lg(m2/s2                 E12.5,2X 14
+   954 12-h ion temperature amplitude           12h Ti Amp  ti12a  1.E-02 K                        F9.2 ,2X 11
+   955 12-h max eastward neutral wind phase     12h Vne Phs vne12p 1.E-03 hr                       E12.5,2X 14
+   956 12-h max northward neutrl wind phase     12h Vne Phs vnn12p 1.E-03 hr                       E12.5,2X 14
+   957 12-h max neutral temperature phase       12h Tn Phs  tn12p  1.E-03 hr                       E12.5,2X 14
+   958 12-h max geopotential phase              12h Gp Phs  pt12p  1.E-03 hr                       E12.5,2X 14
+   959 12-h max ion temperature phase           12h Ti Phs  ti12p  1.E-03 hr                       F9.3 ,2X 11
+   960 8-h eastward neutral wind amplitude      8h Vne Amp  vne08a 1.E-02 m/s                      F9.2 ,2X 11
+   961 8-h northward neutral wind amplitude     8h Vnn Amp  vnn08a 1.E-02 m/s                      F9.2 ,2X 11
+   962 8-h neutral temperature amp              8h Tn Amp   tn08a  1.E-02 K                        F9.2 ,2X 11
+   965 8-h max eastward neutral wind phase      8h Vne Phs  vne08p 1.E-03 hr                       F9.3 ,2X 11
+   966 8-h max northward neutral wind phase     8h Vnn Phs  vnn08p 1.E-03 hr                       F9.3 ,2X 11
+   967 8-h max neutral temperature phase        8h Tn Phs   tn08p  1.E-03 hr                       F9.3 ,2X 11
+   970 2-dy eastward neutral wind amplitude     2dy Vne Amp vne2da 1.E-02 m/s                      F9.2 ,2X 11
+   971 2-dy northward neutrl wind amplitude     2dy Vnn Amp vnn2da 1.E-02 m/s                      F9.2 ,2X 11
+   975 2-dy max eastward neutral wind phase     2dy Vne Phs vne2dp 1.E-02 hr                       F9.2 ,2X 11
+   976 2-dy max northward neutrl wind phase     2dy Vnn Phs vnn2dp 1.E-02 hr                       F9.2 ,2X 11
+   980 2-day component period                   2dy Period  2dp    1.E-02 hr                       F9.2 ,2X 11
+   981 UT day no rel to 2-dy comp phase         d# 2d Phase dn2dp  1.     day                      F9.0 ,2X 11
+   982 UT at start of 2-day comp calc           BegUT 2dcal ut2dp  1.     hhmm                     F9.0 ,2X 11
+   986 24-h upward neutral wind amplitude       24h Vnu Amp vnu24a 1.E-04 m/s                      F9.4 ,2X 11
+   987 24-h max upward neutral wind phase       24h Vnu Phs vnu24p 1.E-03 hr                       F9.3 ,2X 11
+   988 12-h upward neutral wind amplitude       12h Vnu Amp vnu12a 1.E-04 m/s                      F9.4 ,2X 11
+   989 12-h max upward neutral wind phase       12h Vnu Phs vnu12p 1.E-03 hr                       F9.3 ,2X 11
+   990 6-h eastward neutral wind amplitude      6h Vne Amp  vne06a 1.E-02 m/s                      F9.2 ,2X 11
+   991 6-h northward neutral wind amplitude     6h Vnn Amp  vnn06a 1.E-02 m/s                      F9.2 ,2X 11
+   992 6-h neutral temperature amplitude        6h Tn Amp   tn06a  1.E-02 K                        F9.2 ,2X 11
+   995 6-h max eastward neutral wind phase      6h Vne Phs  vne06p 1.E-03 hr                       F9.3 ,2X 11
+   996 6-h max northward neutral wind phase     6h Vnn Phs  vnn06p 1.E-03 hr                       F9.3 ,2X 11
+   997 6-h max neutral temperature phase        6h Tn Phase tn06p  1.E-03 hr                       F9.3 ,2X 11
+  1010 Geographic unit vector rotation angle    Rot angl-gg gdra   1.E-02 deg                      E12.5,2X 14
+  1020 Magnetic unit vector rotation angle      Rot angl-mg gmra   1.E-02 deg                      E12.5,2X 14
+  1030 Direction 7 Azimuth angle                Az(dir 7)   az7    1.E-02 deg                      E12.5,2X 14
+  1040 Direction 7 Elevation angle              El(dir 7)   el7    1.E-02 deg                      E12.5,2X 14
+  1050 Direction 8 Azimuth angle                Az(dir 8)   az8    1.E-02 deg                      E12.5,2X 14
+  1060 Direction 8 Elevation angle              El(dir 8)   el8    1.E-02 deg                      E12.5,2X 14
+  1070 Direction 9 Azimuth angle                Az(dir 9)   az9    1.E-02 deg                      E12.5,2X 14
+  1080 Direction 9 Elevation angle              El(dir 9)   el9    1.E-02 deg                      E12.5,2X 14
+  1210 Direction 1 Ion velocity (eastward)      Vi1         vie    1.     m/s                      E12.5,2X 14
+  1211 Direction 1 F-region ion velocity        Vi1(F)      vief   1.     m/s                      E12.5,2X 14
+  1220 Direction 2 Ion velocity (northward)     Vi2         vin    1.     m/s                      E12.5,2X 14
+  1221 Direction 2 F-region ion velocity        Vi2(F)      vinf   1.     m/s                      E12.5,2X 14
+  1230 Direction 3 Ion velocity (up)            Vi3         viu    1.     m/s                      E12.5,2X 14
+  1240 Direction 4 Ion velocity (perp east)     Vi4         vipe   1.     m/s                      F9.1 ,2X 11
+  1250 Direction 5 Ion velocity (perp north)    Vi5         vipn   1.     m/s                      F9.1 ,2X 11
+  1260 Direction 6 Ion velocity (antiparallel)  Vi6         viap   1.     m/s                      E12.5,2X 14
+  1270 Direction 7 Ion velocity                 Vi7         vi7    1.     m/s                      E12.5,2X 14
+  1280 Direction 8 Ion velocity                 Vi8         vi8    1.     m/s                      E12.5,2X 14
+  1290 Direction 9 Ion velocity                 Vi9         vi9    1.     m/s                      E12.5,2X 14
+  1410 Direction 1 Neutral wind (eastward)      Vn1         vne    1.     m/s                      E12.5,2X 14
+  1411 Direction 1 Neutral wind (eastward)      Vn1         vnep1  1.E-01 m/s                      E12.5,2X 14
+  1412 Direction 1 Neutral wind (eastward)      Vn1         vnep2  1.E-02 m/s                      E12.5,2X 14
+  1420 Direction 2 Neutral wind (northward)     Vn2         vnn    1.     m/s                      E12.5,2X 14
+  1421 Direction 2 Neutral wind (northward)     Vn2         vnnp1  1.E-01 m/s                      E12.5,2X 14
+  1422 Direction 2 Neutral wind (northward)     Vn2         vnnp2  1.E-02 m/s                      E12.5,2X 14
+  1430 Direction 3 Neutral wind (up)            Vn3         vnu    1.E-02 m/s                      E12.5,2X 14
+  1431 Direction 3 Neutral wind (up)            Vn3         vnup1  1.E-01 m/s                      F9.1 ,2X 11
+  1440 Direction 4 Neutral wind (perp east)     Vn4         vnpe   1.     m/s                      E12.5,2X 14
+  1450 Direction 5 Neutral wind (perp north)    Vn5         vnpn   1.     m/s                      E12.5,2X 14
+  1455 Direction 5 Neutral wind horizontl comp  Vn5h        vnpnh  1.     m/s                      E12.5,2X 14
+  1456 Direction 5 Neutral wind horizontl comp  Vn5h        vnpnh1 1.E-01 m/s                      F9.1 ,2X 11
+  1460 Direction 6 Neutral wind                 Vn6         vnap   1.     m/s                      E12.5,2X 14
+  1470 Direction 7 Neutral wind                 Vn7         vn7    1.     m/s                      E12.5,2X 14
+  1480 Direction 8 Neutral wind                 Vn8         vn8    1.     m/s                      E12.5,2X 14
+  1490 Direction 9 Neutral wind                 Vn9         vn9    1.     m/s                      E12.5,2X 14
+  1610 Direction 1 electric field (eastward)    E1          ee     1.E-05 V/m                      E12.5,2X 14
+  1620 Direction 2 electric field (northward)   E2          en     1.E-05 V/m                      E12.5,2X 14
+  1630 Direction 3 electric field (up)          E3          eu     1.E-05 V/m                      E12.5,2X 14
+  1640 Direction 4 electric field (perp east)   E4          epe    1.E-05 V/m                      F9.4 ,2X 11
+  1650 Direction 5 electric field (perp north)  E5          epn    1.E-05 V/m                      F9.4 ,2X 11
+  1660 Direction 6 electric field (antipara)    E6          eap    1.E-05 V/m                      E12.5,2X 14
+  1670 Direction 7 electric field               E7          e7     1.E-05 V/m                      E12.5,2X 14
+  1680 Direction 8 electric field               E8          e8     1.E-05 V/m                      E12.5,2X 14
+  1690 Direction 9 electric field               E9          e9     1.E-05 V/m                      E12.5,2X 14
+  1810 Direction 1 electric current density     J1          je     1.E-08 A/m2                     E12.5,2X 14
+  1820 Direction 2 electric current density     J2          jn     1.E-08 A/m2                     E12.5,2X 14
+  1830 Direction 3 electric current density     J3          ju     1.E-08 A/m2                     E12.5,2X 14
+  1840 Direction 4 electric current density     J4          jpe    1.E-08 A/m2                     E12.5,2X 14
+  1850 Direction 5 electric current density     J5          jpn    1.E-08 A/m2                     E12.5,2X 14
+  1860 Direction 6 electric current density     J6          jap    1.E-08 A/m2                     E12.5,2X 14
+  1870 Direction 7 electric current density     J7          j7     1.E-08 A/m2                     E12.5,2X 14
+  1880 Direction 8 electric current density     J8          j8     1.E-08 A/m2                     E12.5,2X 14
+  1890 Direction 9 electric current density     J9          j9     1.E-08 A/m2                     E12.5,2X 14
+  1910 Ht integral: dir 1 current density       Ht Int J1   jehi   1.E-03 A/m                      E12.5,2X 14
+  1920 Ht integral: dir 2 current density       Ht Int J2   jnhi   1.E-03 A/m                      E12.5,2X 14
+  1940 Line int (1 hemi): dir 4 current den     Ln int J4   jpeli  1.E-03 A/m                      E12.5,2X 14
+  1950 Line int (1 hemi): dir 5 current den     Ln int J5   jpnli  1.E-03 A/m                      E12.5,2X 14
+  2010 Pedersen conductivity                    Ped Cond    cp     1.E-06 mho/m                    E12.5,2X 14
+  2011 log10 (Pedersen Conductivity)            lg(Pd Cond) cpl    1.E-03 lg(mho/m                 E12.5,2X 14
+  2020 Hall conductivity                        Hall Cond   ch     1.E-06 mho/m                    E12.5,2X 14
+  2021 log10 (Hall Conductivity)                lg(Hl Cond) chl    1.E-03 lg(mho/m                 E12.5,2X 14
+  2040 Height integral pedersen conductivity    HtInt Ped C cphi   1.E-02 mho                      E12.5,2X 14
+  2050 Height integral hall conductivity        HtInt HallC chhi   1.E-02 mho                      E12.5,2X 14
+  2070 Field line integral(1 hemi) Ped Cond     LnInt Ped C cpli   1.E-02 mho                      E12.5,2X 14
+  2080 Field line integral(1 hemi) Hall Cond    LnInt HallC chli   1.E-02 mho                      E12.5,2X 14
+  2110 Particle energy deposition rate          P E Dep Rat ped    1.E-08 W/m3                     E12.5,2X 14
+  2120 Joule energy deposition rate             J E Dep Rat jed    1.E-08 W/m3                     E12.5,2X 14
+  2121 log10 (Joule energy dep rate)            lg(J E dep) jedl   1.E-03 lg(W/m3)                 E12.5,2X 14
+  2140 Ht integral particle energy dep rate     HtInt PED   pedhi  1.E-04 W/m2                     E12.5,2X 14
+  2141 log10 (Ht int part energy dep rate)      lg(HI PED)  pedhil 1.E-03 lg(W/m2)                 E12.5,2X 14
+  2142 Hemispheric ht integ: part energy dep    HemHI PED   pedhhi 1.E+08 W                        E12.5,2X 14
+  2150 Height integral: Joule energy dep rate   HtInt JED   jedhi  1.E-04 W/m2                     E12.5,2X 14
+  2151 log10 (ht int Joule energy dep rate)     lg(HI JED)  jedhil 1.E-03 lg(W/m2)                 E12.5,2X 14
+  2152 Hemispheric ht integ: Joule energy dep   HemHI JED   jedhhi 1.E+08 W                        E12.5,2X 14
+  2155 Average electron energy                  Ee avg      eem    1.     eV                       E12.5,2X 14
+  2170 Fld-ln int(1 hemi) part energy dep rate  LnInt PED   pedli  1.E-04 W/m2                     E12.5,2X 14
+  2180 Fld-ln int(1 hemi) Joule energy dep rat  LnInt JED   jedli  1.E-04 W/m2                     E12.5,2X 14
+  2204 Interplanetary Mag Field Bx GSM          Bx GSM      bxgsm  1.E-11 T                        E12.5,2X 14
+  2206 Interplanetary Mag Field By GSM          By GSM      bygsm  1.E-11 T                        E12.5,2X 14
+  2208 Interplanetary Mag Field Bz GSM          Bz GSM      bzgsm  1.E-11 T                        E12.5,2X 14
+  2210 Interplanetary Mag Field strength        IMF B       bimf   1.E-11 T                        F9.2 ,2X 11
+  2214 Interplanetary Mag Field Bx GSE          Bx GSE      bxgse  1.E-11 T                        E12.5,2X 14
+  2216 Interplanetary Mag Field By GSE          By GSE      bygse  1.E-11 T                        E12.5,2X 14
+  2218 Interplanetary Mag Field Bz GSE          Bz GSE      bzgse  1.E-11 T                        E12.5,2X 14
+  2232 Solar Wind Plasma Density                Sol Wnd Den swden  1.E+05 m-3                      F9.1 ,2X 11
+  2234 Solar Wind Plasma Speed                  Sol Wnd Spd swspd  1.E+02 m/s                      F9.1 ,2X 11
+  2236 IMF/Solar Wind Qualifier                 IMF/SW Qual swq    1.                              E12.5,2X 14
+  2301 Polar cap potential difference           PC Pot Dif  pcp    1.E+01 V                        E12.5,2X 14
+  2302 Potential minimum                        Pot Min     pcmn   1.E+01 V                        E12.5,2X 14
+  2303 Potential maximum                        Pot Max     pcmx   1.E+01 V                        E12.5,2X 14
+  2310 Electric Potential                       Elect Pot   ep     1.E+01 V                        E12.5,2X 14
+  2400 Wavelength                               Wavelength  wavlen 1.E-01 nm                       E12.5,2X 14
+  2455 Refernce rel 1/2-width (arb press unit)  Ref 1/2-wid wid2   1.E-02                          F9.2 ,2X 11
+  2456 Relative 1/2-width deviation from 2455   1/2-wid Dev wid2r  1.E-02                          F9.2 ,2X 11
+  2491 log10 (Counts)                           lg(Counts)  countl 1.E-03 lg                       E12.5,2X 14
+  2495 log10 (Rayleigh counts)                  lg(RaylCnt) rcontl 1.E-03 lg                       E12.5,2X 14
+  2500 Line emission rate                       LinEmisRat  le     1.     R                        E12.5,2X 14
+  2501 log10 (Line emission rate)               lg(Emis R)  lel    1.E-03 lg(R)                    E12.5,2X 14
+  2502 Line emission rate                       LinEmisRat  lep1   1.E-01 R                        E12.5,2X 14
+  2505 Relative line emission rate              LinEmisRat  rle    1.                              E12.5,2X 14
+  2506 log10 (Relative line emission rate)      lg(Emis R)  rlel   1.E-03 lg                       E12.5,2X 14
+  2507 Relative line emission rate              LinEmisRat  rlep1  1.E-01                          E12.5,2X 14
+  2555 Relative background radiance             RelBkgRadnc rbr    1.                              E12.5,2X 14
+  2561 log10 (background counts)                lg(BkgCnts) bcl    1.E-03 lg                       E12.5,2X 14
+  3100 JRO normalizing factor (JRO661111A)      JRO par 1   jronf1 1.E-04                          E12.5,2X 14
+  3101 JRO parameter 2                          JRO par 2   jrop02 1.                              E12.5,2X 14
+  3102 JRO parameter 3                          JRO par 3   jrop03 1.                              E12.5,2X 14
+  3103 JRO parameter 4                          JRO par 4   jrop04 1.                              E12.5,2X 14
+  3104 JRO parameter 5                          JRO par 5   jrop05 1.                              E12.5,2X 14
+  3105 JRO parameter 6                          JRO par 6   jrop06 1.                              E12.5,2X 14
+  3106 JRO parameter 7                          JRO par 7   jrop07 1.                              E12.5,2X 14
+  3107 JRO parameter 8                          JRO par 8   jrop08 1.                              E12.5,2X 14
+  3108 JRO parameter 9                          JRO par 9   jrop09 1.                              E12.5,2X 14
+  3109 JRO parameter 10                         JRO par 10  jrop10 1.                              E12.5,2X 14
+  3110 JRO parameter 11                         JRO par 11  jrop11 1.                              E12.5,2X 14
+  3111 JRO parameter 12                         JRO par 12  jrop12 1.                              E12.5,2X 14
+  3112 JRO parameter 13                         JRO par 13  jrop13 1.                              E12.5,2X 14
+  3113 JRO parameter 14                         JRO par 14  jrop14 1.                              E12.5,2X 14
+  3114 JRO parameter 15                         JRO par 15  jrop15 1.                              E12.5,2X 14
+  3115 JRO parameter 16                         JRO par 16  jrop16 1.                              E12.5,2X 14
+  3116 JRO parameter 17                         JRO par 17  jrop17 1.                              E12.5,2X 14
+  3117 JRO parameter 18                         JRO par 18  jrop18 1.                              E12.5,2X 14
+  3118 JRO parameter 19                         JRO par 19  jrop19 1.                              E12.5,2X 14
+  3119 JRO parameter 20                         JRO par 20  jrop20 1.                              E12.5,2X 14
+  3120 JRO parameter 21                         JRO par 21  jrop21 1.                              E12.5,2X 14
+  3121 JRO parameter 22                         JRO par 22  jrop22 1.                              E12.5,2X 14
+  3122 JRO parameter 23                         JRO par 23  jrop23 1.                              E12.5,2X 14
+  3123 JRO parameter 24                         JRO par 24  jrop24 1.                              E12.5,2X 14
+  3124 JRO parameter 25                         JRO par 25  jrop25 1.                              E12.5,2X 14
+  3125 JRO parameter 26                         JRO par 26  jrop26 1.                              E12.5,2X 14
+  3126 JRO parameter 27                         JRO par 27  jrop27 1.                              E12.5,2X 14
+  3127 JRO parameter 28                         JRO par 28  jrop28 1.                              E12.5,2X 14
+  3128 JRO parameter 29                         JRO par 29  jrop29 1.                              E12.5,2X 14
+  3129 JRO parameter 30                         JRO par 30  jrop30 1.                              E12.5,2X 14
+  3130 JRO parameter 31                         JRO par 31  jrop31 1.                              E12.5,2X 14
+  3131 JRO parameter 32                         JRO par 32  jrop32 1.                              E12.5,2X 14
+  3132 JRO parameter 33                         JRO par 33  jrop33 1.                              E12.5,2X 14
+  3133 JRO parameter 34                         JRO par 34  jrop34 1.                              E12.5,2X 14
+  3134 JRO parameter 35                         JRO par 35  jrop35 1.                              E12.5,2X 14
+  3135 JRO parameter 36                         JRO par 36  jrop36 1.                              E12.5,2X 14
+  3136 JRO parameter 37                         JRO par 37  jrop37 1.                              E12.5,2X 14
+  3137 JRO parameter 38                         JRO par 38  jrop38 1.                              E12.5,2X 14
+  3138 JRO parameter 39                         JRO par 39  jrop39 1.                              E12.5,2X 14
+  3139 JRO parameter 40                         JRO par 40  jrop40 1.                              E12.5,2X 14
+  3140 JRO parameter 41                         JRO par 41  jrop41 1.                              E12.5,2X 14
+  3141 JRO parameter 42                         JRO par 42  jrop42 1.                              E12.5,2X 14
+  3142 JRO parameter 43                         JRO par 43  jrop43 1.                              E12.5,2X 14
+  3143 JRO parameter 44                         JRO par 44  jrop44 1.                              E12.5,2X 14
+  3144 JRO parameter 45                         JRO par 45  jrop45 1.                              E12.5,2X 14
+  3145 JRO parameter 46                         JRO par 46  jrop46 1.                              E12.5,2X 14
+  3146 JRO parameter 47                         JRO par 47  jrop47 1.                              E12.5,2X 14
+  3147 JRO parameter 48                         JRO par 48  jrop48 1.                              E12.5,2X 14
+  3148 JRO parameter 49                         JRO par 49  jrop49 1.                              E12.5,2X 14
+  3149 JRO parameter 50                         JRO par 50  jrop50 1.                              E12.5,2X 14
+  3150 JRO parameter 51                         JRO par 51  jrop51 1.                              E12.5,2X 14
+  3151 JRO parameter 52                         JRO par 52  jrop52 1.                              E12.5,2X 14
+  3152 JRO parameter 53                         JRO par 53  jrop53 1.                              E12.5,2X 14
+  3153 JRO parameter 54                         JRO par 54  jrop54 1.                              E12.5,2X 14
+  3154 JRO parameter 55                         JRO par 55  jrop55 1.                              E12.5,2X 14
+  3155 JRO parameter 56                         JRO par 56  jrop56 1.                              E12.5,2X 14
+  3156 JRO parameter 57                         JRO par 57  jrop57 1.                              E12.5,2X 14
+  3157 JRO parameter 58                         JRO par 58  jrop58 1.                              E12.5,2X 14
+  3158 JRO parameter 59                         JRO par 59  jrop59 1.                              E12.5,2X 14
+  3159 JRO parameter 60                         JRO par 60  jrop60 1.                              E12.5,2X 14
+  3160 JRO parameter 61                         JRO par 61  jrop61 1.                              E12.5,2X 14
+  3161 JRO parameter 62                         JRO par 62  jrop62 1.                              E12.5,2X 14
+  3162 JRO parameter 63                         JRO par 63  jrop63 1.                              E12.5,2X 14
+  3163 JRO parameter 64                         JRO par 64  jrop64 1.                              E12.5,2X 14
+  3164 JRO parameter 65                         JRO par 65  jrop65 1.                              E12.5,2X 14
+  3165 JRO parameter 66                         JRO par 66  jrop66 1.                              E12.5,2X 14
+  3166 JRO parameter 67                         JRO par 67  jrop67 1.                              E12.5,2X 14
+  3167 JRO parameter 68                         JRO par 68  jrop68 1.                              E12.5,2X 14
+  3168 JRO parameter 69                         JRO par 69  jrop69 1.                              E12.5,2X 14
+  3169 JRO parameter 70                         JRO par 70  jrop70 1.                              E12.5,2X 14
+  3170 JRO parameter 71                         JRO par 71  jrop71 1.                              E12.5,2X 14
+  3171 JRO parameter 72                         JRO par 72  jrop72 1.                              E12.5,2X 14
+  3172 JRO parameter 73                         JRO par 73  jrop73 1.                              E12.5,2X 14
+  3173 JRO parameter 74                         JRO par 74  jrop74 1.                              E12.5,2X 14
+  3174 JRO parameter 75                         JRO par 75  jrop75 1.                              E12.5,2X 14
+  3175 JRO parameter 76                         JRO par 76  jrop76 1.                              E12.5,2X 14
+  3176 JRO parameter 77                         JRO par 77  jrop77 1.                              E12.5,2X 14
+  3177 JRO parameter 78                         JRO par 78  jrop78 1.                              E12.5,2X 14
+  3178 JRO parameter 79                         JRO par 79  jrop79 1.                              E12.5,2X 14
+  3179 JRO parameter 80                         JRO par 80  jrop80 1.                              E12.5,2X 14
+  3180 JRO parameter 81                         JRO par 81  jrop81 1.                              E12.5,2X 14
+  3181 JRO parameter 82                         JRO par 82  jrop82 1.                              E12.5,2X 14
+  3182 JRO parameter 83                         JRO par 83  jrop83 1.                              E12.5,2X 14
+  3183 JRO parameter 84                         JRO par 84  jrop84 1.                              E12.5,2X 14
+  3184 JRO parameter 85                         JRO par 85  jrop85 1.                              E12.5,2X 14
+  3185 JRO parameter 86                         JRO par 86  jrop86 1.                              E12.5,2X 14
+  3186 JRO parameter 87                         JRO par 87  jrop87 1.                              E12.5,2X 14
+  3187 JRO parameter 88                         JRO par 88  jrop88 1.                              E12.5,2X 14
+  3188 JRO parameter 89                         JRO par 89  jrop89 1.                              E12.5,2X 14
+  3189 JRO parameter 90                         JRO par 90  jrop90 1.                              E12.5,2X 14
+  3190 JRO parameter 91                         JRO par 91  jrop91 1.                              E12.5,2X 14
+  3191 JRO parameter 92                         JRO par 92  jrop92 1.                              E12.5,2X 14
+  3192 JRO parameter 93                         JRO par 93  jrop93 1.                              E12.5,2X 14
+  3193 JRO parameter 94                         JRO par 94  jrop94 1.                              E12.5,2X 14
+  3194 JRO parameter 95                         JRO par 95  jrop95 1.                              E12.5,2X 14
+  3195 JRO parameter 96                         JRO par 96  jrop96 1.                              E12.5,2X 14
+  3196 JRO parameter 97                         JRO par 97  jrop97 1.                              E12.5,2X 14
+  3197 JRO parameter 98                         JRO par 98  jrop98 1.                              E12.5,2X 14
+  3198 JRO parameter 99                         JRO par 99  jrop99 1.                              E12.5,2X 14
+  3199 JRO parameter 100                        JRO par 100 jro100 1.                              E12.5,2X 14
+  3200 ARO parameter 1                          ARO par 1   arop01 1.                              E12.5,2X 14
+  3201 ARO parameter 2                          ARO par 2   arop02 1.                              E12.5,2X 14
+  3202 ARO parameter 3                          ARO par 3   arop03 1.                              E12.5,2X 14
+  3203 ARO parameter 4                          ARO par 4   arop04 1.                              E12.5,2X 14
+  3204 ARO parameter 5                          ARO par 5   arop05 1.                              E12.5,2X 14
+  3205 ARO parameter 6                          ARO par 6   arop06 1.                              E12.5,2X 14
+  3206 ARO parameter 7                          ARO par 7   arop07 1.                              E12.5,2X 14
+  3207 ARO parameter 8                          ARO par 8   arop08 1.                              E12.5,2X 14
+  3208 ARO parameter 9                          ARO par 9   arop09 1.                              E12.5,2X 14
+  3209 ARO parameter 10                         ARO par 10  arop10 1.                              E12.5,2X 14
+  3210 ARO parameter 11                         ARO par 11  arop11 1.                              E12.5,2X 14
+  3211 ARO parameter 12                         ARO par 12  arop12 1.                              E12.5,2X 14
+  3212 ARO parameter 13                         ARO par 13  arop13 1.                              E12.5,2X 14
+  3213 ARO parameter 14                         ARO par 14  arop14 1.                              E12.5,2X 14
+  3214 ARO parameter 15                         ARO par 15  arop15 1.                              E12.5,2X 14
+  3215 ARO parameter 16                         ARO par 16  arop16 1.                              E12.5,2X 14
+  3216 ARO parameter 17                         ARO par 17  arop17 1.                              E12.5,2X 14
+  3217 ARO parameter 18                         ARO par 18  arop18 1.                              E12.5,2X 14
+  3218 ARO parameter 19                         ARO par 19  arop19 1.                              E12.5,2X 14
+  3219 ARO parameter 20                         ARO par 20  arop20 1.                              E12.5,2X 14
+  3220 ARO parameter 21                         ARO par 21  arop21 1.                              E12.5,2X 14
+  3221 ARO parameter 22                         ARO par 22  arop22 1.                              E12.5,2X 14
+  3222 ARO parameter 23                         ARO par 23  arop23 1.                              E12.5,2X 14
+  3223 ARO parameter 24                         ARO par 24  arop24 1.                              E12.5,2X 14
+  3224 ARO parameter 25                         ARO par 25  arop25 1.                              E12.5,2X 14
+  3225 ARO parameter 26                         ARO par 26  arop26 1.                              E12.5,2X 14
+  3226 ARO parameter 27                         ARO par 27  arop27 1.                              E12.5,2X 14
+  3227 ARO parameter 28                         ARO par 28  arop28 1.                              E12.5,2X 14
+  3228 ARO parameter 29                         ARO par 29  arop29 1.                              E12.5,2X 14
+  3229 ARO parameter 30                         ARO par 30  arop30 1.                              E12.5,2X 14
+  3230 ARO parameter 31                         ARO par 31  arop31 1.                              E12.5,2X 14
+  3231 ARO parameter 32                         ARO par 32  arop32 1.                              E12.5,2X 14
+  3232 ARO parameter 33                         ARO par 33  arop33 1.                              E12.5,2X 14
+  3233 ARO parameter 34                         ARO par 34  arop34 1.                              E12.5,2X 14
+  3234 ARO parameter 35                         ARO par 35  arop35 1.                              E12.5,2X 14
+  3235 ARO parameter 36                         ARO par 36  arop36 1.                              E12.5,2X 14
+  3236 ARO parameter 37                         ARO par 37  arop37 1.                              E12.5,2X 14
+  3237 ARO parameter 38                         ARO par 38  arop38 1.                              E12.5,2X 14
+  3238 ARO parameter 39                         ARO par 39  arop39 1.                              E12.5,2X 14
+  3239 ARO parameter 40                         ARO par 40  arop40 1.                              E12.5,2X 14
+  3240 ARO parameter 41                         ARO par 41  arop41 1.                              E12.5,2X 14
+  3241 ARO parameter 42                         ARO par 42  arop42 1.                              E12.5,2X 14
+  3242 ARO parameter 43                         ARO par 43  arop43 1.                              E12.5,2X 14
+  3243 ARO parameter 44                         ARO par 44  arop44 1.                              E12.5,2X 14
+  3244 ARO parameter 45                         ARO par 45  arop45 1.                              E12.5,2X 14
+  3245 ARO parameter 46                         ARO par 46  arop46 1.                              E12.5,2X 14
+  3246 ARO parameter 47                         ARO par 47  arop47 1.                              E12.5,2X 14
+  3247 ARO parameter 48                         ARO par 48  arop48 1.                              E12.5,2X 14
+  3248 ARO parameter 49                         ARO par 49  arop49 1.                              E12.5,2X 14
+  3249 ARO parameter 50                         ARO par 50  arop50 1.                              E12.5,2X 14
+  3250 ARO parameter 51                         ARO par 51  arop51 1.                              E12.5,2X 14
+  3251 ARO parameter 52                         ARO par 52  arop52 1.                              E12.5,2X 14
+  3252 ARO parameter 53                         ARO par 53  arop53 1.                              E12.5,2X 14
+  3253 ARO parameter 54                         ARO par 54  arop54 1.                              E12.5,2X 14
+  3254 ARO parameter 55                         ARO par 55  arop55 1.                              E12.5,2X 14
+  3255 ARO parameter 56                         ARO par 56  arop56 1.                              E12.5,2X 14
+  3256 ARO parameter 57                         ARO par 57  arop57 1.                              E12.5,2X 14
+  3257 ARO parameter 58                         ARO par 58  arop58 1.                              E12.5,2X 14
+  3258 ARO parameter 59                         ARO par 59  arop59 1.                              E12.5,2X 14
+  3259 ARO parameter 60                         ARO par 60  arop60 1.                              E12.5,2X 14
+  3260 ARO parameter 61                         ARO par 61  arop61 1.                              E12.5,2X 14
+  3261 ARO parameter 62                         ARO par 62  arop62 1.                              E12.5,2X 14
+  3262 ARO parameter 63                         ARO par 63  arop63 1.                              E12.5,2X 14
+  3263 ARO parameter 64                         ARO par 64  arop64 1.                              E12.5,2X 14
+  3264 ARO parameter 65                         ARO par 65  arop65 1.                              E12.5,2X 14
+  3265 ARO parameter 66                         ARO par 66  arop66 1.                              E12.5,2X 14
+  3266 ARO parameter 67                         ARO par 67  arop67 1.                              E12.5,2X 14
+  3267 ARO parameter 68                         ARO par 68  arop68 1.                              E12.5,2X 14
+  3268 ARO parameter 69                         ARO par 69  arop69 1.                              E12.5,2X 14
+  3269 ARO parameter 70                         ARO par 70  arop70 1.                              E12.5,2X 14
+  3270 ARO parameter 71                         ARO par 71  arop71 1.                              E12.5,2X 14
+  3271 ARO parameter 72                         ARO par 72  arop72 1.                              E12.5,2X 14
+  3272 ARO parameter 73                         ARO par 73  arop73 1.                              E12.5,2X 14
+  3273 ARO parameter 74                         ARO par 74  arop74 1.                              E12.5,2X 14
+  3274 ARO parameter 75                         ARO par 75  arop75 1.                              E12.5,2X 14
+  3275 ARO parameter 76                         ARO par 76  arop76 1.                              E12.5,2X 14
+  3276 ARO parameter 77                         ARO par 77  arop77 1.                              E12.5,2X 14
+  3277 ARO parameter 78                         ARO par 78  arop78 1.                              E12.5,2X 14
+  3278 ARO parameter 79                         ARO par 79  arop79 1.                              E12.5,2X 14
+  3279 ARO parameter 80                         ARO par 80  arop80 1.                              E12.5,2X 14
+  3280 ARO parameter 81                         ARO par 81  arop81 1.                              E12.5,2X 14
+  3281 ARO parameter 82                         ARO par 82  arop82 1.                              E12.5,2X 14
+  3282 ARO parameter 83                         ARO par 83  arop83 1.                              E12.5,2X 14
+  3283 ARO parameter 84                         ARO par 84  arop84 1.                              E12.5,2X 14
+  3284 ARO parameter 85                         ARO par 85  arop85 1.                              E12.5,2X 14
+  3285 ARO parameter 86                         ARO par 86  arop86 1.                              E12.5,2X 14
+  3286 ARO parameter 87                         ARO par 87  arop87 1.                              E12.5,2X 14
+  3287 ARO parameter 88                         ARO par 88  arop88 1.                              E12.5,2X 14
+  3288 ARO parameter 89                         ARO par 89  arop89 1.                              E12.5,2X 14
+  3289 ARO parameter 90                         ARO par 90  arop90 1.                              E12.5,2X 14
+  3290 ARO parameter 91                         ARO par 91  arop91 1.                              E12.5,2X 14
+  3291 ARO parameter 92                         ARO par 92  arop92 1.                              E12.5,2X 14
+  3292 ARO parameter 93                         ARO par 93  arop93 1.                              E12.5,2X 14
+  3293 ARO parameter 94                         ARO par 94  arop94 1.                              E12.5,2X 14
+  3294 ARO parameter 95                         ARO par 95  arop95 1.                              E12.5,2X 14
+  3295 ARO parameter 96                         ARO par 96  arop96 1.                              E12.5,2X 14
+  3296 ARO parameter 97                         ARO par 97  arop97 1.                              E12.5,2X 14
+  3297 ARO parameter 98                         ARO par 98  arop98 1.                              E12.5,2X 14
+  3298 ARO parameter 99                         ARO par 99  arop99 1.                              E12.5,2X 14
+  3299 ARO parameter 100                        ARO par 100 aro100 1.                              E12.5,2X 14
+  3300 MLH Mode Letter (65-80 = A-P)            MLH Mode    mlhm   1.                              F9.0 ,2X 11
+  3301 MLH Power Normalization constant         Pwr Nrm Con pnorm  1.E-03                          E12.5,2X 14
+  3302 MLH Number signal samples in profile     N Sig Smpl  nrp    1.                              E12.5,2X 14
+  3303 MLH Number noise samples in profile      N NoisSmpl  nnsamp 1.                              E12.5,2X 14
+  3304 MLH Number calibration samples in prof   N Cal Smpl  ncsamp 1.                              E12.5,2X 14
+  3305 MLH parameter  6                         MLH par 6   mlhp06 1.                              E12.5,2X 14
+  3306 MLH Number profile Noise level samples   N Prof NSmp npnswp 1.                              E12.5,2X 14
+  3307 MLH parameter  8                         MLH par 8   mlhp08 1.                              E12.5,2X 14
+  3308 MLH Number radar sweeps for record       No Sweeps   nrswp  1.                              E12.5,2X 14
+  3309 MLH Number noise gates in radar sweep    N N Gat/Swp nnrswp 1.                              E12.5,2X 14
+  3310 MLH Mean power prof Normalizatn Const    PwrProfNorm pnrmmp 1.                              E12.5,2X 14
+  3311 MLH H+ Line of site velocity             H+ Vlos     vh     1.     m/s                      F9.1 ,2X 11
+  3312 MLH H Number Density                     H No Den    nh     1.                              E12.5,2X 14
+  3313 MLH ACF Normalization Factor             ACF Norm    fa     1.E-03                          F9.2 ,2X 11
+  3314 MLH parameter  15                        MLH par 15  mlhp15 1.                              E12.5,2X 14
+  3315 MLH Signal Temperature                   Signal Tmp. stp    1.     K                        E12.5,2X 14
+  3316 MLH Profile Power Normalized to 1.0      Norm. PowP. popn   1.                              F9.4 ,2X 11
+  3317 MLH Reflected Power                      Refl. Power po     1.                              F9.4 ,2X 11
+  3318 MLH parameter  19                        MLH par 19  mlhp19 1.                              E12.5,2X 14
+  3319 MLH parameter  20                        MLH par 20  mlhp20 1.                              E12.5,2X 14
+  3320 MLH parameter  21                        MLH par 21  mlhp21 1.                              E12.5,2X 14
+  3321 MLH parameter  22                        MLH par 22  mlhp22 1.                              E12.5,2X 14
+  3322 MLH parameter  23                        MLH par 23  mlhp23 1.                              E12.5,2X 14
+  3323 MLH parameter  24                        MLH par 24  mlhp24 1.                              E12.5,2X 14
+  3324 MLH parameter  25                        MLH par 25  mlhp25 1.                              E12.5,2X 14
+  3325 MLH parameter  26                        MLH par 26  mlhp26 1.                              E12.5,2X 14
+  3326 MLH Universal Time (Hours MOD 24)        UT Mod 24   ut     1.E-03 hour                     F9.3 ,2X 11
+  3327 MLH Local Time (Hours MOD 24)            LT Mod 24   lt     1.E-03 hour                     F9.3 ,2X 11
+  3328 MLH parameter  29                        MLH par 29  mlhp29 1.                              E12.5,2X 14
+  3329 MLH parameter  30                        MLH par 30  mlhp30 1.                              E12.5,2X 14
+  3330 MLH Apex Local Time (Hours MOD 24)       Apex LT 24  aplt   1.     hour                     F9.2 ,2X 11
+  3331 MLH Bperp. Dir Cosine (South [Apex])     CXR (Apex)  cxr    1.     m/s                      F9.4 ,2X 11
+  3332 MLH Bperp. Dir Cosine (East [Apex])      CYR (Apex)  cyr    1.     m/s                      F9.4 ,2X 11
+  3333 MLH Dir Cosine (Up field line [Apex])    CZR (Apex)  czr    1.     m/s                      F9.4 ,2X 11
+  3334 MLH Experiment Cycle Time                Tcyc        tcycle 1.     hour                     F9.3 ,2X 11
+  3335 MLH Julian Day Number                    Julian Day  jdayno 1.     day                      F9.0 ,2X 11
+  3336 MLH Exper beg UT (0 = midnight, day 1)   Start UTS   ut1    1.     s                        F9.0 ,2X 11
+  3337 MLH Exper end UT (0 = midnight, day 1)   End UTS     ut2    1.     s                        F9.0 ,2X 11
+  3338 MLH Variation in UT (UT2 - UT1)          UTS Change  dut21  1.     s                        F9.0 ,2X 11
+  3339 MLH Instrument Code                      MLH KINST   kinst  1.                              F9.0 ,2X 11
+  3340 MLH Logical Record Number                lrec No     recno  1.                              F9.0 ,2X 11
+  3341 MLH Start Range                          Rbeg        range1 1.     km                       F9.2 ,2X 11
+  3342 MLH End Range                            Rend        range2 1.     km                       F9.2 ,2X 11
+  3343 MLH Variation in Range (R2 - R1)         R2-R1       drng21 1.     km                       F9.2 ,2X 11
+  3344 MLH parameter  45                        MLH par 45  mlhp45 1.                              E12.5,2X 14
+  3345 MLH parameter  46                        MLH par 46  mlhp46 1.                              E12.5,2X 14
+  3346 MLH parameter  47                        MLH par 47  mlhp47 1.                              E12.5,2X 14
+  3347 MLH parameter  48                        MLH par 48  mlhp48 1.                              E12.5,2X 14
+  3348 MLH parameter  49                        MLH par 49  mlhp49 1.                              E12.5,2X 14
+  3349 MLH parameter  50                        MLH par 50  mlhp50 1.                              E12.5,2X 14
+  3350 MLH parameter  51                        MLH par 51  mlhp51 1.                              E12.5,2X 14
+  3351 MLH parameter  52                        MLH par 52  mlhp52 1.                              E12.5,2X 14
+  3352 MLH parameter  53                        MLH par 53  mlhp53 1.                              E12.5,2X 14
+  3353 MLH parameter  54                        MLH par 54  mlhp54 1.                              E12.5,2X 14
+  3354 MLH parameter  55                        MLH par 55  mlhp55 1.                              E12.5,2X 14
+  3355 MLH parameter  56                        MLH par 56  mlhp56 1.                              E12.5,2X 14
+  3356 MLH parameter  57                        MLH par 57  mlhp57 1.                              E12.5,2X 14
+  3357 MLH parameter  58                        MLH par 58  mlhp58 1.                              E12.5,2X 14
+  3358 MLH parameter  59                        MLH par 59  mlhp59 1.                              E12.5,2X 14
+  3359 MLH parameter  60                        MLH par 60  mlhp60 1.                              E12.5,2X 14
+  3360 MLH parameter  61                        MLH par 61  mlhp61 1.                              E12.5,2X 14
+  3361 MLH parameter  62                        MLH par 62  mlhp62 1.                              E12.5,2X 14
+  3362 MLH parameter  63                        MLH par 63  mlhp63 1.                              E12.5,2X 14
+  3363 MLH Ephemeris Time                       Ephemeris   ephem  1.     hour                     F9.1 ,2X 11
+  3364 MLH parameter  64                        MLH par 64  mlhp64 1.                              E12.5,2X 14
+  3365 MLH parameter  66                        MLH par 66  mlhp65 1.                              E12.5,2X 14
+  3366 MLH parameter  67                        MLH par 67  mlhp66 1.                              E12.5,2X 14
+  3367 MLH parameter  68                        MLH par 68  mlhp67 1.                              E12.5,2X 14
+  3368 MLH parameter  69                        MLH par 69  mlhp68 1.                              E12.5,2X 14
+  3369 MLH FoF2 level                           FoF2        fof2   1.E-02 MHz                      F9.2 ,2X 11
+  3370 MLH parameter  71                        MLH par 71  mlhp71 1.                              E12.5,2X 14
+  3371 MLH parameter  72                        MLH par 72  mlhp72 1.                              E12.5,2X 14
+  3372 MLH Lat Angle of Average Field Vector    Field Lat   mflat  1.     deg                      F9.2 ,2X 11
+  3373 MLH Lon Angle of Average Field Vector    Field Lon   mflon  1.     deg                      F9.0 ,2X 11
+  3374 MLH Plasma Temperature                   Tplasma     ptemp  1.     K                        F9.1 ,2X 11
+  3375 MLH parameter  76                        MLH par 76  mlhp76 1.                              E12.5,2X 14
+  3376 MLH parameter  77                        MLH par 77  mlhp77 1.                              E12.5,2X 14
+  3377 MLH Epsilon                              Epsilon     eps    1.                              F9.1 ,2X 11
+  3378 MLH parameter  79                        MLH par 79  mlhp79 1.                              E12.5,2X 14
+  3379 MLH parameter  80                        MLH par 80  mlhp80 1.                              E12.5,2X 14
+  3380 MLH parameter  81                        MLH par 81  mlhp81 1.                              E12.5,2X 14
+  3381 MLH parameter  82                        MLH par 82  mlhp82 1.                              E12.5,2X 14
+  3382 MLH parameter  83                        MLH par 83  mlhp83 1.                              E12.5,2X 14
+  3383 MLH parameter  84                        MLH par 84  mlhp84 1.                              E12.5,2X 14
+  3384 MLH parameter  85                        MLH par 85  mlhp85 1.                              E12.5,2X 14
+  3385 MLH Model Ion velocity in direction 4    modelVpe    modvpe 1.     m/s                      F9.1 ,2X 11
+  3386 MLH Model Ion velocity in direction 5    modelVpn    modvpn 1.     m/s                      F9.1 ,2X 11
+  3387 MLH parameter  88                        MLH par 88  mlhp88 1.                              E12.5,2X 14
+  3388 MLH parameter  89                        MLH par 89  mlhp89 1.                              E12.5,2X 14
+  3389 MLH parameter  90                        MLH par 90  mlhp90 1.                              E12.5,2X 14
+  3390 MLH parameter  91                        MLH par 91  mlhp91 1.                              E12.5,2X 14
+  3391 MLH parameter  92                        MLH par 92  mlhp92 1.                              E12.5,2X 14
+  3392 MLH parameter  93                        MLH par 93  mlhp93 1.                              E12.5,2X 14
+  3393 MLH parameter  94                        MLH par 94  mlhp94 1.                              E12.5,2X 14
+  3394 MLH parameter  95                        MLH par 95  mlhp95 1.                              E12.5,2X 14
+  3395 MLH parameter  96                        MLH par 96  mlhp96 1.                              E12.5,2X 14
+  3396 MLH parameter  97                        MLH par 97  mlhp97 1.                              E12.5,2X 14
+  3397 MLH parameter  98                        MLH par 98  mlhp98 1.                              E12.5,2X 14
+  3398 MLH parameter  99                        MLH par 99  mlhp99 1.                              E12.5,2X 14
+  3399 MLH parameter 100                        MLH par 100 mlh100 1.                              E12.5,2X 14
+  3400 STS parameter 1                          STS par 1   stsp01 1.                              E12.5,2X 14
+  3401 STS parameter 2                          STS par 2   stsp02 1.                              E12.5,2X 14
+  3402 STS parameter 3                          STS par 3   stsp03 1.                              E12.5,2X 14
+  3403 STS parameter 4                          STS par 4   stsp04 1.                              E12.5,2X 14
+  3404 STS parameter 5                          STS par 5   stsp05 1.                              E12.5,2X 14
+  3405 STS parameter 6                          STS par 6   stsp06 1.                              E12.5,2X 14
+  3406 STS parameter 7                          STS par 7   stsp07 1.                              E12.5,2X 14
+  3407 STS parameter 8                          STS par 8   stsp08 1.                              E12.5,2X 14
+  3408 STS parameter 9                          STS par 9   stsp09 1.                              E12.5,2X 14
+  3409 STS parameter 10                         STS par 10  stsp10 1.                              E12.5,2X 14
+  3410 STS parameter 11                         STS par 11  stsp11 1.                              E12.5,2X 14
+  3411 STS parameter 12                         STS par 12  stsp12 1.                              E12.5,2X 14
+  3412 STS parameter 13                         STS par 13  stsp13 1.                              E12.5,2X 14
+  3413 STS parameter 14                         STS par 14  stsp14 1.                              E12.5,2X 14
+  3414 STS parameter 15                         STS par 15  stsp15 1.                              E12.5,2X 14
+  3415 STS parameter 16                         STS par 16  stsp16 1.                              E12.5,2X 14
+  3416 STS parameter 17                         STS par 17  stsp17 1.                              E12.5,2X 14
+  3417 STS parameter 18                         STS par 18  stsp18 1.                              E12.5,2X 14
+  3418 STS parameter 19                         STS par 19  stsp19 1.                              E12.5,2X 14
+  3419 STS parameter 20                         STS par 20  stsp20 1.                              E12.5,2X 14
+  3420 STS parameter 21                         STS par 21  stsp21 1.                              E12.5,2X 14
+  3421 STS parameter 22                         STS par 22  stsp22 1.                              E12.5,2X 14
+  3422 STS parameter 23                         STS par 23  stsp23 1.                              E12.5,2X 14
+  3423 STS parameter 24                         STS par 24  stsp24 1.                              E12.5,2X 14
+  3424 STS parameter 25                         STS par 25  stsp25 1.                              E12.5,2X 14
+  3425 STS parameter 26                         STS par 26  stsp26 1.                              E12.5,2X 14
+  3426 STS parameter 27                         STS par 27  stsp27 1.                              E12.5,2X 14
+  3427 STS parameter 28                         STS par 28  stsp28 1.                              E12.5,2X 14
+  3428 STS parameter 29                         STS par 29  stsp29 1.                              E12.5,2X 14
+  3429 STS parameter 30                         STS par 30  stsp30 1.                              E12.5,2X 14
+  3430 STS parameter 31                         STS par 31  stsp31 1.                              E12.5,2X 14
+  3431 STS parameter 32                         STS par 32  stsp32 1.                              E12.5,2X 14
+  3432 STS parameter 33                         STS par 33  stsp33 1.                              E12.5,2X 14
+  3433 STS parameter 34                         STS par 34  stsp34 1.                              E12.5,2X 14
+  3434 STS parameter 35                         STS par 35  stsp35 1.                              E12.5,2X 14
+  3435 STS parameter 36                         STS par 36  stsp36 1.                              E12.5,2X 14
+  3436 STS parameter 37                         STS par 37  stsp37 1.                              E12.5,2X 14
+  3437 STS parameter 38                         STS par 38  stsp38 1.                              E12.5,2X 14
+  3438 STS parameter 39                         STS par 39  stsp39 1.                              E12.5,2X 14
+  3439 STS parameter 40                         STS par 40  stsp40 1.                              E12.5,2X 14
+  3440 STS parameter 41                         STS par 41  stsp41 1.                              E12.5,2X 14
+  3441 STS parameter 42                         STS par 42  stsp42 1.                              E12.5,2X 14
+  3442 STS parameter 43                         STS par 43  stsp43 1.                              E12.5,2X 14
+  3443 STS parameter 44                         STS par 44  stsp44 1.                              E12.5,2X 14
+  3444 STS parameter 45                         STS par 45  stsp45 1.                              E12.5,2X 14
+  3445 STS parameter 46                         STS par 46  stsp46 1.                              E12.5,2X 14
+  3446 STS parameter 47                         STS par 47  stsp47 1.                              E12.5,2X 14
+  3447 STS parameter 48                         STS par 48  stsp48 1.                              E12.5,2X 14
+  3448 STS parameter 49                         STS par 49  stsp49 1.                              E12.5,2X 14
+  3449 STS parameter 50                         STS par 50  stsp50 1.                              E12.5,2X 14
+  3450 STS parameter 51                         STS par 51  stsp51 1.                              E12.5,2X 14
+  3451 STS parameter 52                         STS par 52  stsp52 1.                              E12.5,2X 14
+  3452 STS parameter 53                         STS par 53  stsp53 1.                              E12.5,2X 14
+  3453 STS parameter 54                         STS par 54  stsp54 1.                              E12.5,2X 14
+  3454 STS parameter 55                         STS par 55  stsp55 1.                              E12.5,2X 14
+  3455 STS parameter 56                         STS par 56  stsp56 1.                              E12.5,2X 14
+  3456 STS parameter 57                         STS par 57  stsp57 1.                              E12.5,2X 14
+  3457 STS parameter 58                         STS par 58  stsp58 1.                              E12.5,2X 14
+  3458 STS parameter 59                         STS par 59  stsp59 1.                              E12.5,2X 14
+  3459 STS parameter 60                         STS par 60  stsp60 1.                              E12.5,2X 14
+  3460 STS parameter 61                         STS par 61  stsp61 1.                              E12.5,2X 14
+  3461 STS parameter 62                         STS par 62  stsp62 1.                              E12.5,2X 14
+  3462 STS parameter 63                         STS par 63  stsp63 1.                              E12.5,2X 14
+  3463 STS parameter 64                         STS par 64  stsp64 1.                              E12.5,2X 14
+  3464 STS parameter 65                         STS par 65  stsp65 1.                              E12.5,2X 14
+  3465 STS parameter 66                         STS par 66  stsp66 1.                              E12.5,2X 14
+  3466 STS parameter 67                         STS par 67  stsp67 1.                              E12.5,2X 14
+  3467 STS parameter 68                         STS par 68  stsp68 1.                              E12.5,2X 14
+  3468 STS parameter 69                         STS par 69  stsp69 1.                              E12.5,2X 14
+  3469 STS parameter 70                         STS par 70  stsp70 1.                              E12.5,2X 14
+  3470 STS parameter 71                         STS par 71  stsp71 1.                              E12.5,2X 14
+  3471 STS parameter 72                         STS par 72  stsp72 1.                              E12.5,2X 14
+  3472 STS parameter 73                         STS par 73  stsp73 1.                              E12.5,2X 14
+  3473 STS parameter 74                         STS par 74  stsp74 1.                              E12.5,2X 14
+  3474 STS parameter 75                         STS par 75  stsp75 1.                              E12.5,2X 14
+  3475 STS parameter 76                         STS par 76  stsp76 1.                              E12.5,2X 14
+  3476 STS parameter 77                         STS par 77  stsp77 1.                              E12.5,2X 14
+  3477 STS parameter 78                         STS par 78  stsp78 1.                              E12.5,2X 14
+  3478 STS parameter 79                         STS par 79  stsp79 1.                              E12.5,2X 14
+  3479 STS parameter 80                         STS par 80  stsp80 1.                              E12.5,2X 14
+  3480 STS parameter 81                         STS par 81  stsp81 1.                              E12.5,2X 14
+  3481 STS parameter 82                         STS par 82  stsp82 1.                              E12.5,2X 14
+  3482 STS parameter 83                         STS par 83  stsp83 1.                              E12.5,2X 14
+  3483 STS parameter 84                         STS par 84  stsp84 1.                              E12.5,2X 14
+  3484 STS parameter 85                         STS par 85  stsp85 1.                              E12.5,2X 14
+  3485 STS parameter 86                         STS par 86  stsp86 1.                              E12.5,2X 14
+  3486 STS parameter 87                         STS par 87  stsp87 1.                              E12.5,2X 14
+  3487 STS parameter 88                         STS par 88  stsp88 1.                              E12.5,2X 14
+  3488 STS parameter 89                         STS par 89  stsp89 1.                              E12.5,2X 14
+  3489 STS parameter 90                         STS par 90  stsp90 1.                              E12.5,2X 14
+  3490 STS parameter 91                         STS par 91  stsp91 1.                              E12.5,2X 14
+  3491 STS parameter 92                         STS par 92  stsp92 1.                              E12.5,2X 14
+  3492 STS parameter 93                         STS par 93  stsp93 1.                              E12.5,2X 14
+  3493 STS parameter 94                         STS par 94  stsp94 1.                              E12.5,2X 14
+  3494 STS parameter 95                         STS par 95  stsp95 1.                              E12.5,2X 14
+  3495 STS parameter 96                         STS par 96  stsp96 1.                              E12.5,2X 14
+  3496 STS parameter 97                         STS par 97  stsp97 1.                              E12.5,2X 14
+  3497 STS parameter 98                         STS par 98  stsp98 1.                              E12.5,2X 14
+  3498 STS parameter 99                         STS par 99  stsp99 1.                              E12.5,2X 14
+  3499 STS parameter100                         STS par 100 sts100 1.                              E12.5,2X 14
+  3500 SON FIT Code                             FIT Code    fit    1.                              E12.5,2X 14
+  3501 SON EPEC E-Region source code            E Src       srce   1.                              E12.5,2X 14
+  3502 SON EPEC F-Region source code            F Src       srcf   1.                              E12.5,2X 14
+  3503 SON Source of temperature                T Src       srct   1.                              E12.5,2X 14
+  3504 SON Source of velocity                   V Src       srcv   1.                              E12.5,2X 14
+  3505 SON Source of density profile            Den src     srcden 1.                              E12.5,2X 14
+  3506 SON parameter 7                          SON par 7   sonp07 1.                              E12.5,2X 14
+  3507 SON parameter 8                          SON par 8   sonp08 1.                              E12.5,2X 14
+  3508 SON parameter 9                          SON par 9   sonp09 1.                              E12.5,2X 14
+  3509 SON parameter 10                         SON par 10  sonp10 1.                              E12.5,2X 14
+  3510 SON Derivative of Ti with altitude       DTi/DHt     dtidh  1.E-02 K/km                     E12.5,2X 14
+  3511 SON Derivative of Te with altitude       DTe/DHt     dtedh  1.E-02 K/km                     E12.5,2X 14
+  3512 SON Portion of Umerid due to Vpar        Upar        upar   1.     m/s                      E12.5,2X 14
+  3513 SON Umerid from ambipolar diffusn        Uambi       uambi  1.     m/s                      E12.5,2X 14
+  3514 SON Uambi from DNe/DH fit to ne          Uden1       uden1  1.     m/s                      E12.5,2X 14
+  3515 SON Uambi from DNe/DH fit to ln(ne)      Uden2       uden2  1.     m/s                      E12.5,2X 14
+  3516 SON portion of Uambi from dTp/dH         Utemp       utemp  1.     m/s                      E12.5,2X 14
+  3517 SON portion of Uambi from gravity        Ugrav       ugrav  1.     m/s                      E12.5,2X 14
+  3518 SON Mean azimuth position 1              Azm pos 1   azm1   1.E-02 deg                      E12.5,2X 14
+  3519 SON Mean elevation position 1            Elm pos 1   elm1   1.E-02 deg                      E12.5,2X 14
+  3520 SON Mean azimuth position 2              Azm pos 2   azm2   1.E-02 deg                      E12.5,2X 14
+  3521 SON Mean elevation position 2            Elm pos 2   elm2   1.E-02 deg                      E12.5,2X 14
+  3522 SON Mean azimuth position 3              Azm pos 3   azm3   1.E-02 deg                      E12.5,2X 14
+  3523 SON Mean elevation position 3            Elm pos 3   elm3   1.E-02 deg                      E12.5,2X 14
+  3524 SON Mean azimuth position 4              Azm pos 4   azm4   1.E-02 deg                      E12.5,2X 14
+  3525 SON Mean elevation position 4            Elm pos 4   elm4   1.E-02 deg                      E12.5,2X 14
+  3526 SON Mean azimuth position 5              Azm pos 5   azm5   1.E-02 deg                      E12.5,2X 14
+  3527 SON Mean elevation position 5            Elm pos 5   elm5   1.E-02 deg                      E12.5,2X 14
+  3528 SON Mean azimuth position 6              Azm pos 6   azm6   1.E-02 deg                      E12.5,2X 14
+  3529 SON Mean elevation position 6            Elm pos 6   elm6   1.E-02 deg                      E12.5,2X 14
+  3530 SON Mean azimuth position 7              Azm pos 7   azm7   1.E-02 deg                      E12.5,2X 14
+  3531 SON Mean elevation position 7            Elm pos 7   elm7   1.E-02 deg                      E12.5,2X 14
+  3532 SON Mean azimuth position 8              Azm pos 8   azm8   1.E-02 deg                      E12.5,2X 14
+  3533 SON Mean elevation position 8            Elm pos 8   elm8   1.E-02 deg                      E12.5,2X 14
+  3534 SON Begin year of composite (UT)         Beg yr comp yrcb   1.     UT                       E12.5,2X 14
+  3535 SON Begin month/day of composite (UT)    Beg mmdd    mdb    1.     UT                       E12.5,2X 14
+  3536 SON Begin hour/minute of composite (UT)  Beg hhmm    hmb    1.     UT                       E12.5,2X 14
+  3537 SON Begin centisecond of composite (UT)  Beg csec    csb    1.E-02 sec                      E12.5,2X 14
+  3538 SON End year of composite (UT)           End yr comp yrce   1.     UT                       E12.5,2X 14
+  3539 SON End month/day of composite (UT)      End mmdd    mde    1.     UT                       E12.5,2X 14
+  3540 SON End hour/minute of composite (UT)    End hhmm    hme    1.     UT                       E12.5,2X 14
+  3541 SON End centisecond of composite (UT)    End csec    cse    1.E-02 sec                      E12.5,2X 14
+  3542 SON Type of density correction           Den Cor Typ dcor   1.                              E12.5,2X 14
+  3543 SON log10 (ionization rate el/m**3-s)    lg(Ioniz R) inzrl  1.E-03 lg(e/m3s                 E12.5,2X 14
+  3544 SON log10 (alpha effective in m**3/s)    lg(alpha)   alphrl 1.E-03 lg(m3/s)                 E12.5,2X 14
+  3545 SON log10 (part flux el/cm**2-s-kev)     lg(par flx) pfluxl 1.E-03 lg(e/m2s                 E12.5,2X 14
+  3546 SON log10 (energy in kev)                lg(energy)  el     1.E-03 lg(kev)                  E12.5,2X 14
+  3547 SON Parallel current density             Jpar        jpar   1.E-09 A/m2                     E12.5,2X 14
+  3548 SON Energy flux                          energy flux eflx   1.E-04 W/m2                     E12.5,2X 14
+  3549 SON Mean energy                          avg energy  em     1.E-03 kev                      E12.5,2X 14
+  3550 SON I(4278)                              I(4278)     i4278  1.     R                        E12.5,2X 14
+  3551 SON log10 (molecular ion density)        lg(ionden)  midl   1.E-03 lg(m-3)                  E12.5,2X 14
+  3552 SON Covariance xx                        covar xx    covxx  1.                              E12.5,2X 14
+  3553 SON Covariance xy                        covar xy    covxy  1.                              E12.5,2X 14
+  3554 SON Covariance xz                        covar xz    covxz  1.                              E12.5,2X 14
+  3555 SON Covariance yx                        covar yx    covyx  1.                              E12.5,2X 14
+  3556 SON Covariance yy                        covar yy    covyy  1.                              E12.5,2X 14
+  3557 SON Covariance yz                        covar yz    covyz  1.                              E12.5,2X 14
+  3558 SON Covariance zx                        covar zx    covzx  1.                              E12.5,2X 14
+  3559 SON Covariance zy                        covar zy    covzy  1.                              E12.5,2X 14
+  3560 SON Covariance zz                        covar zz    covzz  1.                              E12.5,2X 14
+  3561 SON Observed uncertainty on Ti           obs err Ti  odti   1.                              E12.5,2X 14
+  3562 SON Reduced chi square of Ti             chi sq Ti   chiti  1.E-01                          E12.5,2X 14
+  3563 SON Observed uncertainty on Te           obs err Te  odte   1.                              E12.5,2X 14
+  3564 SON Reduced chi square of Te             chi sq Te   chite  1.E-01                          E12.5,2X 14
+  3565 SON log10 (obs uncertainty Ne)           lg(ob dNe)  odnel  1.E-03 lg(m-3)                  E12.5,2X 14
+  3566 SON Reduced chi square of Ne             chi sq Ne   chine  1.E-01                          E12.5,2X 14
+  3567 SON Amount subtracted from Vlos          Vbias       vbias  1.     m/s                      E12.5,2X 14
+  3568 SON log10 (ne-parabolic fit to ln(ne))   lg(fit(Ne)) fitnel 1.E-03 lg(m-3)                  E12.5,2X 14
+  3569 SON Velocity in xy plane perp to b       VperpB Hor  vperph 1.     m/s                      E12.5,2X 14
+  3570 SON Azimuth angle of vel in x-y plane    Az VpBh     azvpbh 1.E-02 deg                      E12.5,2X 14
+  3571 SON Correlation coefficient vxy          c cof xy    ccfvxy 1.E-04                          E12.5,2X 14
+  3572 SON Correlation coefficient vxz          c cof xz    ccfvxz 1.E-04                          E12.5,2X 14
+  3573 SON Correlation coefficient vyz          c cof yz    ccfvyz 1.E-04                          E12.5,2X 14
+  3574 SON Neutral atmosphere model code        Neut Atm    natmc  1.                              E12.5,2X 14
+  3575 SON Correlation coefficient Exy          c cof Exy   ccfexy 1.E-04                          E12.5,2X 14
+  3576 SON Cross correlation coefficient Uxy    xccof Uxy   xcfuxy 1.E-04                          E12.5,2X 14
+  3577 SON Cross correlation coefficient Une    xccof Uen   xcfuen 1.E-04                          E12.5,2X 14
+  3578 SON Cross correlatn on Uxy from signeut  xccof Uxyn  xcfxyn 1.E-04                          E12.5,2X 14
+  3579 SON Total cross correlation for Uxy      xccof Uxyt  xcfxyt 1.E-04                          E12.5,2X 14
+  3580 SON Cross correlatn on Une from signeut  xccof Uenn  xcfenn 1.E-04                          E12.5,2X 14
+  3581 SON Total cross correlatn for Ue and Un  xccof Uent  xcfent 1.E-04                          E12.5,2X 14
+  3582 SON Horizontal magn neutral wind         Umerid      umerid 1.                              E12.5,2X 14
+  3583 SON Alternate error on Uzum (code 1460)  Uzneute     duzneu 1.                              E12.5,2X 14
+  3584 SON Total error on Uzum (code 1460)      siguztot    duztot 1.                              E12.5,2X 14
+  3585 SON Correction term = Ux-Vx              uxcorr      uxcor  1.                              E12.5,2X 14
+  3586 SON Correction term = Uy-Vy              uycorr      uycor  1.                              E12.5,2X 14
+  3587 SON Error on Ux from signeut             uxneute     duxneu 1.                              E12.5,2X 14
+  3588 SON Error on Uy from signeut             uyneute     duyneu 1.                              E12.5,2X 14
+  3589 SON Total error on Ux                    siguxtot    duxt   1.                              E12.5,2X 14
+  3590 SON Total error on Uy                    siguytot    duyt   1.                              E12.5,2X 14
+  3591 SON Error on Ue from signeut             ueneute     dueneu 1.                              E12.5,2X 14
+  3592 SON Error on Un from signeut             unneute     dunneu 1.                              E12.5,2X 14
+  3593 SON Total error on Ue                    siguetot    duet   1.                              E12.5,2X 14
+  3594 SON Total error on Un                    siguntot    dunt   1.                              E12.5,2X 14
+  3595 SON Relative error in neutral atmos      signeut     rdna   1.E-03                          E12.5,2X 14
+  3596 SON Ion gyro frequency                   ion g freq  fig    1.     hz                       E12.5,2X 14
+  3597 SON Azimuth of axis of symmetry          axis of sym axsym  1.E-02 deg                      E12.5,2X 14
+  3598 SON Ion-neutral collision freq. coeff.   nuin coef.  niuc   1.E-12 cm-3/s                   E12.5,2X 14
+  3599 SON Direction 4 F Region ion velocity    Vi4F        vipef  1.     m/s                      E12.5,2X 14
+  3600 SON Direction 5 F Region ion velocity    Vi5F        vipnf  1.     m/s                      E12.5,2X 14
+  3601 SON O+O ion-neut coll freq. factor       F O+O C Frq fo+oco 1.E-02                          E12.5,2X 14
+  3602 SON log10 (measured ion-neut col freq)   lg(MColF)   fmcol  1.E-03 lg(s-1)                  E12.5,2X 14
+  3603 SON Fit 2 log10 (ne in m-3)              lg(Nef2)    nef2l  1.E-03 lg(m-3)                  E12.5,2X 14
+  3604 SON Fit 2 electron temperature, te       Tef2        tef2   1.     k                        E12.5,2X 14
+  3605 SON Fit 2 ion temperature, ti            Tif2        tif2   1.     k                        E12.5,2X 14
+  3606 SON Fit 2 temperature ratio, te/ti       Trf2        trf2   1.E-03                          E12.5,2X 14
+  3607 SON Fit 2 ion velocity (pos = away)      Vilosf2     vof2   1.     m/s                      E12.5,2X 14
+  3608 SON Fit 2 composition - [o+]/ne          [O+]/Ne f2  po+f2  1.E-03                          E12.5,2X 14
+  3609 SON Fit 2 log10(ion-neutral coll. freq)  lg(ColFf2)  colf2l 1.E-03 lg(s-1)                  E12.5,2X 14
+  3610 SON Reduced-chi square of fit 2          Chi Sqr f2  chisq2 1.E-03                          E12.5,2X 14
+  3611 SON Goodness of fit 2                    Goodns f2   gfit2  1.                              E12.5,2X 14
+  3612 SON Usability code fit 2                 Use Cod f2  ucf2   1.                              E12.5,2X 14
+  3613 SON Fit 3 log10 (ne in m-3)              lg(Nef3)    nef3l  1.E-03 lg(m-3)                  E12.5,2X 14
+  3614 SON Fit 3 electron temperature, te       Tef3        tef3   1.     k                        E12.5,2X 14
+  3615 SON Fit 3 ion temperature, ti            Tif3        tif3   1.     k                        E12.5,2X 14
+  3616 SON Fit 3 temperature ratio, te/ti       Trf3        trf3   1.E-03                          E12.5,2X 14
+  3617 SON Fit 3 ion velocity (pos = away)      Vilosf3     vof3   1.     m/s                      E12.5,2X 14
+  3618 SON Fit 3 composition - [o+]/ne          [O+]/Ne f3  po+f3  1.E-03                          E12.5,2X 14
+  3619 SON Fit 3 log10(ion-neutral coll. freq)  lg(ColFf3)  colf3l 1.E-03 lg(s-1)                  E12.5,2X 14
+  3620 SON Reduced-chi square of fit 3          Chi Sqr f3  chisq3 1.E-03                          E12.5,2X 14
+  3621 SON Goodness of fit 3                    Goodns f3   gfit3  1.                              E12.5,2X 14
+  3622 SON Usability code fit 3                 Use Cod f3  ucf3   1.                              E12.5,2X 14
+  3623 SON Zone number for fitted data          Zone no     zonn   1.                              E12.5,2X 14
+  3624 SON Fit code of fit 2                    Fit Cod f2  fitcf2 1.                              E12.5,2X 14
+  3625 SON Fit code of fit 3                    Fit Cod f3  fitcf3 1.                              E12.5,2X 14
+  3626 SON Vector Velocity Magnitude (XY plane) XY |Vel.|   magvel 1.     m/s                      E12.5,2X 14
+  3627 SON CW angle from GM North for 3626-XY   nangle      nangle 1.E-02 deg                      F9.2 ,2X 11
+  3628 SON E Field Magnitude (XY plane)         XY |EF|     magEF  1.E-05 V/m                      E12.5,2X 14
+  3629 SON CW angle from GM North for 3628-XY   EF nangle   eangle 1.E-02 deg                      E12.5,2X 14
+  3630 SON parameter 131                        SON par 131 son131 1.                              E12.5,2X 14
+  3631 SON parameter 132                        SON par 132 son132 1.                              E12.5,2X 14
+  3632 SON parameter 133                        SON par 133 son133 1.                              E12.5,2X 14
+  3633 SON parameter 134                        SON par 134 son134 1.                              E12.5,2X 14
+  3634 SON parameter 135                        SON par 135 son135 1.                              E12.5,2X 14
+  3635 SON parameter 136                        SON par 136 son136 1.                              E12.5,2X 14
+  3636 SON parameter 137                        SON par 137 son137 1.                              E12.5,2X 14
+  3637 SON parameter 138                        SON par 138 son138 1.                              E12.5,2X 14
+  3638 SON parameter 139                        SON par 139 son139 1.                              E12.5,2X 14
+  3639 SON parameter 140                        SON par 140 son140 1.                              E12.5,2X 14
+  3640 SON parameter 141                        SON par 141 son141 1.                              E12.5,2X 14
+  3641 SON parameter 142                        SON par 142 son142 1.                              E12.5,2X 14
+  3642 SON parameter 143                        SON par 143 son143 1.                              E12.5,2X 14
+  3643 SON parameter 144                        SON par 144 son144 1.                              E12.5,2X 14
+  3644 SON parameter 145                        SON par 145 son145 1.                              E12.5,2X 14
+  3645 SON parameter 146                        SON par 146 son146 1.                              E12.5,2X 14
+  3646 SON parameter 147                        SON par 147 son147 1.                              E12.5,2X 14
+  3647 SON parameter 148                        SON par 148 son148 1.                              E12.5,2X 14
+  3648 SON parameter 149                        SON par 149 son149 1.                              E12.5,2X 14
+  3649 SON parameter 150                        SON par 150 son150 1.                              E12.5,2X 14
+  3650 SON Thermal red line emission            E6300-thrml e630t  1.E-02 ph/cm3-s                 E12.5,2X 14
+  3651 SON Dissoc-Recomb red line emission      E6300-dr    e630   1.E-02 ph/cm3-s                 E12.5,2X 14
+  3652 SON Volume emission of 5200 Angstrom     E5200       e520   1.E-02 ph/cm3-s                 E12.5,2X 14
+  3653 SON parameter 154                        SON par 154 son154 1.                              E12.5,2X 14
+  3654 SON parameter 155                        SON par 155 son155 1.                              E12.5,2X 14
+  3655 SON Electron to ion energy loss rate     Lie         lei    1.     ev/cm3-s                 E12.5,2X 14
+  3656 SON Elec. to neutral energy loss rate    Len         len    1.     ev/cm3-s                 E12.5,2X 14
+  3657 SON Energy loss rate (Le = Lei + Len)    Le          lein   1.     ev/cm3-s                 E12.5,2X 14
+  3658 SON Heat conduction                      Hc          hc     1.     ev/cm3-s                 E12.5,2X 14
+  3659 SON Energy input (=Le-Hc)                Qe=Le-Hc    qe     1.     ev/cm3-s                 E12.5,2X 14
+  3660 SON Ion to neut energy loss rate (Lin)   Lin         lin    1.E+01 ev/cm3-s                 E12.5,2X 14
+  3661 SON Joule heating (=Lin-Lei)             Qj          qj     1.E+01 ev/cm3-s                 E12.5,2X 14
+  3662 SON Heat flux                            Hflx        hflx   1.E+07 ev/cm2-s                 E12.5,2X 14
+  3663 SON parameter 164                        SON par 164 son164 1.                              E12.5,2X 14
+  3664 SON parameter 165                        SON par 165 son165 1.                              E12.5,2X 14
+  3665 SON parameter 166                        SON par 166 son166 1.                              E12.5,2X 14
+  3666 SON parameter 167                        SON par 167 son167 1.                              E12.5,2X 14
+  3667 SON parameter 168                        SON par 168 son168 1.                              E12.5,2X 14
+  3668 SON parameter 169                        SON par 169 son169 1.                              E12.5,2X 14
+  3669 SON parameter 170                        SON par 170 son170 1.                              E12.5,2X 14
+  3670 SON 6300 A thermal intensity             Ith(6300)   ith630 1.     R                        E12.5,2X 14
+  3671 SON 6300 A dissoc-recomb. intensity      Idr(6300)   idr630 1.     R                        E12.5,2X 14
+  3672 SON 6300 A thermal+diss intensity        Itd(6300)   itd630 1.     R                        E12.5,2X 14
+  3673 SON 5200 A dissoc-recomb intensity       Idr(5200)   idr520 1.     R                        E12.5,2X 14
+  3674 SON parameter 175                        SON par 175 son175 1.                              E12.5,2X 14
+  3675 SON parameter 176                        SON par 176 son176 1.                              E12.5,2X 14
+  3676 SON parameter 177                        SON par 177 son177 1.                              E12.5,2X 14
+  3677 SON parameter 178                        SON par 178 son178 1.                              E12.5,2X 14
+  3678 SON parameter 179                        SON par 179 son179 1.                              E12.5,2X 14
+  3679 SON parameter 180                        SON par 180 son180 1.                              E12.5,2X 14
+  3680 SON parameter 181                        SON par 181 son181 1.                              E12.5,2X 14
+  3681 SON parameter 182                        SON par 182 son182 1.                              E12.5,2X 14
+  3682 SON parameter 183                        SON par 183 son183 1.                              E12.5,2X 14
+  3683 SON parameter 184                        SON par 184 son184 1.                              E12.5,2X 14
+  3684 SON parameter 185                        SON par 185 son185 1.                              E12.5,2X 14
+  3685 SON parameter 186                        SON par 186 son186 1.                              E12.5,2X 14
+  3686 SON parameter 187                        SON par 187 son187 1.                              E12.5,2X 14
+  3687 SON parameter 188                        SON par 188 son188 1.                              E12.5,2X 14
+  3688 SON parameter 189                        SON par 189 son189 1.                              E12.5,2X 14
+  3689 SON parameter 190                        SON par 190 son190 1.                              E12.5,2X 14
+  3690 SON parameter 191                        SON par 191 son191 1.                              E12.5,2X 14
+  3691 SON parameter 192                        SON par 192 son192 1.                              E12.5,2X 14
+  3692 SON parameter 193                        SON par 193 son193 1.                              E12.5,2X 14
+  3693 SON parameter 194                        SON par 194 son194 1.                              E12.5,2X 14
+  3694 SON parameter 195                        SON par 195 son195 1.                              E12.5,2X 14
+  3695 SON parameter 196                        SON par 196 son196 1.                              E12.5,2X 14
+  3696 SON parameter 197                        SON par 197 son197 1.                              E12.5,2X 14
+  3697 SON parameter 198                        SON par 198 son198 1.                              E12.5,2X 14
+  3698 SON parameter 199                        SON par 199 son199 1.                              E12.5,2X 14
+  3699 SON parameter 200                        SON par 200 son200 1.                              E12.5,2X 14
+  3700 EIS parameter 1                          EIS par 1   eisp01 1.                              E12.5,2X 14
+  3701 EIS parameter 2                          EIS par 2   eisp02 1.                              E12.5,2X 14
+  3702 EIS parameter 3                          EIS par 3   eisp03 1.                              E12.5,2X 14
+  3703 EIS parameter 4                          EIS par 4   eisp04 1.                              E12.5,2X 14
+  3704 EIS parameter 5                          EIS par 5   eisp05 1.                              E12.5,2X 14
+  3705 EIS parameter 6                          EIS par 6   eisp06 1.                              E12.5,2X 14
+  3706 EIS parameter 7                          EIS par 7   eisp07 1.                              E12.5,2X 14
+  3707 EIS parameter 8                          EIS par 8   eisp08 1.                              E12.5,2X 14
+  3708 EIS parameter 9                          EIS par 9   eisp09 1.                              E12.5,2X 14
+  3709 EIS parameter 10                         EIS par 10  eisp10 1.                              E12.5,2X 14
+  3710 EIS parameter 11                         EIS par 11  eisp11 1.                              E12.5,2X 14
+  3711 EIS parameter 12                         EIS par 12  eisp12 1.                              E12.5,2X 14
+  3712 EIS parameter 13                         EIS par 13  eisp13 1.                              E12.5,2X 14
+  3713 EIS parameter 14                         EIS par 14  eisp14 1.                              E12.5,2X 14
+  3714 EIS parameter 15                         EIS par 15  eisp15 1.                              E12.5,2X 14
+  3715 EIS parameter 16                         EIS par 16  eisp16 1.                              E12.5,2X 14
+  3716 EIS parameter 17                         EIS par 17  eisp17 1.                              E12.5,2X 14
+  3717 EIS parameter 18                         EIS par 18  eisp18 1.                              E12.5,2X 14
+  3718 EIS parameter 19                         EIS par 19  eisp19 1.                              E12.5,2X 14
+  3719 EIS parameter 20                         EIS par 20  eisp20 1.                              E12.5,2X 14
+  3720 EIS parameter 21                         EIS par 21  eisp21 1.                              E12.5,2X 14
+  3721 EIS parameter 22                         EIS par 22  eisp22 1.                              E12.5,2X 14
+  3722 EIS parameter 23                         EIS par 23  eisp23 1.                              E12.5,2X 14
+  3723 EIS parameter 24                         EIS par 24  eisp24 1.                              E12.5,2X 14
+  3724 EIS parameter 25                         EIS par 25  eisp25 1.                              E12.5,2X 14
+  3725 EIS parameter 26                         EIS par 26  eisp26 1.                              E12.5,2X 14
+  3726 EIS parameter 27                         EIS par 27  eisp27 1.                              E12.5,2X 14
+  3727 EIS parameter 28                         EIS par 28  eisp28 1.                              E12.5,2X 14
+  3728 EIS parameter 29                         EIS par 29  eisp29 1.                              E12.5,2X 14
+  3729 EIS parameter 30                         EIS par 30  eisp30 1.                              E12.5,2X 14
+  3730 EIS parameter 31                         EIS par 31  eisp31 1.                              E12.5,2X 14
+  3731 EIS parameter 32                         EIS par 32  eisp32 1.                              E12.5,2X 14
+  3732 EIS parameter 33                         EIS par 33  eisp33 1.                              E12.5,2X 14
+  3733 EIS parameter 34                         EIS par 34  eisp34 1.                              E12.5,2X 14
+  3734 EIS parameter 35                         EIS par 35  eisp35 1.                              E12.5,2X 14
+  3735 EIS parameter 36                         EIS par 36  eisp36 1.                              E12.5,2X 14
+  3736 EIS parameter 37                         EIS par 37  eisp37 1.                              E12.5,2X 14
+  3737 EIS parameter 38                         EIS par 38  eisp38 1.                              E12.5,2X 14
+  3738 EIS parameter 39                         EIS par 39  eisp39 1.                              E12.5,2X 14
+  3739 EIS parameter 40                         EIS par 40  eisp40 1.                              E12.5,2X 14
+  3740 EIS parameter 41                         EIS par 41  eisp41 1.                              E12.5,2X 14
+  3741 EIS parameter 42                         EIS par 42  eisp42 1.                              E12.5,2X 14
+  3742 EIS parameter 43                         EIS par 43  eisp43 1.                              E12.5,2X 14
+  3743 EIS parameter 44                         EIS par 44  eisp44 1.                              E12.5,2X 14
+  3744 EIS parameter 45                         EIS par 45  eisp45 1.                              E12.5,2X 14
+  3745 EIS parameter 46                         EIS par 46  eisp46 1.                              E12.5,2X 14
+  3746 EIS parameter 47                         EIS par 47  eisp47 1.                              E12.5,2X 14
+  3747 EIS parameter 48                         EIS par 48  eisp48 1.                              E12.5,2X 14
+  3748 EIS parameter 49                         EIS par 49  eisp49 1.                              E12.5,2X 14
+  3749 EIS parameter 50                         EIS par 50  eisp50 1.                              E12.5,2X 14
+  3750 EIS parameter 51                         EIS par 51  eisp51 1.                              E12.5,2X 14
+  3751 EIS parameter 52                         EIS par 52  eisp52 1.                              E12.5,2X 14
+  3752 EIS parameter 53                         EIS par 53  eisp53 1.                              E12.5,2X 14
+  3753 EIS parameter 54                         EIS par 54  eisp54 1.                              E12.5,2X 14
+  3754 EIS parameter 55                         EIS par 55  eisp55 1.                              E12.5,2X 14
+  3755 EIS parameter 56                         EIS par 56  eisp56 1.                              E12.5,2X 14
+  3756 EIS parameter 57                         EIS par 57  eisp57 1.                              E12.5,2X 14
+  3757 EIS parameter 58                         EIS par 58  eisp58 1.                              E12.5,2X 14
+  3758 EIS parameter 59                         EIS par 59  eisp59 1.                              E12.5,2X 14
+  3759 EIS parameter 60                         EIS par 60  eisp60 1.                              E12.5,2X 14
+  3760 EIS parameter 61                         EIS par 61  eisp61 1.                              E12.5,2X 14
+  3761 EIS parameter 62                         EIS par 62  eisp62 1.                              E12.5,2X 14
+  3762 EIS parameter 63                         EIS par 63  eisp63 1.                              E12.5,2X 14
+  3763 EIS parameter 64                         EIS par 64  eisp64 1.                              E12.5,2X 14
+  3764 EIS parameter 65                         EIS par 65  eisp65 1.                              E12.5,2X 14
+  3765 EIS parameter 66                         EIS par 66  eisp66 1.                              E12.5,2X 14
+  3766 EIS parameter 67                         EIS par 67  eisp67 1.                              E12.5,2X 14
+  3767 EIS parameter 68                         EIS par 68  eisp68 1.                              E12.5,2X 14
+  3768 EIS parameter 69                         EIS par 69  eisp69 1.                              E12.5,2X 14
+  3769 EIS parameter 70                         EIS par 70  eisp70 1.                              E12.5,2X 14
+  3770 EIS parameter 71                         EIS par 71  eisp71 1.                              E12.5,2X 14
+  3771 EIS parameter 72                         EIS par 72  eisp72 1.                              E12.5,2X 14
+  3772 EIS parameter 73                         EIS par 73  eisp73 1.                              E12.5,2X 14
+  3773 EIS parameter 74                         EIS par 74  eisp74 1.                              E12.5,2X 14
+  3774 EIS parameter 75                         EIS par 75  eisp75 1.                              E12.5,2X 14
+  3775 EIS parameter 76                         EIS par 76  eisp76 1.                              E12.5,2X 14
+  3776 EIS parameter 77                         EIS par 77  eisp77 1.                              E12.5,2X 14
+  3777 EIS parameter 78                         EIS par 78  eisp78 1.                              E12.5,2X 14
+  3778 EIS parameter 79                         EIS par 79  eisp79 1.                              E12.5,2X 14
+  3779 EIS parameter 80                         EIS par 80  eisp80 1.                              E12.5,2X 14
+  3780 EIS parameter 81                         EIS par 81  eisp81 1.                              E12.5,2X 14
+  3781 EIS parameter 82                         EIS par 82  eisp82 1.                              E12.5,2X 14
+  3782 EIS parameter 83                         EIS par 83  eisp83 1.                              E12.5,2X 14
+  3783 EIS parameter 84                         EIS par 84  eisp84 1.                              E12.5,2X 14
+  3784 EIS parameter 85                         EIS par 85  eisp85 1.                              E12.5,2X 14
+  3785 EIS parameter 86                         EIS par 86  eisp86 1.                              E12.5,2X 14
+  3786 EIS parameter 87                         EIS par 87  eisp87 1.                              E12.5,2X 14
+  3787 EIS parameter 88                         EIS par 88  eisp88 1.                              E12.5,2X 14
+  3788 EIS parameter 89                         EIS par 89  eisp89 1.                              E12.5,2X 14
+  3789 EIS parameter 90                         EIS par 90  eisp90 1.                              E12.5,2X 14
+  3790 EIS parameter 91                         EIS par 91  eisp91 1.                              E12.5,2X 14
+  3791 EIS parameter 92                         EIS par 92  eisp92 1.                              E12.5,2X 14
+  3792 EIS parameter 93                         EIS par 93  eisp93 1.                              E12.5,2X 14
+  3793 EIS parameter 94                         EIS par 94  eisp94 1.                              E12.5,2X 14
+  3794 EIS parameter 95                         EIS par 95  eisp95 1.                              E12.5,2X 14
+  3795 EIS parameter 96                         EIS par 96  eisp96 1.                              E12.5,2X 14
+  3796 EIS parameter 97                         EIS par 97  eisp97 1.                              E12.5,2X 14
+  3797 EIS parameter 98                         EIS par 98  eisp98 1.                              E12.5,2X 14
+  3798 EIS parameter 99                         EIS par 99  eisp99 1.                              E12.5,2X 14
+  3799 EIS parameter100                         EIS par100  eis100 1.                              E12.5,2X 14
+  3800 Scaled real ACF at zero lag              ACFrs0      acfrs0 1.                              E12.5,2X 14
+  3801 Normalized real ACF at lag 1             ACFrn1      acfr1  1.E-04                          E12.5,2X 14
+  3802 Normalized real ACF at lag 2             ACFrn2      acfr2  1.E-04                          E12.5,2X 14
+  3803 Normalized real ACF at lag 3             ACFrn3      acfr3  1.E-04                          E12.5,2X 14
+  3804 Normalized real ACF at lag 4             ACFrn4      acfr4  1.E-04                          E12.5,2X 14
+  3805 Normalized real ACF at lag 5             ACFrn5      acfr5  1.E-04                          E12.5,2X 14
+  3806 Normalized real ACF at lag 6             ACFrn6      acfr6  1.E-04                          E12.5,2X 14
+  3807 Normalized real ACF at lag 7             ACFrn7      acfr7  1.E-04                          E12.5,2X 14
+  3808 Normalized real ACF at lag 8             ACFrn8      acfr8  1.E-04                          E12.5,2X 14
+  3809 Normalized real ACF at lag 9             ACFrn9      acfr9  1.E-04                          E12.5,2X 14
+  3810 Normalized real ACF at lag 10            ACFrn10     acfr10 1.E-04                          E12.5,2X 14
+  3811 Normalized real ACF at lag 11            ACFrn11     acfr11 1.E-04                          E12.5,2X 14
+  3812 Normalized real ACF at lag 12            ACFrn12     acfr12 1.E-04                          E12.5,2X 14
+  3813 Normalized real ACF at lag 13            ACFrn13     acfr13 1.E-04                          E12.5,2X 14
+  3814 Normalized real ACF at lag 14            ACFrn14     acfr14 1.E-04                          E12.5,2X 14
+  3815 Normalized real ACF at lag 15            ACFrn15     acfr15 1.E-04                          E12.5,2X 14
+  3816 Normalized real ACF at lag 16            ACFrn16     acfr16 1.E-04                          E12.5,2X 14
+  3817 Normalized real ACF at lag 17            ACFrn17     acfr17 1.E-04                          E12.5,2X 14
+  3818 Normalized real ACF at lag 18            ACFrn18     acfr18 1.E-04                          E12.5,2X 14
+  3819 Normalized real ACF at lag 19            ACFrn19     acfr19 1.E-04                          E12.5,2X 14
+  3820 Normalized real ACF at lag 20            ACFrn20     acfr20 1.E-04                          E12.5,2X 14
+  3821 Normalized real ACF at lag 21            ACFrn21     acfr21 1.E-04                          E12.5,2X 14
+  3822 Normalized real ACF at lag 22            ACFrn22     acfr22 1.E-04                          E12.5,2X 14
+  3823 Normalized real ACF at lag 23            ACFrn23     acfr23 1.E-04                          E12.5,2X 14
+  3824 Normalized real ACF at lag 24            ACFrn24     acfr24 1.E-04                          E12.5,2X 14
+  3825 Normalized real ACF at lag 25            ACFrn25     acfr25 1.E-04                          E12.5,2X 14
+  3826 Normalized real ACF at lag 26            ACFrn26     acfr26 1.E-04                          E12.5,2X 14
+  3827 Normalized real ACF at lag 27            ACFrn27     acfr27 1.E-04                          E12.5,2X 14
+  3828 Normalized real ACF at lag 28            ACFrn28     acfr28 1.E-04                          E12.5,2X 14
+  3829 Normalized real ACF at lag 29            ACFrn29     acfr29 1.E-04                          E12.5,2X 14
+  3830 Normalized real ACF at lag 30            ACFrn30     acfr30 1.E-04                          E12.5,2X 14
+  3831 Normalized real ACF at lag 31            ACFrn31     acfr31 1.E-04                          E12.5,2X 14
+  3832 Normalized real ACF at lag 32            ACFrn32     acfr32 1.E-04                          E12.5,2X 14
+  3833 Normalized real ACF at lag 33            ACFrn33     acfr33 1.E-04                          E12.5,2X 14
+  3834 Normalized real ACF at lag 34            ACFrn34     acfr34 1.E-04                          E12.5,2X 14
+  3900 Scale factor for ACF at zero lag         ACFsf0      acfsf0 1.                              E12.5,2X 14
+  3901 Normalized imaginary ACF at lag 1        ACFin1      acfi1  1.E-04                          E12.5,2X 14
+  3902 Normalized imaginary ACF at lag 2        ACFin2      acfi2  1.E-04                          E12.5,2X 14
+  3903 Normalized imaginary ACF at lag 3        ACFin3      acfi3  1.E-04                          E12.5,2X 14
+  3904 Normalized imaginary ACF at lag 4        ACFin4      acfi4  1.E-04                          E12.5,2X 14
+  3905 Normalized imaginary ACF at lag 5        ACFin5      acfi5  1.E-04                          E12.5,2X 14
+  3906 Normalized imaginary ACF at lag 6        ACFin6      acfi6  1.E-04                          E12.5,2X 14
+  3907 Normalized imaginary ACF at lag 7        ACFin7      acfi7  1.E-04                          E12.5,2X 14
+  3908 Normalized imaginary ACF at lag 8        ACFin8      acfi8  1.E-04                          E12.5,2X 14
+  3909 Normalized imaginary ACF at lag 9        ACFin9      acfi9  1.E-04                          E12.5,2X 14
+  3910 Normalized imaginary ACF at lag 10       ACFin10     acfi10 1.E-04                          E12.5,2X 14
+  3911 Normalized imaginary ACF at lag 11       ACFin11     acfi11 1.E-04                          E12.5,2X 14
+  3912 Normalized imaginary ACF at lag 12       ACFin12     acfi12 1.E-04                          E12.5,2X 14
+  3913 Normalized imaginary ACF at lag 13       ACFin13     acfi13 1.E-04                          E12.5,2X 14
+  3914 Normalized imaginary ACF at lag 14       ACFin14     acfi14 1.E-04                          E12.5,2X 14
+  3915 Normalized imaginary ACF at lag 15       ACFin15     acfi15 1.E-04                          E12.5,2X 14
+  3916 Normalized imaginary ACF at lag 16       ACFin16     acfi16 1.E-04                          E12.5,2X 14
+  3917 Normalized imaginary ACF at lag 17       ACFin17     acfi17 1.E-04                          E12.5,2X 14
+  3918 Normalized imaginary ACF at lag 18       ACFin18     acfi18 1.E-04                          E12.5,2X 14
+  3919 Normalized imaginary ACF at lag 19       ACFin19     acfi19 1.E-04                          E12.5,2X 14
+  3920 Normalized imaginary ACF at lag 20       ACFin20     acfi20 1.E-04                          E12.5,2X 14
+  3921 Normalized imaginary ACF at lag 21       ACFin21     acfi21 1.E-04                          E12.5,2X 14
+  3922 Normalized imaginary ACF at lag 22       ACFin22     acfi22 1.E-04                          E12.5,2X 14
+  3923 Normalized imaginary ACF at lag 23       ACFin23     acfi23 1.E-04                          E12.5,2X 14
+  3924 Normalized imaginary ACF at lag 24       ACFin24     acfi24 1.E-04                          E12.5,2X 14
+  3925 Normalized imaginary ACF at lag 25       ACFin25     acfi25 1.E-04                          E12.5,2X 14
+  3926 Normalized imaginary ACF at lag 26       ACFin26     acfi26 1.E-04                          E12.5,2X 14
+  3927 Normalized imaginary ACF at lag 27       ACFin27     acfi27 1.E-04                          E12.5,2X 14
+  3928 Normalized imaginary ACF at lag 28       ACFin28     acfi28 1.E-04                          E12.5,2X 14
+  3929 Normalized imaginary ACF at lag 29       ACFin29     acfi29 1.E-04                          E12.5,2X 14
+  3930 Normalized imaginary ACF at lag 30       ACFin30     acfi30 1.E-04                          E12.5,2X 14
+  3931 Normalized imaginary ACF at lag 31       ACFin31     acfi31 1.E-04                          E12.5,2X 14
+  3932 Normalized imaginary ACF at lag 32       ACFin32     acfi32 1.E-04                          E12.5,2X 14
+  3933 Normalized imaginary ACF at lag 33       ACFin33     acfi33 1.E-04                          E12.5,2X 14
+  3934 Normalized imaginary ACF at lag 34       ACFin34     acfi34 1.E-04                          E12.5,2X 14
+  4001 PKR QC 0=Okay                            PFQC        pfqc   1.                              E12.5,2X 14
+  4002 PKR QC No records in noise avg           PF NR Noise pfnnr  1.                              E12.5,2X 14
+  4003 PKR QC Avg of Galactic Noise             PF Gal Nois pfgn   1.                              E12.5,2X 14
+  4004 PKR QC log10 (noise pwr in spectrm)      lg(NoisPwr) pfpnl  1.E-03 lg                       E12.5,2X 14
+  4005 PKR QC log10 (signl pwr in spectrm)      lg(SgnlPwr) pfpsl  1.E-03 lg                       E12.5,2X 14
+  4015 UIL QC log10 (sodium counts)             lg(NaCount) uinacl 1.E-03 lg                       E12.5,2X 14
+  4016 UIL QC log10 (F factor)                  lg(F Factr) uiffl  1.E-03 lg                       E12.5,2X 14
+  4017 UIL QC log10 (Na returns/bkgnd noise)    lg(Na/bkgd) uinfl  1.E-03 lg                       E12.5,2X 14
+  4018 UIL QC log10 (av Rayleigh) = NrmlzFctr   lg(avgRale) uiarl  1.E-03 lg                       E12.5,2X 14
+  4025 CFP QC No coefficients                   CFP N Coefs cfpnc  1.                              E12.5,2X 14
+  4031 GBF QC Skynoise (A/D convertor units)    GBF SkyNois gbskn  1.                              E12.5,2X 14
+  4032 GBF QC XCF flag (0=Off, 1=On)            GBF XCF Flg gbxcf  1.                              E12.5,2X 14
+  4035 GBF QC Groundscatter flag (0:n, 1:y)     GBF GScat F gbgsct 1.                              E12.5,2X 14
+  4050 AFP QC Zenith ref flag (1=use ; 0=no)    AFP Zen Flg afpzf  1.                              E12.5,2X 14
+  4051 AFP QC Free spectral range(arb p unit)   AFP SpctRng afpsr  1.                              E12.5,2X 14
+  4052 AFP QC Etalon Thickness                  AFP Et Th   afpet  1.E-04 m                        E12.5,2X 14
+  4053 AFP QC Intensity Calibration Factor      AFP I Cal F afpif  1.E-02 cnt/s-R                  E12.5,2X 14
+  4055 AFP QC No Harmonics in Fourier Anal      AFP No Harm afpnh  1.                              E12.5,2X 14
+  4056 AFP QC D(Vne)/Dx per 1000 km (x +Ewrd)   DVne/Dx/mkm afdvne 1.E-04 m/s-km                   E12.5,2X 14
+  4057 AFP QC D(Vnn)/Dy per 1000 km (y +Nwrd)   DVnn/Dx/mkm afdvnn 1.E-04 m/s-km                   E12.5,2X 14
+  4058 AFP QC Error in 4056/4057 per 1000 km    4056-7Error afddvn 1.E-04 m/s-km                   E12.5,2X 14
+  4060 AQF QC Standard deviation in 1411        1411 s dev  sd1411 1.E-01 m/s                      E12.5,2X 14
+  4061 AQF QC # Samples in time avg of 1411     1411 # vals nv1411 1.                              E12.5,2X 14
+  4062 AQF QC Standard deviation in 1421        1421 s dev  sd1421 1.E-01 m/s                      E12.5,2X 14
+  4063 AQF QC # Samples in time avg of 1421     1421 # vals nv1421 1.                              E12.5,2X 14
+  4070 COF QC Mean sampling density for winds   COF ts wnd  coftsw 1.E-01 mn-1
+  4071 COF QC Mean sampling density for hts     COF ts hts  coftsh 1.E-01 mn-1
+ 30001 f10.7 solar flux (sa) previous day       f10.7 (b )         1.e-23 w/m2/hz  
+ 30010 Begin year (universal time)              begin year         1.        UT     
+ 30015 End year                                 end year           1.        UT     
+ 30020 Begin month/day (universal time)         beg mmdd           1.        UT     
+ 30025 End month/day                            end mmdd           1.        UT     
+ 30030 Begin hour/minute (universal time)       beg hhmm           1.        UT     
+ 30031 Begin centisecond                        beg csec           1.e-02  sec      
+ 30035 End hour/minute                          end hhmm           1.        UT     
+ 30036 End centisecond                          end csec           1.e-02  sec      
+ 30037 Tim offset to add to imf time             imf tofs          1.0      sec     
+ 30090 Ratio good/all Generic                   Gd2tot             1.e-02  percent
+ 30100 Mscan code                               Mscan              1.0
+ 30106 Minimum altitude for e-region            min alt e          1.0      km
+ 30108 Maximum altitude for e-region            max alt e          1.0      km
+ 30110 Altitude                                 alt km             1.e-02   km
+ 30120 Range                                    range km           1.e-02   km
+ 30121 Coefficient "a" of "ax + by + c"           coefa            1.0              
+ 30122 Coefficient "b" of "ax + by + c"           coefb            1.0              
+ 30123 Coefficient "c" of "ax + by + c"           coefc            1.0              
+ 30220 Binning base value                       bin base vl        1.0      units  
+ 30221 Additional increment to binning base     additnl bn         1.0      units  
+ 30222 Binning profile increment                bin incrmt         1.0      units  
+ 30310 kp index (previous)                       kp index-p        1.e-01           
+ 30335 ap index - previous (3-hourly)            3 hrly ap         1.               
+ 30395 MSIS number density factor               nd factoror        1.e-02
+ 30400 Upper altitude of integration            Int Alt Max        1.0
+ 30401 Upper altitude of E-region integration   E alt max          1.0
+ 30410 Ratio good/all conductance               Cond gd2tot        1.e-02
+ 30411 Ratio good/all E-region conductance      E-Cond g/a         1.e-02
+ 30412 Ratio good/all integrated current        curr-gd2tot        1.e-02
+ 30413 Ratio E good/all Int. Joule Heating      JH gd2tot          1.e-02
+ 30420 Cowling Conductivity                     Cowl Cond          1.e-06  mhos/m
+ 30421 Log10(Cowling Conductivity)              lg10(Cowl)         1.e-03 l-mhos/m
+ 30430 Cowling Conductance                      Cowl Cond          1.e-02   mho
+ 30432 E-region Pedersen Conductance            E Ped Cond         1.e-02   mho
+ 30434 E-region Hall Conductance                E Hall Cond        1.e-02   mho
+ 30436 E-region Cowling Conductance             E Cowl Cond        1.e-02   mho
+ 30440 log10(Passive Energy Deposition Rate)    lg(SigP E2)        1.e-03 lg(W/m2)
+ 30441 lg10(E-Rgn Passive Energy Dep. Rate)     lg(ESigPE2)        1.e-03 lg(W/m2)
+ 30445 Log10(Passive Energy Dep. Rate / Vol.)   lg10(PEDR)         1.e-03 lg(W/m3)
+ 30450 Joule Heating Rate per Volume            JH                 1.e-09  W/m3
+ 30451 Log10(Joule Heating Rate per Volume)     lg(jh)             1.e-03 lg(W/m3)
+ 30452 EM Energy Transfer Rate per Volume       EM TR/V            1.e-09  W/m3
+ 30454 Mech. Energy Transfer Rate per Volume    Mech TR/V          1.e-09  W/m3
+ 30460 E-region Integrated Joule Heating rate   E HI JH            1.e-05   W/m2
+ 30461 Log10(E-Region Integrated JH Rate)       l-E-HI-JH          1.e-03 lg(W/m2)
+ 30462 E-region Electromagnetic Energy TR       E Elec TR=Q        1.e-05   W/m2
+ 30464 E-region Mech. Energy Transfer rate      E Mech TR          1.e-05   W/m2
+ 30482 Log10(Derived ion-neut. coll. freq.)     lg10(dcf)          1.e-03 log(s-1)
+ 30484 Log10(Pedersen drag coefficient)         lg10(pdc)          1.e-03 log(s-1)
+ 30486 Log10(Hall drag coefficient)             lg10(hdc)          1.e-03 log(s-1)
+ 30490 bitwise fit status                       B Fit stat         1.0
+ 30515 log10(smooth ne in m-3)                  lg10 smone         1.e-03 log(m-3)
+ 30535 log10 (max e-region ne in m-3)           lg10 maxne-e       1.e-03 log(m-3) 
+ 30536 log10 (max f-region ne in m-3)           lg10 maxne-f       1.e-03 log(m-3) 
+ 30540 Height of maximum e-region density       ht(max ne)         1.         km    
+ 30541 Height of maximum f-region density       ht(max ne)         1.         km    
+ 30550 Elasticity for spline                    escale             1.0
+ 30600 log10 (mean counts)                      lg avg cnts        1.e-03 lg(cnts)
+ 30601 Number of points integrated for power1   d1 pts             1.0
+ 30602 log10(mean signal)                       mean signal        1.e-03 lg(cnts)
+ 30603 Signal relative error                    rel err            1.e-02 percent
+ 30604 log10(derived number density  smpl 1)    d1molec/m^3        1.e-03 l-mol/m3
+ 30606 log10(back scatter ratio sample 1)       d1 ratio           1.e-03  log()
+ 30608 Derived atmospheric temp - k, sample 1   d1 temp k          1.0      k
+ 30609 log(Der atmospheric temp - k), sample 1  lgd1 temp k        1.e-03 log(k)
+ 30610 Noise - log10(photon counts)             noise cnt          1.e-03  ph cnts
+ 30611 Uncertainty of mean for noise, smpl 1    varMnoise 1        1.e-03  cnts
+ 30612 log10 (gaussian var of noise)            varGnoise          1.e-03
+ 30620 log10 (counts), sample 2                 lg cnts 2          1.e-03 lg(cnts)
+ 30621 Number of points integrated for power2   d2 pts             1.0
+ 30622 log10(signal), sample 2                  signal 2           1.e-03 lg(cnts)
+ 30623 Rel error  (sqrt(cnts)/signal), smpl 2   rel err            1.e-02 percent
+ 30624 log10(derived number density  smpl 2)    d2molec/m^3        1.e-03 l-mol/m3
+ 30626 log10(back scatter ratio sample 2)       d2 ratio           1.e-03  log()
+ 30628 Derived atmospheric temp - k, sample 2   d2 temp k          1.0      k
+ 30629 log(Der atmospheric temp - k), sample 2  lgd2 temp k        1.e-03 log(k)
+ 30630 Noise - log10(photon counts), sample 2   noise cnt 2        1.e-03  ph cnts
+ 30631 Uncertainty of mean for noise, smpl 2    varMnoise 2        1.e-03  cnts
+ 30632 log10 (gaussian var of noise), smpl 2    varGnoise 2        1.e-03
+ 30633 Rho wave, sample 2                       rho wave           0.1     percent
+ 30634 Relative error for 30633                 rel err            1.e-02  percent
+ 30640 log(total cross section - [m2])          tot x sctn         1.e-03   m2
+ 30645 Normalization altitude - km              norm alt-km        1.0      km
+ 30650 log(model number density)                molec/m^3          1.e-03 l-mol/m3
+ 30652 Atmospheric temperature                  temp - k           1.0       k
+ 30654 log(pressure - mb)                       press - mb         1.e-03  log(mb)
+ 30656 log(column den)                          column den         1.e-03
+ 30658 Q2=integrated transmission factor        integ trans        1.e-04
+ 30660 Humidity (0-100 percent)                 humidity           1.0     percent
+ 30670 Signal Rel. Error Limit                  sigRelErrL         1.e-02  percent
+ 30682 log10 (wiener-filtered signal)           lg w signl         1.e-03 lg(cnts)
+ 30683 Wiener-filtered signal rel error         w ref err          1.e-02  percent
+ 30684 log10 (mean power)                       lg avg pwr         1.e-03  lg(pwr) 
+ 30691 Counts rel error - gaussian estimate     rel err g          1.e-02  percent
+ 30693 Counts rel error - poisson  estimate     rel err p          1.e-02  percent
+ 30700 First Scan Identifier - Event Number     Event              1.0
+ 30710 Neutral wind in direction 1              z wind m/s         0.1       m/s    
+ 30720 Neutral wind in direction 2              m wind m/s         0.1       m/s    
+ 30810 Tolerance from pace long of scan         tolr p long         0.01     deg
+ 30811 Sondrestrom Vy                           ssf vy              1.0      m/s
+ 30812 Goose Bay velocity                       gb vlos             1.0      m/s
+ 30820 Declination Angle                        declination         0.01     deg
+ 30821 SSF dir. angle from gm north             ssf beta            0.01     deg
+ 30822 Goose Bay dir. angle from gm north       gb beta             0.01     deg
+ 30901 log10(Adj. N2 number density)            lg([N2])           1.e-03 lg(m-3)
+ 30902 log10(Adj. O2 number density)            lg([O2])           1.e-03 lg(m-3)
+ 30903 log10(Adj. O number density)             lg([O])            1.e-03 lg(m-3)
+ 30904 log10(Adj. Neutral Number Den)           lg(numDen)         1.e-03 lg(m-3)
+ 30905 log10(Adj. ion-neut. coll. freq.)        lg(Adj Vin)        1.e-3  lg(s-1)
+ 30910 Radar adjustment factor                  Rdr Fact           1.e-3
+ 30911 log10(Radar adjustment factor)           lg(R Fct)          1.e-3
+ 30912 Y-intercept                              Y-intrcpt          1.0        m/s
+ 30913 Slope                                    Slope              0.1
+ 30914 Uxmin                                    Uxmin              0.1        m/s
+ 30915 Uymin                                    Uymin              0.1        m/s
+ 30916 log10(Adj. Pedersen Conductivity)        lg(Ped)            1.e-03 l-mhos/m
+ 30918 log10(Adj. Hall Conductivity)            lg(Hall)           1.e-03 l-mhos/m
+ 30920 Adj. Cowling Conductivity                Cowl Cond          1.e-06  mhos/m
+ 30921 Log10(Adj. Cowling Conductivity)         lg10(Cowl)         1.e-03 l-mhos/m
+ 30926 Adj. Pedersen Conductance                HI Ped             1.e-02   mho
+ 30928 Adj. Hall Conductance                    HI Hall            1.e-02   mho
+ 30930 Adj. Cowling Conductance                 Cowl Cond          1.e-02   mho
+ 30932 E-region Adj. Pedersen Conductance       E Ped Cond         1.e-02   mho
+ 30934 E-region Adj. Hall Conductance           E Hall Cond        1.e-02   mho
+ 30936 E-region Adj. Cowling Conductance        E Cowl Cond        1.e-02   mho
+ 30940 log10(Adj. Passive Energy Dep. Rate)     lg(SigP E2)        1.e-03 lg(W/m2)
+ 30941 lg10(Adj. E-Rgn Pass. Energy Dep. Rate)  lg(ESigPE2)        1.e-03 lg(W/m2)
+ 30945 Lg10(Adj. Pass. Energy Dep. Rate / Vol.) lg10(PEDR)         1.e-03 lg(W/m3)
+ 30950 Adj. Joule Heating Rate per Volume       Adj JH             1.e-09  W/m3
+ 30951 Log10(Adj. JH Rate per Volume)           lg(jh)             1.e-03 lg(W/m3)
+ 30954 Adj. Mech. Energy Trans. Rate per Vol.   Mech TR/V          1.e-09  W/m3
+ 30960 E-region Adj Int Joule Heating rate      E HI JH            1.e-05   W/m2
+ 30961 Log10(E-Region Adj. Int. JH Rate)        l-E-HI-JH          1.e-03 lg(W/m2)
+ 30964 E-region Adj. Mech. Energy Trans. rate   E Mech TR          1.e-05   W/m2
+ 30971 Adj. Direction 1 Neutral wind (eastward) Adj Ux             1.0      m/s
+ 30972 Adj. Direction 2 Neutral wind (north)    Adj Uy             1.0      m/s
+ 30974 Adj. Dir, 4 Neutral wind (perp east)     Adj Ux             1.0      m/s
+ 30975 Adj. Dir, 5 Neutral wind (perp north)    Adj Uy             1.0      m/s
+ 30976 Adj. Direction 6 Neutral wind            Adj Uz             1.0      m/s
+ 30978 Cross Correlation for Adj. Uxy           CCor Uxy           1.e-04
+ 30982 Log10(Adj. Der. ion-neut. coll. freq.)   lg10(dcf)          1.e-03 log(s-1)
+ 30984 Log10(Adj. Ped. drag coefficient)        lg10(pdc)          1.e-03 log(s-1)
+ 30986 Log10(Adj. Hall drag coefficient)        lg10(hdc)          1.e-03 log(s-1)
+ 31000 Radius of the earth                      earth rad           1.0      km     
+ 31001 Interplanetary mag field strength (F2)   imf b2             1.e-11  Tesla    
+ 31004 X Solar Magnetospheric Position of s/c   x-gsm               0.01     er     
+ 31006 Y Solar Magnetospheric Position of s/c   y-gsm               0.01     er     
+ 31008 Z Solar Magnetospheric Position of s/c   z-gsm               0.01     er     
+ 31014 X Geocentric SE Position of s/c          x-gse               0.01     er     
+ 31016 Y Geocentric SE Position of s/c          y-gse               0.01     er     
+ 31018 X Geocentric SE Position of s/c          z-gse               0.01     er     
+ 31020 Grnd distance from radar (pos=NE)        gdist fr rdr        1.0      km
+ 31021 High distance from radar (pos=NE)        hdist fr rdr        1.0      km
+ 31024 Forced boundary code                     fbndry code         1.0
+ 31025 Boundary code                            bndry code          1.0
+ 31026 Velocity at boundary (vab)               vel at bnd          1.0      m/s
+ 31027 Addtnl rotation for vel at boundary      addtnl rot          0.01     deg
+ 31028 Elevation angle of f-region altitude     el of f regn        0.01     deg
+ 31030 Ion Velocity dir 4, so. of boundary      vi4-so              1.0      m/s
+ 31031 Ion Velocity dir 5, so. of boundary      vi5-no              1.0      m/s
+ 31033 Ion Velocity dir 4, no. of boundary      vi4-so              1.0      m/s
+ 31034 Ion Velocity dir 5, no. of boundary      vi5-no              1.0      m/s
+ 31040 Pedersen Current Magnitude               pcur magn          1.e-03    a/m    
+ 31041 Pedersen Conductance from Electrons      Sigma-P(e)         1.e-02    mho
+ 31044 Hall Conductance from Electrons          Sigma-H(e)         1.e-02    mho
+ 31045 Electric Field Magnitude                 EF magn            1.e-05    v/m    
+ 31050 Velocity of boundary (Vb)                vel of bnd          1.0      m/s
+ 31051 Interp velocity of boundary (Vbt)        vbt                 1.0      m/s
+ 31060 Velocity of plasma, relative to Vb       vpr                 1.0      m/s
+ 31061 Velocity of plasma, relative to Vbt      vprt                1.0      m/s
+ 31071 Ion Velocity dir 5, corrected for Vz     vi5-corr            1.0      m/s
+ 31072 Smoothed corr Ion Vel, dir 5             smvi5-corr          1.0      m/s
+ 31073 Electric Field dir 4, corrected for Vz   ef4-corr           1.e-05    v/m
+ 31200 Number of points in in vmag              nptmag             1.0              
+ 31240 Number of points in average, par 1       npt p1             1.               
+ 31241 Sum of vx/wtx                                               1.               
+ 31242 Add inc to sum vx/wtx                                       .001            
+ 31243 Exponent of factor for sum (vx/wtx)                         1.               
+ 31244 Number of days in average, par 1         days p1            1.               
+ 31245 log10(sum of wtx)                                           .001            
+ 31246 Alternate uncertainty for code 1240      error-Vx           1.0    m/s
+ 31250 Number of points in average, par 2       npt p2             1.               
+ 31251 Sum of vy/wty                                               1.               
+ 31252 Add inc to sum vy/wty                                       .001            
+ 31253 Exponent of factor for sum (vy/wty)                         1.               
+ 31254 Number of days in average, par 2         days p2            1.               
+ 31255 log10(sum of wty)                                           .001            
+ 31256 Alternate uncertainty for code 1250      error-Vy           1.0    m/s
+ 31260 Number of points in average, par 3       npt p3             1.               
+ 31261 Sum of vz/wtz                                               1.               
+ 31262 Add inc to sum yz/wtz                                       .001            
+ 31263 Exponent of factor for sum (yz/wtz)                         1.               
+ 31264 Number of days in average, par 3         days p3            1.               
+ 31265 log10(sum of wtz)                                           .001            
+ 31299 Magnitude of value as binning reference  mag vl-bin         1.0              
+ 31300 Code for binning path                    bin path           1.0              
+ 31310 Binned error on vx as f(abs(Vx))         dvx=f(vx)          1.0              
+ 31311 Binned error on vy as f(abs(Vy))         dvy=f(vy)          1.0              
+ 31312 Binned abs(vy) as f(abs(Vx))             vy=f(vx)           1.0              
+ 31350 Magnitude of vector (par1,par2)          m(p1,p2)           1.0              
+ 31351 log10(par3 = par1*par1 + par2*par2)      m2(p1,p2)          .001           
+ 31401 Weighted mean for parameter 1            wt mn p1           1.0              
+ 31402 Weighted mean for parameter 2            wt mn p2           1.0              
+ 31403 Weighted mean for parameter 3            wt mn p3           1.0              
+ 31411 Value minus mean for parameter 1         par1-mean          1.0            
+ 31412 Value minus mean for parameter 2         par2-mean          1.0            
+ 31413 Value minus mean for parameter 3         par3-mean          1.0            
+ 31440 Sqrt(observed variance of data) par 1    vard p1            1.0            
+ 31441 lg10 sqrt(obs. variance of data) par 1   lg-vard p1         .001           
+ 31450 Sqrt(observed variance of data) par 2    vard p2            1.0            
+ 31451 lg10 sqrt(obs. variance of data) par 2   lg-vard p2         .001           
+ 31460 Sqrt(observed variance of data) par 3    vard p3            1.0            
+ 31461 lg10 sqrt(obs. variance of data) par 3   lg-vard p3         .001           
+ 31500 Satellite Orbit Number                   orbit nbr          1.0              
+ 31505 log10(raw density) 2nd profile           lg-rne-2          1.e-03  log(m-3)
+ 31510 FPI inferred neutral temperature         fpi tn            1.0     deg k    
+ 31520 log10(ne in m-3) 2nd profile             log ne-2          1.e-03  log(m-3)
+ 31550 Ion Temperature, 2nd profile             ti 2nd            1.0        k
+ 31560 Electron Temperature, 2nd profile        te 2nd            1.0        k
+ 31580 Projected Velocity                        vperp            1.0     m/s
+ 31599 Satellite Operation Parameter 100        sat rop100        1.0             
+ 31600 "Normal" potential from phi (pod)           pod              10.   volts    
+ 31601 "Rotational" potential from psi (por)       por              10.   volts    
+ 31602 "Normal" e-east  (cde)                      cde            1.e-05    v/m    
+ 31603 "Normal" e-north (cdn)                      cdn            1.e-05    v/m    
+ 31604 "Rotational" e-east  (cre)                  cre            1.e-05    v/m    
+ 31605 "Rotational" e-north (crn)                  crn            1.e-05    v/m    
+ 31606 "Total" e-east (cte)                        cte            1.e-05    v/m    
+ 31607 "Total" e-north (ctn)                       ctn            1.e-05    v/m    
+ 31608 "Normal" v-east (vde)                       vde               1.0    m/s    
+ 31609 "Normal" v-north (vdn)                      vdn               1.0    m/s    
+ 31610 "Rotational" v-east  (vre)                  vre               1.0    m/s    
+ 31611 "Rotational" v-north (vrn)                  vrn               1.0    m/s    
+ 31612 "Total" v-east  (vte)                       vte               1.0    m/s    
+ 31613 "Total" v-north (vtn)                       vtn               1.0    m/s    
+ 31615 East Quadratic Deviation                    deve           1.e-02           
+ 31616 North Quadratic Deviation                   devn           1.e-02           
+ 31617 Maximum East Deviation                      dme            1.e-02           
+ 31618 Maximum North Deviation                     dmn            1.e-02           
+ 31619 Normalized Variance - East                  vare           1.e-02           
+ 31620 Normalized Variance - North                 varn           1.e-02           
+ 31621 Maximum Potential Drop in phi (pod)         phidr            10.   volts    
+ 31622 Maximum Potential Drop in psi (por)         psidr            10.   volts    
+ 31623 Order of latitude polynomial                latord          1.0             
+ 31624 Order of time-longitude polynomial       tm-lg-ord          1.0             
+ 31630 Potential along UT axis                     potut            10.   volts    
+ 31631 Potential along latitude axis               potlt            10.   volts    
+ 31640 Electron Energy                          elec engy         1.e-03   kev
+ 31641 Count rate, electrons, pitch   0- 60     cr-el-0            1.0
+ 31642 Count rate, electrons, pitch  60-120     cr-el-60           1.0
+ 31643 Count rate, electrons, pitch 120-180     cr-el-120          1.0
+ 31651 log (number flux), elect, pitch   0- 60  el flux-0          1.e-03  cm2-s-
+ 31652 log (number flux), elect, pitch  60-120  el flux-60         1.e-03  cm2-s-
+ 31653 log (number flux), elect, pitch 120-180  el flux-120        1.e-03  cm2-s-
+ 31661 log (energy flux), elect, pitch   0- 60  el flux-0          1.e-03  ev/cm2
+ 31662 log (energy flux), elect, pitch  60-120  el flux-60         1.e-03  ev/cm2
+ 31663 log (energy flux), elect, pitch 120-180  el flux-120        1.e-03  ev/cm2
+ 31740 Ion Energy                                ion energy        1.e-03  kev
+ 31741 Count rate, ions,      pitch   0- 60     cr-ion-0           1.0
+ 31742 Count rate, ions,      pitch  60-120     cr-ion-60          1.0
+ 31743 Count rate, ions,      pitch 120-180     cr-ion-120         1.0
+ 31751 log (number flux), ions,  pitch   0- 60  i  flux-0          1.e-03  cm2-s-
+ 31752 log (number flux), ions,  pitch  60-120  i  flux-60         1.e-03  cm2-s-
+ 31753 log (number flux), ions,  pitch 120-180  i  flux-120        1.e-03  cm2-s-
+ 31761 log (energy flux), ions,  pitch   0- 60  i  flux-0          1.e-03  ev/cm2
+ 31762 log (energy flux), ions,  pitch  60-120  i  flux-60         1.e-03  ev/cm2
+ 31763 log (energy flux), ions,  pitch 120-180  i  flux-120        1.e-03  ev/cm2
+ 31941 Ped. Elect.(1 hemi): Current Den dir 4   ln int(j4)         1.e-03    a/m    
+ 31942 Hall Elect.(1 hemi): Current Den dir 4   ln int(j4)         1.e-03    a/m    
+ 31951 Ped. Elect.(1 hemi): Current Den dir 5   ln int(j5)         1.e-03    a/m    
+ 31952 Hall Elect.(1 hemi): Current Den dir 5   ln int(j5)         1.e-03    a/m    
+ 32000 Maximum error for Binned Parameter 1      max er-bp1        1.0     data u   
+ 32001 Maximum error for Binned Parameter 2      max er-bp2        1.0     data u   
+ 32002 Maximum error for Binned Parameter 3      max er-bp3        1.0     data u   
+ 32011 log10 Ped Conductivity, EPEC Sigma P      Sigma P           1.e-03 lg-mho/m 
+ 32021 log10 Hall Conductivity, EPEC Sigma H      Sigma H          1.e-03 lg-mho/m 
+ 32040 Height Integral: Sigma P (EPEC)          ht int-sigP        1.e-02    mho    
+ 32050 Height Integral: Sigma H (EPEC)          ht int-sigH        1.e-02    mho    
+ 32151 HT-INT : Ped. Elect. Joule Heat Rate     Ped E JH           1.e-04   w/m2
+ 32152 log10(Ht-Int SigP*E**2 W/m2)             lg10(SigPE2)       1.e-03 lg-w/m2
+ 32250 SigH/SigP Conductance                    H/P Cond Int       1.e-02
+ 32745 End-of-set flag. 1 = end, 0 not end      End of set         1.0
+ 32746 Program Version year                     pver-year          1.0
+ 32747 Program Version mmdd                     pver-mmdd          1.0
+ 32748 Analysis Date year                       anal-year          1.0
+ 32749 Analysis Date mmdd                       anal-mmdd          1.0
+ 32750 Program Version Day code since 1980       pver-yddd         1.0              
+ 32751 Analysis Date Code since 1980             nymd-yddd         1.0              
+ 32760 Data Processing number                    dp number         1.0              

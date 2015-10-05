@@ -1,0 +1,1893 @@
+     The parameter codes list is given twice, first sorted by ascending
+     numeric VALUE, then sorted alphabetically by abbreviation.
+ 
+   VALUE               DESCRIPTION                     UNITS       ABBR.
+   ----- ----------------------------------------  -------------   ------
+
+ (Time Related Codes:)
+
+       9 Beginning year (universal time)           1.     yr       byear 
+      10 Year (universal time)                     1.     yr       year  
+      15 Year (UT) of analysis date                1.     yr       yranal
+      19 Beginning month/day (universal time)      1.     mmdd     bmd   
+      20 Month/day (universal time)                1.     mmdd     md    
+      21 Day number of year (universal time)       1.     day      dayno 
+      22 Model Day number of year (UT, 1=Jan 1)    1.     day      mdano 
+      25 Month/day (UT) of analysis date           1.     mmdd     mdanal
+      28 Beginning hour/min (universal time)       1.     hhmm     bhm   
+      29 Beginning additional increment to hhmm    1.E-02 s        bhmi  
+      30 Hour/min (universal time)                 1.     hhmm     hm    
+      31 Centiseconds (UT, increment to hhmm)      1.E-02 s        hmi   
+      34 Time past 0000 UT                         1.E-03 hour     uth   
+      36 Time past 0000 UT                         1.E+01 s        uts   
+      37 Additional increment to time past 0 UT    1.E-03 s        utsi  
+      42 Local solar time diff (=SLT-UT) +E lon    1.     hhmm     sltmut
+      44 Local solar time                          1.E-03 hour     slt   
+      47 Local solar time at conjugate point       1.E-03 hour     sltc  
+      54 Magnetic local time                       1.E-03 hour     Tmlt  
+      60 Integration time for these data           1.     s        inttms
+      61 Integration time for these data           1.     min      inttmm
+      62 Integration time for these data           1.     day      datntd
+      66 Time increment between rows               1.     s        dtrow 
+      70 Sampling interval (time between sampls)   1.     s        smpint
+      72 UT of Moonset (from US Naval Obs)         1.E-03 hour     tmset 
+      73 UT of Moonrise (from US Naval Obs)        1.E-03 hour     tmris 
+      74 UT of Civil sunset (szen=96 deg)          1.E-03 hour     tssc  
+      75 UT of Civil sunrise (szen=96 deg)         1.E-03 hour     tsrc  
+      76 UT of Nautical sunset (szen=102 deg)      1.E-03 hour     tssn  
+      77 UT of Nautical sunrise (szen=102 deg)     1.E-03 hour     tsrn  
+      78 UT of Astronomical sunset (szen=108 deg)  1.E-03 hour     tssa  
+      79 UT of Astronomical sunrise (szen=108deg)  1.E-03 hour     tsra  
+      80 Time delay                                1.E-01 min      td    
+      84 Daily mean time delay                     1.E-01 min      tda   
+      94 Scan type (0=any,1=fixed,2=az,3=el)       1.              scntyp
+      95 Cycle sequence number (e.g., 5th cycle)   1.              cycn  
+      96 Position number within cycle              1.              posn  
+      97 End of event flag (0=off, 1=on)           1.              posf  
+
+ (Geographic Coordinate Codes:)
+
+     106 Minimum altitude                          1.     km       altb  
+     107 Additional increment to min alt           1.E-01 m        alti  
+     108 Maximum altitude                          1.     km       alte  
+     109 Additional increment to max alt           1.E-01 m        altei 
+     110 Altitude (height)                         1.     km       gdalt 
+     111 Additional increment to altitude          1.E-01 m        gdalti
+     112 Normalizing altitude                      1.     km       rhaltn
+     113 Additional increment to normalizing alt   1.E-01 m        rhalti
+     114 Number of samples in range ave            1.              nsmpru
+     115 Altitude averaging interval               1.     km       altav 
+     116 Additional increment to ht avgng intrvl   1.E-01 m        altavi
+     117 Virtual height                            1.E-01 km       altv  
+     120 Range                                     1.     km       range 
+     121 Additional increment to range             1.E-01 m        rangei
+     125 Width of range gate                       1.     km       rgate 
+     126 Additional increment to rnge gate width   1.E-01 m        rgatei
+     127 Range gate number                         1.              rgatn 
+     130 Mean azimuth angle (0=geog N,90=east)     1.E-02 deg      azm   
+     132 Beginning azimuth (0=geog N,90=east)      1.E-02 deg      az1   
+     133 Ending azimuth (0=geog N,90=east)         1.E-02 deg      az2   
+     135 Variation in azimuth (end Az - beg Az)    1.E-02 deg      daz   
+     140 Elevation angle (0=horizontal,90=vert)    1.E-02 deg      elm   
+     142 Beginning elevation angle                 1.E-02 deg      el1   
+     143 Ending elevation angle                    1.E-02 deg      el2   
+     145 Variation in elevation (end El-beg El)    1.E-02 deg      del   
+     150 Horiz great crcl dist from ref lat/lon    1.     km       gcdist
+     153 Reference geod latitude (N hemi=pos)      1.E-02 deg      gdlatr
+     156 Reference geodetic longitude              1.E-02 deg      gdlonr
+     160 Geodetic latitude of measurement          1.E-02 deg      gdlat 
+     170 Geodetic longitude of measurement         1.E-02 deg      glon  
+     180 Solar zenith angle                        1.E-02 deg      sunzen
+     181 Solar azimuth angle                       1.E-02 deg      sunaz 
+     183 Conjugate solar zenith angle              1.E-02 deg      szenc 
+     186 Earth's Shadow altitude (height)          1.     km       sdwht 
+     188 Shadow distance (l-o-s terminator dist)   1.     km       sdwd  
+     190 Half scattering angle (bistatic system)   1.E-02 deg      hsa   
+     191 Hour angle HA=LSidT-RA (equatorial coor)  1.E-03 hour     eqhha 
+     192 Right ascension RA (equatorial coords)    1.E-03 hour     eqhra 
+     193 Galactic longitude b (galactic coords)    1.E-02 deg      gallon
+     194 Declination angle (equatorial coords)     1.E-02 deg      eqddec
+     195 Galactic latitude l (galactic coords)     1.E-02 deg      gallat
+
+ (Magnetic Coordinate Codes:)
+
+     204 Northward component of geomagnetic fld    1.E-08 T        bn    
+     206 Eastward component of geomagnetic field   1.E-08 T        be    
+     208 Downward component of geomagnetic field   1.E-08 T        bd    
+     210 Geomagnetic field strength                1.E-08 T        bmag  
+     213 Geomagnetic field east declination        1.E-02 deg      bdec  
+     216 Geomagnetic field downward inclination    1.E-02 deg      binc  
+     218 L value in measurement volume             1.E-02          lshell
+     220 Dip latitude in measurement volume        1.E-02 deg      diplat
+     222 Invariant latitude in measurement vol     1.E-02 deg      invlat
+     224 Geomagnetic (centered dipole) latitude    1.E-02 deg      gdilat
+     225 PACE magnetic latitude of meas volume     1.E-02 deg      paclat
+     226 Apex latitude in measurement volume       1.E-02 deg      aplat 
+     230 PACE magnetic azimuth                     1.E-02 deg      pacaz 
+     244 Geomagnetic (cntrd dipol) east longitud   1.E-02 deg      gdilon
+     245 PACE magnetic longitude of meas volume    1.E-02 deg      paclon
+     246 Apex longitude in measurement volume      1.E-02 deg      aplon 
+     277 Begin X Geocentric Solar Magnetospheric   1.E-02 Re       xgsmb 
+     278 End X   Geocentric Solar Magnetospheric   1.E-02 Re       xgsme 
+     279 Begin Y Geocentric Solar Magnetospheric   1.E-02 Re       ygsmb 
+     280 End Y   Geocentric Solar Magnetospheric   1.E-02 Re       ygsme 
+     281 Begin Z Geocentric Solar Magnetospheric   1.E-02 Re       zgsmb 
+     282 End Z   Geocentric Solar Magnetospheric   1.E-02 Re       zgsme 
+     283 Begin X Geocentric Solar Ecliptic         1.E-02 Re       xgseb 
+     284 End X   Geocentric Solar Ecliptic         1.E-02 Re       xgsee 
+     285 Begin Y Geocentric Solar Ecliptic         1.E-02 Re       ygseb 
+     286 End Y   Geocentric Solar Ecliptic         1.E-02 Re       ygsee 
+     287 Begin Z Geocentric Solar Ecliptic         1.E-02 Re       zgseb 
+     288 End Z   Geocentric Solar Ecliptic         1.E-02 Re       zgsee 
+     292 X Coord Geocentric Solar Magnetospheric   1.E-02 Re       xgsm  
+     293 Y Coord Geocentric Solar Magnetospheric   1.E-02 Re       ygsm  
+     294 Z Coord Geocentric Solar Magnetospheric   1.E-02 Re       zgsm  
+     295 X Coordinate Geocentric Solar Ecliptic    1.E-02 Re       xgse  
+     296 Y Coordinate Geocentric Solar Ecliptic    1.E-02 Re       ygse  
+     297 Z Coordinate Geocentric Solar Ecliptic    1.E-02 Re       zgse  
+
+ (Geophysical Indices:)
+
+     310 Kp Index                                  1.E-01          kp    
+     319 Polar Cap Index                           1.E-01          pci   
+     320 Ae Index (1 or 2.5 min sample)            1.     nT       ae    
+     321 Al Index (1 or 2.5 min sample)            1.     nT       al    
+     322 Au Index (1 or 2.5 min sample)            1.     nT       au    
+     323 Ao Index (1 or 2.5 min sample)            1.     nT       ao    
+     324 Ae Index (hourly mean)                    1.     nT       aem   
+     325 Al Index (hourly mean)                    1.     nT       alm   
+     326 Au Index (hourly mean)                    1.     nT       aum   
+     327 Ao Index (hourly mean)                    1.     nT       aom   
+     330 Dst index                                 1.     nT       dst   
+     335 ap index (3-hourly)                       1.              ap3   
+     340 AP index (daily)                          1.              ap    
+     341 aa index                                  1.              aa    
+     350 F10.7 solar flux (Sa)                     1.E-23 W/m2/Hz  f107a 
+     351 F10.7 solar flux qualifier                1.              f107qa
+     352 F10.7 Multiday average                    1.E-23 W/m2/Hz  fbara 
+     353 352's avg code: 1=>81day ; 2=13mon        1.              fbarta
+     354 F10.7 solar flux observed (Ottawa)        1.E-23 W/m2/Hz  f10.7 
+     355 F10.7 solar flux qualifier observed       1.              f10.7q
+     356 F10.7 Multiday average observed           1.E-23 W/m2/Hz  fbar  
+     357 356's avg code: 1=>81day ; 2=13mon        1.              fbart 
+     360 Sunspot number                            1.              sspotn
+     363 Estim. Total Hemispheric Power Input      1.E+08 W        tepow 
+     364 Estim. Ion Hemispheric Power Input        1.E+08 W        iepow 
+     365 Estim. Electron Hemispheric Power Input   1.E+08 W        eepow 
+     366 Estimated Hemispheric Power Index         1.              epowi 
+     367 Estimated Hemispheric Power Qualifier     1.              epowq 
+     368 Estimated Hemispheric Pwr Corr. Factor    1.E-03          epowf 
+     370 Est mag lat 0MLT equatorwd aurora bndry   1.E-02 deg      eqb0  
+
+ (Parameters Relevent to Data Quality:)
+
+     401 Lag to the first range gate               1.E-06 sec      lag1  
+     402 Pulse length                              1.E-06 sec      pl    
+     404 Density sampling time                     1.E-06 sec      denst 
+     406 Spectral sampling time                    1.E-06 sec      spcst 
+     407 Interpulse Period; or 408 increment       1.E-06 sec      ippi
+     408 Interpulse Period                         1.E-02 sec      ipp
+     410 Signal to noise ratio                     1.E-02          sn    
+     411 Signal to noise ratio                     1.E-03          snp3  
+     412 log10 (signal to noise ratio)             1.E-03 lg       snl   
+     413 No samples available in time average      1.              nsmpta
+     414 No samples used in time average           1.E+04          nsmptu
+     415 No smpls in time avg; or 414 incremnt     1.              nsmpti
+     417 No samples used in Fourier transform      1.              nsmfft
+     418 No ACF lags calculated                    1.              nlags 
+     419 No samples used                           1.              nsmpu 
+     420 Reduced-chi square of fit                 1.E-03          chisq 
+     421 Reduced-chi square of fit                 1.E-01          chip1 
+     422 No. samples in dir. 1 avg. (eastward)     1.              nsmpd1
+     423 No. samples in dir. 2 avg. (northward)    1.              nsmpd2
+     424 No. samples in dir. 3 avg. (upward)       1.              nsmpd3
+     425 Wide reduced-chi square of fit            1.E+00          wchisq
+     426 Additional increment to wide chi square   1.E-04          wchsqi
+     430 Goodness of fit                           1.              gfit  
+     431 Code baud length                          1.              cbadl 
+     432 No. bauds in code                         1.              cbadn 
+     433 Code type (0=non,1=cmplmntry)             1.              codt  
+     434 No incoherent integrations                1.              iin   
+     440 Cloud cover (0-8=clr-ovcst;9=obscured)    1.     octa     cloudc
+     441 Cloud cover from lowest level clouds      1.     octa     cloud1
+     442 Cloud cover in tenths (0=clr,10=ovcst)    1.     tenths   clou10
+     445 Aurora sighted Flag (0=no, 1=yes)         1.              aurf  
+     451 Jicamarca data quality code 1             1.              jidqc1
+     452 Jicamarca data quality code 2             1.              jidqc2
+     453 Jicamarca data quality code 3             1.              jidqc3
+     454 Jicamarca data quality code 4             1.              jidqc4
+     455 Jicamarca data quality code 5             1.              jidqc5
+     456 Arecibo data quality code 1 (IFIT)        1.              aodqc1
+     457 Arecibo data quality code 2               1.              aodqc2
+     458 Arecibo data quality code 3               1.              aodqc3
+     459 Arecibo data quality code 4               1.              aodqc4
+     460 Arecibo data quality code 5               1.              aodqc5
+     461 Millstone Hill data quality code 1        1.              mhdqc1
+     462 Millstone Hill data quality code 2        1.              mhdqc2
+     463 Millstone Hill data quality code 3        1.              mhdqc3
+     464 Millstone Hill data quality code 4        1.              mhdqc4
+     465 Millstone Hill data quality code 5        1.              mhdqc5
+     466 St. Santin data quality code 1            1.              ssdqc1
+     467 St. Santin data quality code 2            1.              ssdqc2
+     468 St. Santin data quality code 3            1.              ssdqc3
+     469 St. Santin data quality code 4            1.              ssdqc4
+     470 St. Santin data quality code 5            1.              ssdqc5
+     471 Chatanika/Sondrestrom data qual code 1    1.              chdqc1
+     472 Chatanika/Sondrestrom data qual code 2    1.              chdqc2
+     473 MUSCOX Fit Code                           1.              chdqc3
+     474 Res. Vel. Pairing Code                    1.              chdqc4
+     475 Chatinika/Sondrestrom data qual code 5    1.              chdqc5
+     476 EISCAT data quality code 1                1.              eidqc1
+     477 EISCAT data quality code 2                1.              eidqc2
+     478 EISCAT data quality code 3                1.              eidqc3
+     479 EISCAT data quality code 4                1.              eidqc4
+     480 EISCAT data quality code 5                1.              eidqc5
+     482 System temperature                        1.     K        systmp
+     483 Additional increment to system temp       1.E-04 K        systmi
+     484 Calibration temperature                   1.     K        caltmp
+     486 Peak power                                1.     kW       power 
+     490 Transmitted frequency                     1.E+05 Hz       tfreq 
+     491 Received frequency                        1.E+05 Hz       rfreq
+     492 Received doppler frequency offset         1.     Hz       rcdfo 
+     494 Receiver bandwidth                        1.     kHz      rcbw  
+     496 Receiver delay time                       1.E-06 sec      rcdt  
+     498 Number of frequencies used                1.              nfrequ
+     499 Number of laser shots per second          1.     sec-1    nlshts
+
+ (Basic Ionospheric Parameters:)
+
+     500 Uncorrected electron density (Te/Ti=1)    1.E+09 m-3      neuc  
+     501 Uncorrected electron density increment    1.E+05 m-3      neuci 
+     502 Uncorrected electron density              1.E+08 m-3      neuc8 
+     505 log10 (uncorrected electron density)      1.E-03 lg(m-3)  neucl 
+     510 Electron density                          1.E+09 m-3      ne    
+     511 Additional increment to code 510 (Ne)     1.E+05 m-3      nei   
+     512 Electron density                          1.E+08 m-3      ne8   
+     520 log10 (Ne in m-3)                         1.E-03 lg(m-3)  nel   
+     522 Line integrated electron density          1.E+15 m-2      neli  
+     523 log10 (integrated electron density)       1.E-03 lg(m-2)  nehil 
+     524 Vertically integrated electron density    1.E+15 m-2      tec   
+     525 log10 (Vert. integrated electron den.)    1.E-03 lg(m-2)  tecl  
+     530 Maximum electron density                  1.E+09 m-3      nemax 
+     531 Maximum uncorrected electron density      1.E+09 m-3      neucmx
+     535 log10 (max Ne in m-3)                     1.E-03 lg(m-3)  nemaxl
+     536 log10 (max uncorrected Ne in m-3)         1.E-03 lg(m-3)  neucml
+     540 Height of maximum electron density        1.     km       hmax  
+     541 Scale ht of Chapman model electron den    1.     km       hschap
+     550 Ion temperature                           1.     K        ti    
+     552 Ion temperature                           1.E-01 K        tip1  
+     560 Electron temperature                      1.     K        te    
+     570 Temperature ratio (Te/Ti)                 1.E-03          tr    
+     580 Line of sight ion velocity (pos = away)   1.     m/s      vo    
+     581 Additional increment to code 580          1.E-04 m/s      voi   
+     585 Ion Velocity spread (spectral width)      1.     m/s      vos   
+     590 Bisector ion vel (bistatic sys,pos=up)    1.     m/s      vobi  
+     600 Velocity direction - local azimuth        1.E-02 deg      voaz  
+     610 Velocity direction - local elevation      1.E-02 deg      voel  
+     620 Ion Composition - [O+]/Ne                 1.E-03          pop   
+     630 Ion Composition - [NO+]/Ne                1.E-03          pnop  
+     640 Ion Composition - [O2+]/Ne                1.E-03          po2p  
+     650 Ion Composition - [HE+]/Ne                1.E-03          phep  
+     660 Ion Composition - [H+]/Ne                 1.E-03          php   
+     690 Ion Composition - [mol wt 28 to 32]/Ne    1.E-03          pmp   
+     691 Mean mol wt for ions from 28 to 32        1.E-02 AMU      mmwt30
+     709 Ion-neutral collision frequency           1.E+04 s-1      co4hz
+     710 Ion-neutral collision frequency           1.     s-1      co    
+     720 log10 (ion-neutral collision frequency)   1.E-03 lg(s-1)  col   
+
+ (Neutral Atmosphere Parameters:)
+
+     800 Line of sight neutral vel (pos = away)    1.     m/s      vnlu  
+     801 Additional increment to Neutral Vlos      1.E-04 m/s      vnlui 
+     802 Line of sight neutral vel (pos = away)    1.E-02 m/s      vnlu2 
+     803 Line of sight neutral vel (pos = away)    1.E-03 m/s      vnlu3 
+     805 Neutral velocity spread                   1.E-02 m/s      vnus  
+     806 Neutral velocity spread                   1.E-03 m/s      vnus3 
+     807 Line of sight neut horiz vel (pos=away)   1.     m/s      vnhlu
+     808 Additional increment los neut horiz vel   1.E-04 m/s      vnhlui
+     810 Neutral temperature                       1.     K        tn    
+     811 Model Neutral temperature                 1.E-01 K        tnm   
+     812 Neutral temperature                       1.E-01 K        tn1   
+     813 Relative neutral temperature              1.              tnrel 
+     820 Exospheric temperature                    1.     K        tinf  
+     821 Model Exospheric temperature              1.     K        tinfm 
+     829 Neutral gas mean molecular weight         1.E-02  AMU     gmwn  
+     830 log10 (neutral mass density)              1.E-03 lg(Kg/m3 mol   
+     840 log10 (neutral number density)            1.E-03 lg(m-3)  ntotl 
+     842 log10 (relative neutral number density)   1.E-03 lg       nrtotl
+     850 log10 (N2 number density)                 1.E-03 lg(m-3)  nn2l  
+     860 log10 (O2 number density)                 1.E-03 lg(m-3)  no2l  
+     870 log10 (O number density)                  1.E-03 lg(m-3)  nol   
+     871 scale factor to model [O] profile         1.E-02          fO    
+     880 log10 (AR number density)                 1.E-03 lg(m-3)  narl  
+     890 log10 (HE number density)                 1.E-03 lg(m-3)  nhel  
+     900 log10 (H number density)                  1.E-03 lg(m-3)  nhl   
+     901 log10 (NO number density)                 1.E-03 lg(m-3)  nnol  
+     902 log10 (N(4S) number density)              1.E-03 lg(m-3)  nn4sl 
+     903 log10 (N(2D) number density)              1.E-03 lg(m-3)  nn2dl 
+     904 log10 (Na number density)                 1.E-03 lg(m-3)  nnal  
+     905 log10 (Fe number density)                 1.E-03 lg(m-3)  nfel  
+     910 log10 (Neutral pressure)                  1.E-03 lg(Pa)   npresl
+     920 Pressure scale height                     1.E+01 m        psh   
+
+ (Harmonic Analysis:)
+
+     921 Number of coefficients in analysis        1.              nc    
+     922 Number of directions in analysis          1.              nd    
+     923 Groves coefficient number                 1.              gcn   
+     924 Groves coefficient                        1.E-02 m/s      gc    
+     925 Number of hours filled in harm anal       1.     hr       nhf   
+     926 Eastwd Residual Sqrt[1/N*sum(ui-uf)**2]   1.E-02 m/s      vneres
+     927 Northwd Residual Sqrt[1/N*sum(vi-vf)**2]  1.E-02 m/s      vnnres
+     928 Upwd Residual Sqrt[1/N*sum(wi-wf)**2]     1.E-03 m/s      vnures
+     934 Mean upward neutral wind                  1.E-03 m/s      vnua  
+     935 Mean eastward neutral wind                1.E-02 m/s      vnea  
+     936 Mean northward neutral wind               1.E-02 m/s      vnna  
+     937 Mean neutral temperature                  1.E-01 K        tna   
+     939 Mean ion temperature                      1.E-01 K        tia   
+     940 24-h eastward neutral wind amplitude      1.E-02 m/s      vne24a
+     941 24-h northwrd neutral wind amplitude      1.E-02 m/s      vnn24a
+     942 24-h neutral temperature amplitude        1.E-02 K        tn24a 
+     943 24-h eastward neutral wind amplitude      1.E-01 m/s      vne2a1
+     944 24-h ion temperature amplitude            1.E-02 K        ti24a 
+     945 24-h max eastward neutral wind phase      1.E-03 hr       vne24p
+     946 24-h max northwrd neutral wind phase      1.E-03 hr       vnn24p
+     947 24-h max neutral temperature phase        1.E-03 hr       tn24p 
+     948 24-h northward neutral wind amplitude     1.E-01 m/s      vnn2p1
+     949 24-h max ion temperature phase            1.E-03 hr       ti24p 
+     950 12-h eastward neutral wind amplitude      1.E-02 m/s      vne12a
+     951 12-h northward neutrl wind amplitude      1.E-02 m/s      vnn12a
+     952 12-h neutral temperature amplitude        1.E-02 K        tn12a 
+     953 log10 (12-h geopotential amplitude)       1.E-03 lg(m2/s2 pt12al
+     954 12-h ion temperature amplitude            1.E-02 K        ti12a 
+     955 12-h max eastward neutral wind phase      1.E-03 hr       vne12p
+     956 12-h max northward neutrl wind phase      1.E-03 hr       vnn12p
+     957 12-h max neutral temperature phase        1.E-03 hr       tn12p 
+     958 12-h max geopotential phase               1.E-03 hr       pt12p 
+     959 12-h max ion temperature phase            1.E-03 hr       ti12p 
+     960 8-h eastward neutral wind amplitude       1.E-02 m/s      vne08a
+     961 8-h northward neutral wind amplitude      1.E-02 m/s      vnn08a
+     962 8-h neutral temperature amp               1.E-02 K        tn08a 
+     965 8-h max eastward neutral wind phase       1.E-03 hr       vne08p
+     966 8-h max northward neutral wind phase      1.E-03 hr       vnn08p
+     967 8-h max neutral temperature phase         1.E-03 hr       tn08p 
+     970 2-dy eastward neutral wind amplitude      1.E-02 m/s      vne2da
+     971 2-dy northward neutrl wind amplitude      1.E-02 m/s      vnn2da
+     975 2-dy max eastward neutral wind phase      1.E-02 hr       vne2dp
+     976 2-dy max northward neutrl wind phase      1.E-02 hr       vnn2dp
+     980 2-day component period                    1.E-02 hr       p2d   
+     981 UT day no rel to 2-dy comp phase          1.     day      dn2dp 
+     982 UT at start of 2-day comp calc            1.     hhmm     ut2dp 
+     984 24-h upward neutral wind amplitude        1.E-03 m/s      wn24a 
+     985 12-h upward neutral wind amplitude        1.E-03 m/s      wn12a 
+     986 24-h upward neutral wind amplitude        1.E-04 m/s      vnu24a
+     987 24-h max upward neutral wind phase        1.E-03 hr       vnu24p
+     988 12-h upward neutral wind amplitude        1.E-04 m/s      vnu12a
+     989 12-h max upward neutral wind phase        1.E-03 hr       vnu12p
+     990 6-h eastward neutral wind amplitude       1.E-02 m/s      vne06a
+     991 6-h northward neutral wind amplitude      1.E-02 m/s      vnn06a
+     992 6-h neutral temperature amplitude         1.E-02 K        tn06a 
+     995 6-h max eastward neutral wind phase       1.E-03 hr       vne06p
+     996 6-h max northward neutral wind phase      1.E-03 hr       vnn06p
+     997 6-h max neutral temperature phase         1.E-03 hr       tn06p 
+
+ (Unit Vector Definitions:)
+
+    1010 Geographic unit vector rotation angle     1.E-02 deg      gdra  
+    1020 Magnetic unit vector rotation angle       1.E-02 deg      gmra  
+    1030 Direction 7 Azimuth angle                 1.E-02 deg      az7   
+    1040 Direction 7 Elevation angle               1.E-02 deg      el7   
+    1050 Direction 8 Azimuth angle                 1.E-02 deg      az8   
+    1060 Direction 8 Elevation angle               1.E-02 deg      el8   
+    1070 Direction 9 Azimuth angle                 1.E-02 deg      az9   
+    1080 Direction 9 Elevation angle               1.E-02 deg      el9   
+    1085 Direction 10 Azimuth angle                1.E-02 deg      az10  
+    1090 Direction 10 Elevation angle              1.E-02 deg      el10  
+
+ (Vector Quantities:)
+
+    1210 Direction 1 Ion velocity (eastward)       1.     m/s      vie   
+    1211 Direction 1 F-region ion velocity         1.     m/s      vief  
+    1220 Direction 2 Ion velocity (northward)      1.     m/s      vin   
+    1221 Direction 2 F-region ion velocity         1.     m/s      vinf  
+    1230 Direction 3 Ion velocity (up)             1.     m/s      viu   
+    1240 Direction 4 Ion velocity (perp east)      1.     m/s      vipe  
+    1241 Direction 4 Ion velocity (perp east)      1.E-01 m/s      vipe1 
+    1242 Direction 4 Ion velocity (perp east)      1.E-02 m/s      vipe2 
+    1250 Direction 5 Ion velocity (perp north)     1.     m/s      vipn  
+    1252 Direction 5 Ion velocity (perp north)     1.E-02 m/s      vipn2 
+    1260 Direction 6 Ion velocity (antiparallel)   1.     m/s      viap  
+    1270 Direction 7 Ion velocity                  1.     m/s      vi7   
+    1272 Direction 7 Ion velocity                  1.E-02 m/s      vi72  
+    1280 Direction 8 Ion velocity                  1.     m/s      vi8   
+    1282 Direction 8 Ion velocity                  1.E-02 m/s      vi82  
+    1290 Direction 9 Ion velocity                  1.     m/s      vi9   
+    1300 Direction 10 Ion velocity                 1.     m/s      vi10  
+    1410 Direction 1 Neutral wind (eastward)       1.     m/s      vne   
+    1411 Direction 1 Neutral wind (eastward)       1.E-01 m/s      vnep1 
+    1412 Direction 1 Neutral wind (eastward)       1.E-02 m/s      vnep2 
+    1420 Direction 2 Neutral wind (northward)      1.     m/s      vnn   
+    1421 Direction 2 Neutral wind (northward)      1.E-01 m/s      vnnp1 
+    1422 Direction 2 Neutral wind (northward)      1.E-02 m/s      vnnp2 
+    1430 Direction 3 Neutral wind (up)             1.E-02 m/s      vnu   
+    1431 Direction 3 Neutral wind (up)             1.E-01 m/s      vnup1 
+    1432 Direction 3 Corrupt Neutral wind (up)     1.E-02 m/s      vnuc  
+    1440 Direction 4 Neutral wind (perp east)      1.     m/s      vnpe  
+    1450 Direction 5 Neutral wind (perp north)     1.     m/s      vnpn  
+    1455 Direction 5 Neutral wind horizontl comp   1.     m/s      vnpnh 
+    1456 Direction 5 Neutral wind horizontl comp   1.E-01 m/s      vnpnh1
+    1460 Direction 6 Neutral wind                  1.     m/s      vnap  
+    1470 Direction 7 Neutral wind                  1.     m/s      vn7   
+    1475 Direction 7 Neutral wind horizontl comp   1.     m/s      vn7   
+    1480 Direction 8 Neutral wind                  1.     m/s      vn8   
+    1490 Direction 9 Neutral wind                  1.     m/s      vn9   
+    1610 Direction 1 electric field (eastward)     1.E-05 V/m      ee    
+    1620 Direction 2 electric field (northward)    1.E-05 V/m      en    
+    1630 Direction 3 electric field (up)           1.E-05 V/m      eu    
+    1640 Direction 4 electric field (perp east)    1.E-05 V/m      epe   
+    1650 Direction 5 electric field (perp north)   1.E-05 V/m      epn   
+    1660 Direction 6 electric field (antipara)     1.E-05 V/m      eap   
+    1670 Direction 7 electric field                1.E-05 V/m      e7    
+    1680 Direction 8 electric field                1.E-05 V/m      e8    
+    1690 Direction 9 electric field                1.E-05 V/m      e9    
+    1810 Direction 1 electric current density      1.E-08 A/m2     je    
+    1820 Direction 2 electric current density      1.E-08 A/m2     jn    
+    1830 Direction 3 electric current density      1.E-08 A/m2     ju    
+    1840 Direction 4 electric current density      1.E-08 A/m2     jpe   
+    1850 Direction 5 electric current density      1.E-08 A/m2     jpn   
+    1860 Direction 6 electric current density      1.E-08 A/m2     jap   
+    1870 Direction 7 electric current density      1.E-08 A/m2     j7    
+    1880 Direction 8 electric current density      1.E-08 A/m2     j8    
+    1890 Direction 9 electric current density      1.E-08 A/m2     j9    
+    1910 Ht integral: dir 1 current density        1.E-03 A/m      jehi  
+    1920 Ht integral: dir 2 current density        1.E-03 A/m      jnhi  
+    1940 Line int (1 hemi): dir 4 current den      1.E-03 A/m      jpeli 
+    1950 Line int (1 hemi): dir 5 current den      1.E-03 A/m      jpnli 
+
+ (Conductivities:)
+
+    2010 Pedersen conductivity                     1.E-06 mho/m    cp    
+    2011 log10 (Pedersen Conductivity in mho/m3)   1.E-03 lg(mho/m cpl   
+    2020 Hall conductivity                         1.E-06 mho/m    ch    
+    2021 log10 (Hall Conductivity)                 1.E-03 lg(mho/m chl   
+    2040 Height integral pedersen conductivity     1.E-02 mho      cphi  
+    2050 Height integral hall conductivity         1.E-02 mho      chhi  
+    2070 Field line integral(1 hemi) Ped Cond      1.E-02 mho      cpli  
+    2080 Field line integral(1 hemi) Hall Cond     1.E-02 mho      chli  
+
+ (Energy Parameters:)
+
+    2110 Particle energy specific heating rate     1.E-08 W/m3     qpartv
+    2120 Joule energy specific heating rate        1.E-08 W/m3     qjoulv
+    2121 log10 (joule energy spec. heat rate)      1.E-03 lg(W/m3) qjouvl
+    2130 Electron energy flux                      1.E-05 W/m2     fee   
+    2131 log10 (electron energy flux)              1.E-03 lg(W/m2) feel  
+    2133 Positive ion (proton) energy flux         1.E-05 W/m2     fep   
+    2134 log10 (positive ion energy flux)          1.E-03 lg(W/m2) fepl  
+    2136 Particle (el. and pos. ion) energy flux   1.E-05 W/m2     fepart
+    2137 log10 (particle energy flux)              1.E-03 lg(W/m2) feparl
+    2139 Particle energy heat rate height int.     1.E-05 W/m2     qparth
+    2140 Particle energy heat rate height int.     1.E-04 W/m2     qpart1
+    2141 log10 (part energy heat rate ht. int.)    1.E-03 lg(W/m2) qpartl
+    2142 Particle energy heat rate hemisph.int.    1.E+08 W        qparhe
+    2150 Joule energy heat rate height integral    1.E-04 W/m2     qjoulh
+    2151 log10 (Joule heat rate height int.)       1.E-03 lg(W/m2) qjoull
+    2152 Joule heat rate hemisphere integrated     1.E+08 W        qjouhe
+    2155 Average electron energy                   1.     eV       e0    
+    2156 Auroral flux type: maxwellian=1,gauss=2   1.              afty  
+    2157 Characteristic electron energy            1.     eV       ece   
+    2158 log10 (characteristic electron energy)    1.E-03 lg(eV)   ecel  
+    2159 Characteristic pos. ion (proton) energy   1.     eV       ecp   
+    2160 log10 (characteristic pos. ion energy)    1.E-03 lg(eV)   ecpl  
+    2170 Particle energy heat rate fld-line int.   1.E-04 W/m2     qpartf
+    2180 Joule energy heat rate fld-line integ.    1.E-04 W/m2     qjoulf
+
+ (Interplanetary Magnetic Field:)
+
+    2204 Interplanetary Mag Field Bx GSM           1.E-11 T        bxgsm 
+    2206 Interplanetary Mag Field By GSM           1.E-11 T        bygsm 
+    2208 Interplanetary Mag Field Bz GSM           1.E-11 T        bzgsm 
+    2210 Interplanetary Mag Field strength         1.E-11 T        bimf  
+    2214 Interplanetary Mag Field Bx GSE           1.E-11 T        bxgse 
+    2216 Interplanetary Mag Field By GSE           1.E-11 T        bygse 
+    2218 Interplanetary Mag Field Bz GSE           1.E-11 T        bzgse 
+    2232 Solar Wind Plasma Density                 1.E+05 m-3      swden 
+    2234 Solar Wind Plasma Speed                   1.E+02 m/s      swspd 
+    2236 IMF/Solar Wind Qualifier                  1.              swq   
+    2244 Solar Wind velocity GSM x component       1.E+02 m/s      swvxm 
+    2246 Solar Wind velocity GSM y component       1.E+02 m/s      swvym 
+    2248 Solar Wind velocity GSM z component       1.E+02 m/s      swvzm 
+
+ (Miscellaneous Scalar Quantities:)
+
+    2301 Polar cap potential difference            1.E+01 V        pcp   
+    2302 Potential minimum                         1.E+01 V        pcmn  
+    2303 Potential maximum                         1.E+01 V        pcmx  
+    2310 Electric Potential                        1.E+01 V        ep    
+
+ (Spectral Parameters:)
+
+    2400 Wavelength                                1.E-01 nm       wavlen
+    2401 Beginning wavelength                      1.E-01 nm       bwavl 
+    2402 Ending wavelength                         1.E-01 nm       ewavl 
+    2411 Beginning wavenumber                      1.     cm-1     bwavn 
+    2412 Ending wavenumber                         1.     cm-1     ewavn 
+    2415 Local standard of rest velocity (VLSR)    1.E-02 km/s     vlsr  
+    2416 Spectral displ. in vel units w arb 0      1.E-02 km/s     spdvel
+    2421 Channel 1 Wavelength                      1.E-01 nm       wavl1 
+    2422 Channel 2 Wavelength                      1.E-01 nm       wavl2 
+    2423 Channel 3 Wavelength                      1.E-01 nm       wavl3 
+    2424 Channel 4 Wavelength                      1.E-01 nm       wavl4 
+    2455 Refernce rel 1/2-width (arb press unit)   1.E-02          wid2  
+    2456 Relative 1/2-width deviation from 2455    1.E-02          wid2r 
+    2491 log10 (Counts)                            1.E-03 lg       countl
+    2495 log10 (Rayleigh counts)                   1.E-03 lg       rcontl
+    2500 line/band brightness                      1.     R        br    
+    2501 log10 (line/band brightness)              1.E-03 lg(R)    brl   
+    2502 line/band brightness                      1.E-01 R        br1   
+    2505 Relative line/band brightness             1.              rbr   
+    2506 log10 (Relative line/band brightness)     1.E-03 lg       rbrl  
+    2507 Relative line emission rate               1.E-01          rlep1 
+    2508 Relative emission rate                    1.E-02          rlep2 
+    2509 Relative emission rate                    1.E-03          rlep3 
+    2511 Channel 1 line/band brightness            1.E+01 R        br1   
+    2512 Channel 2 line/band brightness            1.E+01 R        br2   
+    2513 Channel 3 line/band brightness            1.E+01 R        br3   
+    2514 Channel 4 line/band brightness            1.E+01 R        br4   
+    2521 Channel 1 Calibration (cnt/s over R)      1.E-02 cnt/s/R  cal1  
+    2522 Channel 2 Calibration (cnt/s over R)      1.E-02 cnt/s/R  cal2  
+    2523 Channel 3 Calibration (cnt/s over R)      1.E-02 cnt/s/R  cal3  
+    2524 Channel 4 Calibration (cnt/s over R)      1.E-02 cnt/s/R  cal4  
+    2530 log10 (Total   630 nm volume emis.)       1.E-03 lgp/cm3s v630l 
+    2531 log10 (Thermal 630 nm volume emis.)       1.E-03 lgp/cm3s v630tl
+    2532 log10 (Dissoc-Recomb 630 nm vol.emis.)    1.E-03 lgp/cm3s v630dl
+    2555 Relative background radiance              1.              rbrad 
+    2560 Log10 (background noise, residual)        1.E-03 lg(R)    bnl   
+    2561 log10 (background counts)                 1.E-03 lg       bcl   
+    2571 Channel 1 Background correction           1.     R        bkgc1 
+    2572 Channel 2 Background correction           1.     R        bkgc2 
+    2573 Channel 3 Background correction           1.     R        bkgc3 
+    2574 Channel 4 Background correction           1.     R        bkgc4 
+    2600 Diffuse aurora ratio (Ch1/Ch4)            1.E-02          daurr 
+    2601 Normalized Brightness ratio (Ch1/Ch4)     1.E-03          brrn  
+
+ (I.S. Radar Operation Parameters:)
+
+    3100 JRO normalizing factor (JRO661111A)       1.E-04          jronf1
+    3101 JRO W beam log10(1+RxA incoh. pwr/noise)  1.E-03 lg 1+SNR paiwl 
+    3102 JRO W beam log10(1+RxA coher. pwr/noise)  1.E-03 lg 1+SNR pacwl 
+    3103 JRO W beam log10(1+RxB incoh. pwr/noise)  1.E-03 lg 1+SNR pbiwl 
+    3104 JRO W beam log10(1+RxB coher. pwr/noise)  1.E-03 lg 1+SNR pbcwl 
+    3105 JRO E beam log10(1+RxC incoh. pwr/noise)  1.E-03 lg 1+SNR pciel 
+    3106 JRO E beam log10(1+RxC coher. pwr/noise)  1.E-03 lg 1+SNR pccel 
+    3107 JRO E beam log10(1+RxD incoh. pwr/noise)  1.E-03 lg 1+SNR pdiel 
+    3108 JRO E beam log10(1+RxD coher. pwr/noise)  1.E-03 lg 1+SNR pdcel 
+    3109 JRO parameter 10                          1.              jro10 
+    3110 JRO parameter 11                          1.              jro11 
+      .
+      .
+      .
+    3199 JRO parameter 100                         1.              jro100
+    3200 ARO parameter 1                           1.              aro01 
+    3201 ARO parameter 2                           1.              aro02 
+    3202 ARO parameter 3                           1.              aro03 
+      .
+      .
+      .
+    3299 ARO parameter 100                         1.              aro100
+    3300 MLH Mode Letter (65-80 = A-P)             1.              mlhm  
+    3301 MLH Power Normalization constant          1.e-03          pnorm 
+    3302 MLH Number of signal samples in profile   1.e+00          nrp   
+    3303 MLH Number of noise samples in profile    1.e+00          nnsamp
+    3304 MLH Number calibration samples in prof    1.e+00          ncsamp
+    3305 MLH parameter 6                           1.e+00          mlh6  
+    3306 MLH Number profile Noise level samples    1.e+00          npnswp
+    3307 MLH parameter 8                           1.e+00          mlh8  
+    3308 MLH Number of Radar Sweeps for Record     1.e+00          nrswp 
+    3309 MLH Number noise gates in radar sweep     1.e+00          nnrswp
+    3310 MLH Mean power prof Normalizatn Const     1.e+00          pnrmmp
+    3311 MLH H+ Line of site velocity              1.e+00 m/s      vh    
+    3312 MLH H Number Density                      1.e+00          nh    
+    3313 MLH ACF Normalization Factor              1.e-03          fa    
+    3314 MLH Transmitter channel signal to noise   1.e-02          xmtsnr
+    3315 MLH Signal Temperature                    1.e+00 K        stp   
+    3316 MLH Profile Power Normalized to 1.0       1.e-03          popn  
+    3317 MLH Reflected Power                       1.e+00          po    
+    3318 MLH D.P. Power Normalization constant     1.e-03          pnrmd 
+    3319 MLH Additional increment to DP Pwr Nrm C  1.e-07          pnrmdi
+    3320 MLH Transmitter phase velocity            1.e-01 m/s      trphvl
+    3321 MLH Ti, Tr correlation coefficient        1.e-03          cctitr
+    3322 MLH Ti, Ph correlation coefficient        1.e-03          cctiph
+    3323 MLH Ti, Co correlation coefficient        1.e-03          cctico
+    3324 MLH Tr, Ph correlation coefficient        1.e-03          cctrph
+    3325 MLH Mode type                             1.e+00          mlhmod
+    3326 MLH Universal Time (Hours MOD 24)         1.e-03 hour     ut    
+    3327 MLH Local Time (Hours MOD 24)             1.e-03 hour     lt    
+    3328 MLH Fundamental Pulse Length              1.e-06 sec      fundpl
+    3329 MLH Range resolution                      1.e-02 km       rngres
+    3330 MLH Apex Local Time (Hours MOD 24)        1.e+00 hour     aplt  
+    3331 MLH Bperp Directn Cosine (South [Apex])   1.e+00 m/s      cxr   
+    3332 MLH Bperp Directn Cosine (East [Apex])    1.e+00 m/s      cyr   
+    3333 MLH Directn Cosine (Up fld line [Apex])   1.e+00 m/s      czr   
+    3334 MLH Cycle Time of Experiment              1.e+00 hour     tcycle
+    3335 MLH Julian Day Number                     1.e+00 day      jdayno
+    3336 MLH Start UT (0 = 0000 1JAN50)            1.e+00 s        ut1   
+    3337 MLH End UT (0 = 0000 1JAN50)              1.e+00 s        ut2   
+    3338 MLH Variation in UT (UT2 - UT1)           1.e+00 s        dut21 
+    3339 MLH Instrument Code                       1.e+00          kinst 
+    3340 MLH Logical Record Number                 1.e+00          recno 
+    3341 MLH Start Range                           1.e+00 km       range1
+    3342 MLH End Range                             1.e+00 km       range2
+    3343 MLH Variation in Range (RANGE2 - RANGE1)  1.e+00 km       drng21
+    3344 MLH Kind-of-data code                     1.e+00          kindat
+    3345 MLH parameter 46                          1.e+00          mlh46 
+    3346 MLH Lag spacing                           1.e-07 sec      mlhlag
+    3347 MLH Num Samples SNR sum rule              1.e+00          nsamrl
+    3348 MLH Num steps SNR sum rule                1.e+00          nstprl
+    3349 MLH parameter 50                          1.e+00          mlh50 
+    3350 MLH Line of sight Doppler V(pos = away)   1.e+00 m/s      vdopp 
+    3351 MLH TI searching TI,TR,FN only            1.e+00 K        tibf  
+    3352 MLH TR searching TI,TR,FN only            1.e-03          trbf  
+    3353 MLH Fit type code                         1.e+00          fittyp
+    3354 MLH parameter 55                          1.e+00          mlh55 
+    3355 MLH parameter 56                          1.e+00          mlh56 
+    3356 MLH parameter 57                          1.e+00          mlh57 
+    3357 MLH parameter 58                          1.e+00          mlh58 
+    3358 MLH parameter 59                          1.e+00          mlh59 
+    3359 MLH parameter 60                          1.e+00          mlh60 
+    3360 MLH parameter 61                          1.e+00          mlh61 
+    3361 MLH parameter 62                          1.e+00          mlh62 
+    3362 MLH parameter 63                          1.e+00          mlh63 
+    3363 MLH Ephemeris Time                        1.e+00 hour     ephem 
+    3364 MLH parameter 64                          1.e+00          mlh64 
+    3365 MLH parameter 66                          1.e+00          mlh66 
+    3366 MLH parameter 67                          1.e+00          mlh67 
+    3367 MLH parameter 68                          1.e+00          mlh68 
+    3368 MLH parameter 69                          1.e+00          mlh69 
+    3369 MLH FoF2 level                            1.e-02 MHz      fof2  
+    3370 MLH parameter 71                          1.e+00          mlh71 
+    3371 MLH parameter 72                          1.e+00          mlh72 
+    3372 MLH Latitude Angle of Average Field Vec   1.e+00 deg      flat  
+    3373 MLH Longitude Ang. of Average Field Vec   1.e+00 deg      flon  
+    3374 MLH Plasma Temperature                    1.e+00 K        ptemp 
+    3375 MLH parameter 76                          1.e+00          mlh76 
+    3376 MLH parameter 77                          1.e+00          mlh77 
+    3377 MLH Epsilon                               1.e+00          eps   
+    3378 MLH parameter 79                          1.e+00          mlh79 
+    3379 MLH parameter 80                          1.e+00          mlh80 
+    3380 MLH parameter 81                          1.e+00          mlh81 
+    3381 MLH parameter 82                          1.e+00          mlh82 
+    3382 MLH parameter 83                          1.e+00          mlh83 
+    3383 MLH parameter 84                          1.e+00          mlh84 
+    3384 MLH parameter 85                          1.e+00          mlh85 
+    3385 MLH Model Ion velocity in direction 4     1.e+00 m/s      modvs 
+    3386 MLH Model Ion velocity in direction 5     1.e+00 m/s      modve 
+    3387 MLH parameter 88                          1.e+00          mlh88 
+    3388 MLH parameter 89                          1.e+00          mlh89 
+    3389 MLH parameter 90                          1.e+00          mlh90 
+    3390 MLH parameter 91                          1.e+00          mlh91 
+    3391 MLH parameter 92                          1.e+00          mlh92 
+    3392 MLH parameter 93                          1.e+00          mlh93 
+    3393 MLH parameter 94                          1.e+00          mlh94 
+    3394 MLH parameter 95                          1.e+00          mlh95 
+    3395 MLH parameter 96                          1.e+00          mlh96 
+    3396 MLH parameter 97                          1.e+00          mlh97 
+    3397 MLH parameter 98                          1.e+00          mlh98 
+    3398 MLH parameter 99                          1.e+00          mlh99 
+    3399 MLH parameter 100                         1.e+00          mlh100
+    3400 STS parameter 1                           1.              sts01 
+    3401 STS parameter 2                           1.              sts02 
+    3402 STS parameter 3                           1.              sts03 
+      .
+      .
+      .
+    3499 STS parameter100                          1.              sts100
+    3500 SON FIT Code                              1.              fit   
+    3501 SON EPEC E-Region source code             1.              srce  
+    3502 SON EPEC F-Region source code             1.              srcf  
+    3503 SON Source of temperature                 1.              srct  
+    3504 SON Source of velocity                    1.              srcv  
+    3505 SON Source of density profile             1.              srcden
+    3506 SON parameter 7                           1.              sonp07
+    3507 SON parameter 8                           1.              sonp08
+    3508 SON parameter 9                           1.              sonp09
+    3509 SON parameter 10                          1.              sonp10
+    3510 SON Derivative of Ti with altitude        1.E-02 K/km     dtidh 
+    3511 SON Derivative of Te with altitude        1.E-02 K/km     dtedh 
+    3512 SON Portion of Umerid due to Vpar         1.     m/s      upar  
+    3513 SON Umerid from ambipolar diffusn         1.     m/s      uambi 
+    3514 SON Uambi from DNe/DH fit to ne           1.     m/s      uden1 
+    3515 SON Uambi from DNe/DH fit to ln(ne)       1.     m/s      uden2 
+    3516 SON portion of Uambi from dTp/dH          1.     m/s      utemp 
+    3517 SON portion of Uambi from gravity         1.     m/s      ugrav 
+    3518 SON Mean azimuth position 1               1.E-02 deg      azm1  
+    3519 SON Mean elevation position 1             1.E-02 deg      elm1  
+    3520 SON Mean azimuth position 2               1.E-02 deg      azm2  
+    3521 SON Mean elevation position 2             1.E-02 deg      elm2  
+    3522 SON Mean azimuth position 3               1.E-02 deg      azm3  
+    3523 SON Mean elevation position 3             1.E-02 deg      elm3  
+    3524 SON Mean azimuth position 4               1.E-02 deg      azm4  
+    3525 SON Mean elevation position 4             1.E-02 deg      elm4  
+    3526 SON Mean azimuth position 5               1.E-02 deg      azm5  
+    3527 SON Mean elevation position 5             1.E-02 deg      elm5  
+    3528 SON Mean azimuth position 6               1.E-02 deg      azm6  
+    3529 SON Mean elevation position 6             1.E-02 deg      elm6  
+    3530 SON Mean azimuth position 7               1.E-02 deg      azm7  
+    3531 SON Mean elevation position 7             1.E-02 deg      elm7  
+    3532 SON Mean azimuth position 8               1.E-02 deg      azm8  
+    3533 SON Mean elevation position 8             1.E-02 deg      elm8  
+    3534 SON Begin year of composite (UT)          1.     UT       yrcb  
+    3535 SON Begin month/day of composite (UT)     1.     UT       mdb   
+    3536 SON Begin hour/minute of composite (UT)   1.     UT       hmb   
+    3537 SON Begin centisecond of composite (UT)   1.E-02 sec      csb   
+    3538 SON End year of composite (UT)            1.     UT       yrce  
+    3539 SON End month/day of composite (UT)       1.     UT       mde   
+    3540 SON End hour/minute of composite (UT)     1.     UT       hme   
+    3541 SON End centisecond of composite (UT)     1.E-02 sec      cse   
+    3542 SON Type of density correction            1.              dcor  
+    3543 SON log10 (ionization rate el/m**3-s)     1.E-03 lg(e/m3s inzrl 
+    3544 SON log10 (alpha effective in m**3/s)     1.E-03 lg(m3/s) alphrl
+    3545 SON log10 (part flux el/cm**2-s-kev)      1.E-03 lg(e/m2s pfluxl
+    3546 SON log10 (energy in kev)                 1.E-03 lg(kev)  el    
+    3547 SON Parallel current density              1.E-09 A/m2     jpar  
+    3548 SON Energy flux                           1.E-04 W/m2     eflx  
+    3549 SON Mean energy                           1.E-03 kev      em    
+    3550 SON I(4278)                               1.     R        i4278 
+    3551 SON log10 (molecular ion density)         1.E-03 lg(m-3)  midl  
+    3552 SON Covariance xx                         1.              covxx 
+    3553 SON Covariance xy                         1.              covxy 
+    3554 SON Covariance xz                         1.              covxz 
+    3555 SON Covariance yx                         1.              covyx 
+    3556 SON Covariance yy                         1.              covyy 
+    3557 SON Covariance yz                         1.              covyz 
+    3558 SON Covariance zx                         1.              covzx 
+    3559 SON Covariance zy                         1.              covzy 
+    3560 SON Covariance zz                         1.              covzz 
+    3561 SON Observed uncertainty on Ti            1.              odti  
+    3562 SON Reduced chi square of Ti              1.E-01          chiti 
+    3563 SON Observed uncertainty on Te            1.              odte  
+    3564 SON Reduced chi square of Te              1.E-01          chite 
+    3565 SON log10 (obs uncertainty Ne)            1.E-03 lg(m-3)  odnel 
+    3566 SON Reduced chi square of Ne              1.E-01          chine 
+    3567 SON Amount subtracted from Vlos           1.     m/s      vbias 
+    3568 SON log10 (ne-parabolic fit to ln(ne))    1.E-03 lg(m-3)  fitnel
+    3569 SON Velocity in xy plane perp to b        1.     m/s      vperph
+    3570 SON Azimuth angle of vel in x-y plane     1.E-02 deg      azvpbh
+    3571 SON Correlation coefficient vxy           1.E-04          ccfvxy
+    3572 SON Correlation coefficient vxz           1.E-04          ccfvxz
+    3573 SON Correlation coefficient vyz           1.E-04          ccfvyz
+    3574 SON Neutral atmosphere model code         1.              natmc 
+    3575 SON Correlation coefficient Exy           1.E-04          ccfexy
+    3576 SON Cross correlation coefficient Uxy     1.E-04          xcfuxy
+    3577 SON Cross correlation coefficient Une     1.E-04          xcfuen
+    3578 SON Cross correlatn on Uxy from signeut   1.E-04          xcfxyn
+    3579 SON Total cross correlation for Uxy       1.E-04          xcfxyt
+    3580 SON Cross correlatn on Une from signeut   1.E-04          xcfenn
+    3581 SON Total cross correlatn for Ue and Un   1.E-04          xcfent
+    3582 SON Horizontal magn neutral wind          1.              umerid
+    3583 SON Alternate error on Uzum (code 1460)   1.              duzneu
+    3584 SON Total error on Uzum (code 1460)       1.              duztot
+    3585 SON Correction term = Ux-Vx               1.              uxcor 
+    3586 SON Correction term = Uy-Vy               1.              uycor 
+    3587 SON Error on Ux from signeut              1.              duxneu
+    3588 SON Error on Uy from signeut              1.              duyneu
+    3589 SON Total error on Ux                     1.              duxt  
+    3590 SON Total error on Uy                     1.              duyt  
+    3591 SON Error on Ue from signeut              1.              dueneu
+    3592 SON Error on Un from signeut              1.              dunneu
+    3593 SON Total error on Ue                     1.              duet  
+    3594 SON Total error on Un                     1.              dunt  
+    3595 SON Relative error in neutral atmos       1.E-03          rdna  
+    3596 SON Ion gyro frequency                    1.     hz       fig   
+    3597 SON Azimuth of axis of symmetry           1.E-02 deg      axsym 
+    3598 SON Ion-neutral collision freq. coeff.    1.E-12 cm-3/s   niuc  
+    3599 SON Direction 4 F Region ion velocity     1.     m/s      vipef 
+    3600 SON Direction 5 F Region ion velocity     1.     m/s      vipnf 
+    3601 SON O+O ion-neut coll freq. factor        1.E+02          fopoco
+    3602 SON log10 (measured ion-neut col freq)    1.E-03 lg(s-1)  fmcol 
+    3603 SON Fit 2 log10 (ne in m-3)               1.E-03 lg(m-3)  nef2l 
+    3604 SON Fit 2 electron temperature, te        1.     k        tef2  
+    3605 SON Fit 2 ion temperature, ti             1.     k        tif2  
+    3606 SON Fit 2 temperature ratio, te/ti        1.E-03          trf2  
+    3607 SON Fit 2 ion velocity (pos = away)       1.     m/s      vof2  
+    3608 SON Fit 2 composition - [o+]/ne           1.E-03          popf2 
+    3609 SON Fit 2 log10(ion-neutral coll. freq)   1.E-03 lg(s-1)  colf2l
+    3610 SON Reduced-chi square of fit 2           1.E-03          chisq2
+    3611 SON Goodness of fit 2                     1.              gfit2 
+    3612 SON Usability code fit 2                  1.              ucf2  
+    3613 SON Fit 3 log10 (ne in m-3)               1.E-03 lg(m-3)  nef3l 
+    3614 SON Fit 3 electron temperature, te        1.     k        tef3  
+    3615 SON Fit 3 ion temperature, ti             1.     k        tif3  
+    3616 SON Fit 3 temperature ratio, te/ti        1.E-03          trf3  
+    3617 SON Fit 3 ion velocity (pos = away)       1.     m/s      vof3  
+    3618 SON Fit 3 composition - [o+]/ne           1.E-03          popf3 
+    3619 SON Fit 3 log10(ion-neutral coll. freq)   1.E-03 lg(s-1)  colf3l
+    3620 SON Reduced-chi square of fit 3           1.E-03          chisq3
+    3621 SON Goodness of fit 3                     1.              gfit3 
+    3622 SON Usability code fit 3                  1.              ucf3  
+    3623 SON Zone number for fitted data           1.              zonn  
+    3624 SON Fit code of fit 2                     1.              fitcf2
+    3625 SON Fit code of fit 3                     1.              fitcf3
+    3626 SON Vector Velocity Magnitude (XY plane)  1.     m/s      magvel
+    3627 SON CW angle from GM North for 3626-XY    1.E-02 deg      nangle
+    3628 SON E Field Magnitude (XY plane)          1.E-05 V/m      magEF 
+    3629 SON CW angle from GM North for 3628-XY    1.E-02 deg      eangle
+    3630 SON parameter 131                         1.              son131
+    3631 SON parameter 132                         1.              son132
+    3632 SON parameter 133                         1.              son133
+    3633 SON parameter 134                         1.              son134
+    3634 SON parameter 135                         1.              son135
+    3635 SON parameter 136                         1.              son136
+    3636 SON parameter 137                         1.              son137
+    3637 SON parameter 138                         1.              son138
+    3638 SON parameter 139                         1.              son139
+    3639 SON parameter 140                         1.              son140
+    3640 SON parameter 141                         1.              son141
+    3641 SON parameter 142                         1.              son142
+    3642 SON parameter 143                         1.              son143
+    3643 SON parameter 144                         1.              son144
+    3644 SON parameter 145                         1.              son145
+    3645 SON parameter 146                         1.              son146
+    3646 SON parameter 147                         1.              son147
+    3647 SON parameter 148                         1.              son148
+    3648 SON parameter 149                         1.              son149
+    3649 SON parameter 150                         1.              son150
+    3650 SON Thermal red line emission             1.E-02 ph/cm3-s e630t 
+    3651 SON Dissoc-Recomb red line emission       1.E-02 ph/cm3-s e630  
+    3652 SON Volume emission of 5200 Angstrom      1.E-02 ph/cm3-s e520  
+    3653 SON parameter 154                         1.              son154
+    3654 SON parameter 155                         1.              son155
+    3655 SON Electron to ion energy loss rate      1.     ev/cm3-s lei   
+    3656 SON Elec. to neutral energy loss rate     1.     ev/cm3-s len   
+    3657 SON Energy loss rate (Le = Lei + Len)     1.     ev/cm3-s lein  
+    3658 SON Heat conduction                       1.     ev/cm3-s hc    
+    3659 SON Energy input (=Le-Hc)                 1.     ev/cm3-s qe    
+    3660 SON Ion to neut energy loss rate (Lin)    1.E+01 ev/cm3-s lin   
+    3661 SON Joule heating (=Lin-Lei)              1.E+01 ev/cm3-s qj    
+    3662 SON Heat flux                             1.E+07 ev/cm2-s hflx  
+    3663 SON parameter 164                         1.              son164
+    3664 SON parameter 165                         1.              son165
+    3665 SON parameter 166                         1.              son166
+    3666 SON parameter 167                         1.              son167
+    3667 SON parameter 168                         1.              son168
+    3668 SON parameter 169                         1.              son169
+    3669 SON parameter 170                         1.              son170
+    3670 SON 6300 A thermal intensity              1.     R        ith630
+    3671 SON 6300 A dissoc-recomb. intensity       1.     R        idr630
+    3672 SON 6300 A thermal+diss intensity         1.     R        itd630
+    3673 SON 5200 A dissoc-recomb intensity        1.     R        idr520
+    3674 SON parameter 175                         1.              son175
+    3675 SON parameter 176                         1.              son176
+    3676 SON parameter 177                         1.              son177
+    3677 SON parameter 178                         1.              son178
+    3678 SON parameter 179                         1.              son179
+    3679 SON parameter 180                         1.              son180
+    3680 SON parameter 181                         1.              son181
+    3681 SON parameter 182                         1.              son182
+    3682 SON parameter 183                         1.              son183
+    3683 SON parameter 184                         1.              son184
+    3684 SON parameter 185                         1.              son185
+    3685 SON parameter 186                         1.              son186
+    3686 SON parameter 187                         1.              son187
+    3687 SON parameter 188                         1.              son188
+    3688 SON parameter 189                         1.              son189
+    3689 SON parameter 190                         1.              son190
+    3690 SON parameter 191                         1.              son191
+    3691 SON parameter 192                         1.              son192
+    3692 SON parameter 193                         1.              son193
+    3693 SON parameter 194                         1.              son194
+    3694 SON parameter 195                         1.              son195
+    3695 SON parameter 196                         1.              son196
+    3696 SON parameter 197                         1.              son197
+    3697 SON parameter 198                         1.              son198
+    3698 SON parameter 199                         1.              son199
+    3699 SON parameter 200                         1.              son200
+    3700 EIS parameter 1                           1.              eis01 
+    3701 EIS parameter 2                           1.              eis02 
+    3702 EIS parameter 3                           1.              eis03 
+      .
+      .
+      .
+    3799 EIS parameter100                          1.              eis100
+
+ (Autocorrelation Function:)
+
+    3800 Scaled real ACF at zero lag               1.              acfrs0
+    3801 Normalized real ACF at lag 1              1.E-04          acfr1 
+    3802 Normalized real ACF at lag 2              1.E-04          acfr2 
+    3803 Normalized real ACF at lag 3              1.E-04          acfr3 
+      .
+      .
+      .
+    3834 Normalized real ACF at lag 34             1.E-04          acfr34
+    3900 Scale factor for ACF at zero lag          1.              acfsf0
+    3901 Normalized imaginary ACF at lag 1         1.E-04          acfi1 
+    3902 Normalized imaginary ACF at lag 2         1.E-04          acfi2 
+    3903 Normalized imaginary ACF at lag 3         1.E-04          acfi3 
+      .
+      .
+      .
+    3934 Normalized imaginary ACF at lag 34        1.E-04          acfi34
+
+ (Non-I.S. Radar Instrument Operation Parameters:)
+
+    4001 PKR QC 0=Okay                             1.              pfqc  
+    4002 PKR QC No records in noise avg            1.              pfnnr 
+    4003 PKR QC Avg of Galactic Noise              1.              pfgn  
+    4004 PKR QC log10 (noise pwr in spectrm)       1.E-03 lg       pfpnl 
+    4005 PKR QC log10 (signl pwr in spectrm)       1.E-03 lg       pfpsl 
+    4015 UIL QC log10 (sodium counts)              1.E-03 lg       uinacl
+    4016 UIL QC log10 (F factor)                   1.E-03 lg       uiffl 
+    4017 UIL QC log10 (Na returns/bkgnd noise)     1.E-03 lg       uinfl 
+    4018 UIL QC log10 (av Rayleigh) = NrmlzFctr    1.E-03 lg       uiarl 
+    4020 CSL QC Neutral temperature from 1-hr avg  1.E-01 K        csltna
+    4021 CSL QC Full Width at Half Max vert avg    1.     m        fwhmz 
+    4022 CSL QC Neutral temperature looking E      1.E-01 K        csltne
+    4023 CSL QC Neutral temperature looking N      1.E-01 K        csltnn
+    4025 CFP QC No coefficients                    1.              cfpnc 
+    4031 GBF QC Skynoise (A/D convertor units)     1.              gbskn 
+    4032 GBF QC XCF flag (0=Off, 1=On)             1.              gbxcf 
+    4035 GBF QC Groundscatter flag (0:n, 1:y)      1.              gbgsct
+    4050 AFP QC Zenith ref flag (1=use ; 0=no)     1.              afpzf 
+    4051 AFP QC Free spectral range(arb p unit)    1.E-01          afpsr 
+    4052 AFP QC Etalon Thickness                   1.E-04 m        afpet 
+    4053 AFP QC Intensity Calibration Factor       1.E-02 cnt/s-R  afpif 
+    4055 AFP QC No Harmonics in Fourier Anal       1.              afpnh 
+    4056 AFP QC D(Vne)/Dx per 1000 km (x +Ewrd)    1.E-04 m/s-km   afdvne
+    4057 AFP QC D(Vnn)/Dy per 1000 km (y +Nwrd)    1.E-04 m/s-km   afdvnn
+    4058 AFP QC Error in 4056/4057 per 1000 km     1.E-04 m/s-km   afddvn
+    4060 AQF QC Standard deviation in 1411         1.E-01 m/s      sd1411
+    4061 AQF QC # Samples in time avg of 1411      1.              nv1411
+    4062 AQF QC Standard deviation in 1421         1.E-01 m/s      sd1421
+    4063 AQF QC # Samples in time avg of 1421      1.              nv1421
+    4064 AQF QC # Quality flag for a night (1-3)   1.              aqfflg
+    4070 COF QC Mean sampling density for winds    1.E-01 mn-1     coftsw
+    4071 COF QC Mean sampling density for hts      1.E-01 mn-1     coftsh
+    4080 STM QC Solar scaling factor               1.E-04          solsf 
+    4090 MUI QC Ion velocity (up from NS dirs)     1.     m/s      viuns 
+    4091 MUI QC Ion velocity (up from EW dirs)     1.     m/s      viuew 
+    4092 MUI QC (0-3 <=> ok-bad)                   1.              muqc1 
+    4093 MUI Ne calibration factor                 1.              munec 
+    4101 Hecht 4ch Ph. Model no. (eg MSIS90)       1.              h4pmn 
+    4102 Hecht 4ch Ph. 1=ok (sza>102;flux;Eo;fo)   1.              h4pszf
+    4103 Hecht 4ch Ph. 1=moon down; 0=moonlit      1.              h4pmnf
+    4104 Hecht 4ch Ph. 1=good night, 0=so-so       1.              h4pntf
+    4111 PKF QC neut horiz wind fit los to az dir  1.     m/s      pkffhl
+    4112 PKF QC perp (left) compon. to code 4111   1.     m/s      pkffpn
+    4121 IMF 1min S/C B:    Bx!Vx IDx   IDyz       1.              scb   
+    4122 IMF 1min S/C SW:  Den!Vx IDx   IDyz       1.              scsw  
+    4123 IMF 1min S/C Pos:   !IMF IDx   IDyz       1.              scpos 
+    4124 IMF 1min S/C delay: d!Bx IDdel IDmeandel  1.              scdel 
+    4131 DVS QC Counting error                     1.E-01  K       dvsce 
+    4132 DVS Cloud cover (0-3=clr-ovcst;4=snow)    1.              dvscl 
+    4133 DVS QC Standard error in the mean         1.E-01  K       dvsse 
+    4134 DVS QC Observing time for averages        1.              dvstm 
+    4141 KHA observation loc (astronomical name)   1.              astloc
+    4142 KHA beginning hour/min (UT) from log      1.     mmdd     khabhm
+    4143 KHA beginning centisec (UT) from log      1.E-02 s        khabcs
+    4144 KHA quality code (1=A, 2=A-, 3=B, ...)    1.              khaqc 
+    4145 KHA rel annr emis rate w/o flatfld norm   1.E-01          khare1
+    4146 KHA rel annr emis rate w/o flatfld norm   1.E-03          khare3
+    4151 NICT QC 1-h std dev rejection criteria    1.E-01          nictst
+    4152 NICT QC % threshold acceptance criteria   1.E-02  %       nictth
+    4161 EHP median estim. Electron Hp input       1.E+08 W        eepowd
+    4162 EHP maximum estim. Electron Hp input      1.E+08 W        eepowx
+    4163 EHP original estim. Total Hp input        1.E+08 W        tepow1
+    4164 EHP original estim. Ion Hp input          1.E+08 W        iepow1
+    4165 EHP original estim. Electron Hp input     1.E+08 W        eepow1
+    4166 EHP # of samples used for SEM-2 Hpi       1.              nsmhpi
+    4167 EHP median estim. Ion Hp input            1.E+08 W        iepowd
+    4168 EHP maximum estim. Ion Hp input           1.E+08 W        iepowx
+    4171 RFP median nightly zero los wind          1.     m/s      rfpmd0
+    4172 RFP ave hourly zero los wind              1.     m/s      rfpavh
+    4173 RFP los wind before zero rm (+away)       1.     m/s      rfplos
+    4174 RFP flag (0 orig, 1 winds revised)        1.              rfpchw
+
+
+ (Codes sorted alphabetically by abbreviation)
+
+     341 aa index                                  1.              aa    
+    3901 Normalized imaginary ACF at lag 1         1.E-04          acfi1 
+    3902 Normalized imaginary ACF at lag 2         1.E-04          acfi2 
+    3903 Normalized imaginary ACF at lag 3         1.E-04          acfi3 
+    3934 Normalized imaginary ACF at lag 34        1.E-04          acfi34
+    3801 Normalized real ACF at lag 1              1.E-04          acfr1 
+    3802 Normalized real ACF at lag 2              1.E-04          acfr2 
+    3803 Normalized real ACF at lag 3              1.E-04          acfr3 
+    3834 Normalized real ACF at lag 34             1.E-04          acfr34
+    3800 Scaled real ACF at zero lag               1.              acfrs0
+    3900 Scale factor for ACF at zero lag          1.              acfsf0
+     320 Ae Index (1 or 2.5 min sample)            1.     nT       ae    
+     324 Ae Index (hourly mean)                    1.     nT       aem   
+    4058 AFP QC Error in 4056/4057 per 1000 km     1.E-04 m/s-km   afddvn
+    4056 AFP QC D(Vne)/Dx per 1000 km (x +Ewrd)    1.E-04 m/s-km   afdvne
+    4057 AFP QC D(Vnn)/Dy per 1000 km (y +Nwrd)    1.E-04 m/s-km   afdvnn
+    4052 AFP QC Etalon Thickness                   1.E-04 m        afpet 
+    4053 AFP QC Intensity Calibration Factor       1.E-02 cnt/s-R  afpif 
+    4055 AFP QC No Harmonics in Fourier Anal       1.              afpnh 
+    4051 AFP QC Free spectral range(arb p unit)    1.E-01          afpsr 
+    4050 AFP QC Zenith ref flag (1=use ; 0=no)     1.              afpzf 
+    2156 Auroral flux type: maxwellian=1,gauss=2   1.              afty  
+     321 Al Index (1 or 2.5 min sample)            1.     nT       al    
+     325 Al Index (hourly mean)                    1.     nT       alm   
+    3544 SON log10 (alpha effective in m**3/s)     1.E-03 lg(m3/s) alphrl
+     115 Altitude averaging interval               1.     km       altav 
+     116 Additional increment to ht avgng intrvl   1.E-01 m        altavi
+     106 Minimum altitude                          1.     km       altb  
+     108 Maximum altitude                          1.     km       alte  
+     109 Additional increment to max alt           1.E-01 m        altei 
+     107 Additional increment to min alt           1.E-01 m        alti  
+     117 Virtual height                            1.E-01 km       altv  
+     323 Ao Index (1 or 2.5 min sample)            1.     nT       ao    
+     456 Arecibo data quality code 1 (IFIT)        1.              aodqc1
+     457 Arecibo data quality code 2               1.              aodqc2
+     458 Arecibo data quality code 3               1.              aodqc3
+     459 Arecibo data quality code 4               1.              aodqc4
+     460 Arecibo data quality code 5               1.              aodqc5
+     327 Ao Index (hourly mean)                    1.     nT       aom   
+     340 AP index (daily)                          1.              ap    
+     335 ap index (3-hourly)                       1.              ap3   
+     226 Apex latitude in measurement volume       1.E-02 deg      aplat 
+     246 Apex longitude in measurement volume      1.E-02 deg      aplon 
+    3330 MLH Apex Local Time (Hours MOD 24)        1.e+00 hour     aplt  
+    4064 AQF QC # Quality flag for a night (1-3)   1.              aqfflg
+    3200 ARO parameter 1                           1.              aro01 
+    3201 ARO parameter 2                           1.              aro02 
+    3202 ARO parameter 3                           1.              aro03 
+    3299 ARO parameter 100                         1.              aro100
+    4141 KHA observation loc (astronomical name)   1.              astloc
+     322 Au Index (1 or 2.5 min sample)            1.     nT       au    
+     326 Au Index (hourly mean)                    1.     nT       aum   
+     445 Aurora sighted Flag (0=no, 1=yes)         1.              aurf  
+    3597 SON Azimuth of axis of symmetry           1.E-02 deg      axsym 
+     132 Beginning azimuth (0=geog N,90=east)      1.E-02 deg      az1   
+    1085 Direction 10 Azimuth angle                1.E-02 deg      az10  
+     133 Ending azimuth (0=geog N,90=east)         1.E-02 deg      az2   
+    1030 Direction 7 Azimuth angle                 1.E-02 deg      az7   
+    1050 Direction 8 Azimuth angle                 1.E-02 deg      az8   
+    1070 Direction 9 Azimuth angle                 1.E-02 deg      az9   
+     130 Mean azimuth angle (0=geog N,90=east)     1.E-02 deg      azm   
+    3518 SON Mean azimuth position 1               1.E-02 deg      azm1  
+    3520 SON Mean azimuth position 2               1.E-02 deg      azm2  
+    3522 SON Mean azimuth position 3               1.E-02 deg      azm3  
+    3524 SON Mean azimuth position 4               1.E-02 deg      azm4  
+    3526 SON Mean azimuth position 5               1.E-02 deg      azm5  
+    3528 SON Mean azimuth position 6               1.E-02 deg      azm6  
+    3530 SON Mean azimuth position 7               1.E-02 deg      azm7  
+    3532 SON Mean azimuth position 8               1.E-02 deg      azm8  
+    3570 SON Azimuth angle of vel in x-y plane     1.E-02 deg      azvpbh
+    2561 log10 (background counts)                 1.E-03 lg       bcl   
+     208 Downward component of geomagnetic field   1.E-08 T        bd    
+     213 Geomagnetic field east declination        1.E-02 deg      bdec  
+     206 Eastward component of geomagnetic field   1.E-08 T        be    
+      28 Beginning hour/min (universal time)       1.     hhmm     bhm   
+      29 Beginning additional increment to hhmm    1.E-02 s        bhmi  
+    2210 Interplanetary Mag Field strength         1.E-11 T        bimf  
+     216 Geomagnetic field downward inclination    1.E-02 deg      binc  
+    2571 Channel 1 Background correction           1.     R        bkgc1 
+    2572 Channel 2 Background correction           1.     R        bkgc2 
+    2573 Channel 3 Background correction           1.     R        bkgc3 
+    2574 Channel 4 Background correction           1.     R        bkgc4 
+     210 Geomagnetic field strength                1.E-08 T        bmag  
+      19 Beginning month/day (universal time)      1.     mmdd     bmd   
+     204 Northward component of geomagnetic fld    1.E-08 T        bn    
+    2560 Log10 (background noise, residual)        1.E-03 lg(R)    bnl   
+    2500 line/band brightness                      1.     R        br    
+    2502 line/band brightness                      1.E-01 R        br1   
+    2511 Channel 1 line/band brightness            1.E+01 R        br1   
+    2512 Channel 2 line/band brightness            1.E+01 R        br2   
+    2513 Channel 3 line/band brightness            1.E+01 R        br3   
+    2514 Channel 4 line/band brightness            1.E+01 R        br4   
+    2501 log10 (line/band brightness)              1.E-03 lg(R)    brl   
+    2601 Normalized Brightness ratio (Ch1/Ch4)     1.E-03          brrn  
+    2401 Beginning wavelength                      1.E-01 nm       bwavl 
+    2411 Beginning wavenumber                      1.     cm-1     bwavn 
+    2214 Interplanetary Mag Field Bx GSE           1.E-11 T        bxgse 
+    2204 Interplanetary Mag Field Bx GSM           1.E-11 T        bxgsm 
+       9 Beginning year (universal time)           1.     yr       byear 
+    2216 Interplanetary Mag Field By GSE           1.E-11 T        bygse 
+    2206 Interplanetary Mag Field By GSM           1.E-11 T        bygsm 
+    2218 Interplanetary Mag Field Bz GSE           1.E-11 T        bzgse 
+    2208 Interplanetary Mag Field Bz GSM           1.E-11 T        bzgsm 
+    2521 Channel 1 Calibration (cnt/s over R)      1.E-02 cnt/s/R  cal1  
+    2522 Channel 2 Calibration (cnt/s over R)      1.E-02 cnt/s/R  cal2  
+    2523 Channel 3 Calibration (cnt/s over R)      1.E-02 cnt/s/R  cal3  
+    2524 Channel 4 Calibration (cnt/s over R)      1.E-02 cnt/s/R  cal4  
+     484 Calibration temperature                   1.     K        caltmp
+     431 Code baud length                          1.              cbadl 
+     432 No. bauds in code                         1.              cbadn 
+    3575 SON Correlation coefficient Exy           1.E-04          ccfexy
+    3571 SON Correlation coefficient vxy           1.E-04          ccfvxy
+    3572 SON Correlation coefficient vxz           1.E-04          ccfvxz
+    3573 SON Correlation coefficient vyz           1.E-04          ccfvyz
+    3323 MLH Ti, Co correlation coefficient        1.e-03          cctico
+    3322 MLH Ti, Ph correlation coefficient        1.e-03          cctiph
+    3321 MLH Ti, Tr correlation coefficient        1.e-03          cctitr
+    3324 MLH Tr, Ph correlation coefficient        1.e-03          cctrph
+    4025 CFP QC No coefficients                    1.              cfpnc 
+    2020 Hall conductivity                         1.E-06 mho/m    ch    
+     471 Chatanika/Sondrestrom data qual code 1    1.              chdqc1
+     472 Chatanika/Sondrestrom data qual code 2    1.              chdqc2
+     473 MUSCOX Fit Code                           1.              chdqc3
+     474 Res. Vel. Pairing Code                    1.              chdqc4
+     475 Chatinika/Sondrestrom data qual code 5    1.              chdqc5
+    2050 Height integral hall conductivity         1.E-02 mho      chhi  
+    3566 SON Reduced chi square of Ne              1.E-01          chine 
+     421 Reduced-chi square of fit                 1.E-01          chip1 
+     420 Reduced-chi square of fit                 1.E-03          chisq 
+    3610 SON Reduced-chi square of fit 2           1.E-03          chisq2
+    3620 SON Reduced-chi square of fit 3           1.E-03          chisq3
+    3564 SON Reduced chi square of Te              1.E-01          chite 
+    3562 SON Reduced chi square of Ti              1.E-01          chiti 
+    2021 log10 (Hall Conductivity)                 1.E-03 lg(mho/m chl   
+    2080 Field line integral(1 hemi) Hall Cond     1.E-02 mho      chli  
+     442 Cloud cover in tenths (0=clr,10=ovcst)    1.     tenths   clou10
+     441 Cloud cover from lowest level clouds      1.     octa     cloud1
+     440 Cloud cover (0-8=clr-ovcst;9=obscured)    1.     octa     cloudc
+     710 Ion-neutral collision frequency           1.     s-1      co    
+     709 Ion-neutral collision frequency           1.E+04 s-1      co4hz
+     433 Code type (0=non,1=cmplmntry)             1.              codt  
+    4071 COF QC Mean sampling density for hts      1.E-01 mn-1     coftsh
+    4070 COF QC Mean sampling density for winds    1.E-01 mn-1     coftsw
+     720 log10 (ion-neutral collision frequency)   1.E-03 lg(s-1)  col   
+    3609 SON Fit 2 log10(ion-neutral coll. freq)   1.E-03 lg(s-1)  colf2l
+    3619 SON Fit 3 log10(ion-neutral coll. freq)   1.E-03 lg(s-1)  colf3l
+    2491 log10 (Counts)                            1.E-03 lg       countl
+    3552 SON Covariance xx                         1.              covxx 
+    3553 SON Covariance xy                         1.              covxy 
+    3554 SON Covariance xz                         1.              covxz 
+    3555 SON Covariance yx                         1.              covyx 
+    3556 SON Covariance yy                         1.              covyy 
+    3557 SON Covariance yz                         1.              covyz 
+    3558 SON Covariance zx                         1.              covzx 
+    3559 SON Covariance zy                         1.              covzy 
+    3560 SON Covariance zz                         1.              covzz 
+    2010 Pedersen conductivity                     1.E-06 mho/m    cp    
+    2040 Height integral pedersen conductivity     1.E-02 mho      cphi  
+    2011 log10 (Pedersen Conductivity in mho/m3)   1.E-03 lg(mho/m cpl   
+    2070 Field line integral(1 hemi) Ped Cond      1.E-02 mho      cpli  
+    3537 SON Begin centisecond of composite (UT)   1.E-02 sec      csb   
+    3541 SON End centisecond of composite (UT)     1.E-02 sec      cse   
+    4020 CSL QC Neutral temperature from 1-hr avg  1.E-01 K        csltna
+    4022 CSL QC Neutral temperature looking E      1.E-01 K        csltne
+    4023 CSL QC Neutral temperature looking N      1.E-01 K        csltnn
+    3331 MLH Bperp Directn Cosine (South [Apex])   1.e+00 m/s      cxr   
+      95 Cycle sequence number (e.g., 5th cycle)   1.              cycn  
+    3332 MLH Bperp Directn Cosine (East [Apex])    1.e+00 m/s      cyr   
+    3333 MLH Directn Cosine (Up fld line [Apex])   1.e+00 m/s      czr   
+      62 Integration time for these data           1.     day      datntd
+    2600 Diffuse aurora ratio (Ch1/Ch4)            1.E-02          daurr 
+      21 Day number of year (universal time)       1.     day      dayno 
+     135 Variation in azimuth (end Az - beg Az)    1.E-02 deg      daz   
+    3542 SON Type of density correction            1.              dcor  
+     145 Variation in elevation (end El-beg El)    1.E-02 deg      del   
+     404 Density sampling time                     1.E-06 sec      denst 
+     220 Dip latitude in measurement volume        1.E-02 deg      diplat
+     981 UT day no rel to 2-dy comp phase          1.     day      dn2dp 
+    3343 MLH Variation in Range (RANGE2 - RANGE1)  1.e+00 km       drng21
+     330 Dst index                                 1.     nT       dst   
+    3511 SON Derivative of Te with altitude        1.E-02 K/km     dtedh 
+    3510 SON Derivative of Ti with altitude        1.E-02 K/km     dtidh 
+      66 Time increment between rows               1.     s        dtrow 
+    3591 SON Error on Ue from signeut              1.              dueneu
+    3593 SON Total error on Ue                     1.              duet  
+    3592 SON Error on Un from signeut              1.              dunneu
+    3594 SON Total error on Un                     1.              dunt  
+    3338 MLH Variation in UT (UT2 - UT1)           1.e+00 s        dut21 
+    3587 SON Error on Ux from signeut              1.              duxneu
+    3589 SON Total error on Ux                     1.              duxt  
+    3588 SON Error on Uy from signeut              1.              duyneu
+    3590 SON Total error on Uy                     1.              duyt  
+    3583 SON Alternate error on Uzum (code 1460)   1.              duzneu
+    3584 SON Total error on Uzum (code 1460)       1.              duztot
+    4131 DVS QC Counting error                     1.E-01  K       dvsce 
+    4132 DVS Cloud cover (0-3=clr-ovcst;4=snow)    1.              dvscl 
+    4133 DVS QC Standard error in the mean         1.E-01  K       dvsse 
+    4134 DVS QC Observing time for averages        1.              dvstm 
+    2155 Average electron energy                   1.     eV       e0    
+    3652 SON Volume emission of 5200 Angstrom      1.E-02 ph/cm3-s e520  
+    3651 SON Dissoc-Recomb red line emission       1.E-02 ph/cm3-s e630  
+    3650 SON Thermal red line emission             1.E-02 ph/cm3-s e630t 
+    1670 Direction 7 electric field                1.E-05 V/m      e7    
+    1680 Direction 8 electric field                1.E-05 V/m      e8    
+    1690 Direction 9 electric field                1.E-05 V/m      e9    
+    3629 SON CW angle from GM North for 3628-XY    1.E-02 deg      eangle
+    1660 Direction 6 electric field (antipara)     1.E-05 V/m      eap   
+    2157 Characteristic electron energy            1.     eV       ece   
+    2158 log10 (characteristic electron energy)    1.E-03 lg(eV)   ecel  
+    2159 Characteristic pos. ion (proton) energy   1.     eV       ecp   
+    2160 log10 (characteristic pos. ion energy)    1.E-03 lg(eV)   ecpl  
+    1610 Direction 1 electric field (eastward)     1.E-05 V/m      ee    
+     365 Estim. Electron Hemispheric Power Input   1.E+08 W        eepow 
+    4165 EHP original estim. Electron Hp input     1.E+08 W        eepow1
+    4161 EHP median estim. Electron Hp input       1.E+08 W        eepowd
+    4162 EHP maximum estim. Electron Hp input      1.E+08 W        eepowx
+    3548 SON Energy flux                           1.E-04 W/m2     eflx  
+     476 EISCAT data quality code 1                1.              eidqc1
+     477 EISCAT data quality code 2                1.              eidqc2
+     478 EISCAT data quality code 3                1.              eidqc3
+     479 EISCAT data quality code 4                1.              eidqc4
+     480 EISCAT data quality code 5                1.              eidqc5
+    3700 EIS parameter 1                           1.              eis01 
+    3701 EIS parameter 2                           1.              eis02 
+    3702 EIS parameter 3                           1.              eis03 
+    3799 EIS parameter100                          1.              eis100
+    3546 SON log10 (energy in kev)                 1.E-03 lg(kev)  el    
+     142 Beginning elevation angle                 1.E-02 deg      el1   
+    1090 Direction 10 Elevation angle              1.E-02 deg      el10  
+     143 Ending elevation angle                    1.E-02 deg      el2   
+    1040 Direction 7 Elevation angle               1.E-02 deg      el7   
+    1060 Direction 8 Elevation angle               1.E-02 deg      el8   
+    1080 Direction 9 Elevation angle               1.E-02 deg      el9   
+     140 Elevation angle (0=horizontal,90=vert)    1.E-02 deg      elm   
+    3519 SON Mean elevation position 1             1.E-02 deg      elm1  
+    3521 SON Mean elevation position 2             1.E-02 deg      elm2  
+    3523 SON Mean elevation position 3             1.E-02 deg      elm3  
+    3525 SON Mean elevation position 4             1.E-02 deg      elm4  
+    3527 SON Mean elevation position 5             1.E-02 deg      elm5  
+    3529 SON Mean elevation position 6             1.E-02 deg      elm6  
+    3531 SON Mean elevation position 7             1.E-02 deg      elm7  
+    3533 SON Mean elevation position 8             1.E-02 deg      elm8  
+    3549 SON Mean energy                           1.E-03 kev      em    
+    1620 Direction 2 electric field (northward)    1.E-05 V/m      en    
+    2310 Electric Potential                        1.E+01 V        ep    
+    1640 Direction 4 electric field (perp east)    1.E-05 V/m      epe   
+    3363 MLH Ephemeris Time                        1.e+00 hour     ephem 
+    1650 Direction 5 electric field (perp north)   1.E-05 V/m      epn   
+     368 Estimated Hemispheric Pwr Corr. Factor    1.E-03          epowf 
+     366 Estimated Hemispheric Power Index         1.              epowi 
+     367 Estimated Hemispheric Power Qualifier     1.              epowq 
+    3377 MLH Epsilon                               1.e+00          eps   
+     370 Est mag lat 0MLT equatorwd aurora bndry   1.E-02 deg      eqb0  
+     194 Declination angle (equatorial coords)     1.E-02 deg      eqddec
+     191 Hour angle HA=LSidT-RA (equatorial coor)  1.E-03 hour     eqhha 
+     192 Right ascension RA (equatorial coords)    1.E-03 hour     eqhra 
+    1630 Direction 3 electric field (up)           1.E-05 V/m      eu    
+    2402 Ending wavelength                         1.E-01 nm       ewavl 
+    2412 Ending wavenumber                         1.     cm-1     ewavn 
+     354 F10.7 solar flux observed (Ottawa)        1.E-23 W/m2/Hz  f10.7 
+     350 F10.7 solar flux (Sa)                     1.E-23 W/m2/Hz  f107a 
+     355 F10.7 solar flux qualifier observed       1.              f10.7q
+     351 F10.7 solar flux qualifier                1.              f107qa
+    3313 MLH ACF Normalization Factor              1.e-03          fa    
+     356 F10.7 Multiday average observed           1.E-23 W/m2/Hz  fbar  
+     352 F10.7 Multiday average                    1.E-23 W/m2/Hz  fbara 
+     357 356's avg code: 1=>81day ; 2=13mon        1.              fbart 
+     353 352's avg code: 1=>81day ; 2=13mon        1.              fbarta
+    2130 Electron energy flux                      1.E-05 W/m2     fee   
+    2131 log10 (electron energy flux)              1.E-03 lg(W/m2) feel  
+    2133 Positive ion (proton) energy flux         1.E-05 W/m2     fep   
+    2137 log10 (particle energy flux)              1.E-03 lg(W/m2) feparl
+    2136 Particle (el. and pos. ion) energy flux   1.E-05 W/m2     fepart
+    2134 log10 (positive ion energy flux)          1.E-03 lg(W/m2) fepl  
+    3596 SON Ion gyro frequency                    1.     hz       fig   
+    3500 SON FIT Code                              1.              fit   
+    3624 SON Fit code of fit 2                     1.              fitcf2
+    3625 SON Fit code of fit 3                     1.              fitcf3
+    3568 SON log10 (ne-parabolic fit to ln(ne))    1.E-03 lg(m-3)  fitnel
+    3353 MLH Fit type code                         1.e+00          fittyp
+    3372 MLH Latitude Angle of Average Field Vec   1.e+00 deg      flat  
+    3373 MLH Longitude Ang. of Average Field Vec   1.e+00 deg      flon  
+    3602 SON log10 (measured ion-neut col freq)    1.E-03 lg(s-1)  fmcol 
+     871 scale factor to model [O] profile         1.E-02          fO    
+    3369 MLH FoF2 level                            1.e-02 MHz      fof2  
+    3601 SON O+O ion-neut coll freq. factor        1.E+02          fopoco
+    3328 MLH Fundamental Pulse Length              1.e-06 sec      fundpl
+    4021 CSL QC Full Width at Half Max vert avg    1.     m        fwhmz 
+     195 Galactic latitude l (galactic coords)     1.E-02 deg      gallat
+     193 Galactic longitude b (galactic coords)    1.E-02 deg      gallon
+    4035 GBF QC Groundscatter flag (0:n, 1:y)      1.              gbgsct
+    4031 GBF QC Skynoise (A/D convertor units)     1.              gbskn 
+    4032 GBF QC XCF flag (0=Off, 1=On)             1.              gbxcf 
+     924 Groves coefficient                        1.E-02 m/s      gc    
+     150 Horiz great crcl dist from ref lat/lon    1.     km       gcdist
+     923 Groves coefficient number                 1.              gcn   
+     110 Altitude (height)                         1.     km       gdalt 
+     111 Additional increment to altitude          1.E-01 m        gdalti
+     224 Geomagnetic (centered dipole) latitude    1.E-02 deg      gdilat
+     244 Geomagnetic (cntrd dipol) east longitud   1.E-02 deg      gdilon
+     160 Geodetic latitude of measurement          1.E-02 deg      gdlat 
+     153 Reference geod latitude (N hemi=pos)      1.E-02 deg      gdlatr
+     156 Reference geodetic longitude              1.E-02 deg      gdlonr
+    1010 Geographic unit vector rotation angle     1.E-02 deg      gdra  
+     430 Goodness of fit                           1.              gfit  
+    3611 SON Goodness of fit 2                     1.              gfit2 
+    3621 SON Goodness of fit 3                     1.              gfit3 
+     170 Geodetic longitude of measurement         1.E-02 deg      glon  
+    1020 Magnetic unit vector rotation angle       1.E-02 deg      gmra  
+     829 Neutral gas mean molecular weight         1.E-02  AMU     gmwn  
+    4101 Hecht 4ch Ph. Model no. (eg MSIS90)       1.              h4pmn 
+    4103 Hecht 4ch Ph. 1=moon down; 0=moonlit      1.              h4pmnf
+    4104 Hecht 4ch Ph. 1=good night, 0=so-so       1.              h4pntf
+    4102 Hecht 4ch Ph. 1=ok (sza>102;flux;Eo;fo)   1.              h4pszf
+    3658 SON Heat conduction                       1.     ev/cm3-s hc    
+    3662 SON Heat flux                             1.E+07 ev/cm2-s hflx  
+      30 Hour/min (universal time)                 1.     hhmm     hm    
+     540 Height of maximum electron density        1.     km       hmax  
+    3536 SON Begin hour/minute of composite (UT)   1.     UT       hmb   
+    3540 SON End hour/minute of composite (UT)     1.     UT       hme   
+      31 Centiseconds (UT, increment to hhmm)      1.E-02 s        hmi   
+     190 Half scattering angle (bistatic system)   1.E-02 deg      hsa   
+     541 Scale ht of Chapman model electron den    1.     km       hschap
+    3550 SON I(4278)                               1.     R        i4278 
+    3673 SON 5200 A dissoc-recomb intensity        1.     R        idr520
+    3671 SON 6300 A dissoc-recomb. intensity       1.     R        idr630
+     364 Estim. Ion Hemispheric Power Input        1.E+08 W        iepow 
+    4164 EHP original estim. Ion Hp input          1.E+08 W        iepow1
+    4167 EHP median estim. Ion Hp input            1.E+08 W        iepowd
+    4168 EHP maximum estim. Ion Hp input           1.E+08 W        iepowx
+     434 No incoherent integrations                1.              iin   
+      61 Integration time for these data           1.     min      inttmm
+      60 Integration time for these data           1.     s        inttms
+     222 Invariant latitude in measurement vol     1.E-02 deg      invlat
+    3543 SON log10 (ionization rate el/m**3-s)     1.E-03 lg(e/m3s inzrl 
+     408 Interpulse Period                         1.E-02 sec      ipp
+     407 Interpulse Period; or 408 increment       1.E-06 sec      ippi
+    3672 SON 6300 A thermal+diss intensity         1.     R        itd630
+    3670 SON 6300 A thermal intensity              1.     R        ith630
+    1870 Direction 7 electric current density      1.E-08 A/m2     j7    
+    1880 Direction 8 electric current density      1.E-08 A/m2     j8    
+    1890 Direction 9 electric current density      1.E-08 A/m2     j9    
+    1860 Direction 6 electric current density      1.E-08 A/m2     jap   
+    3335 MLH Julian Day Number                     1.e+00 day      jdayno
+    1810 Direction 1 electric current density      1.E-08 A/m2     je    
+    1910 Ht integral: dir 1 current density        1.E-03 A/m      jehi  
+     451 Jicamarca data quality code 1             1.              jidqc1
+     452 Jicamarca data quality code 2             1.              jidqc2
+     453 Jicamarca data quality code 3             1.              jidqc3
+     454 Jicamarca data quality code 4             1.              jidqc4
+     455 Jicamarca data quality code 5             1.              jidqc5
+    1820 Direction 2 electric current density      1.E-08 A/m2     jn    
+    1920 Ht integral: dir 2 current density        1.E-03 A/m      jnhi  
+    3547 SON Parallel current density              1.E-09 A/m2     jpar  
+    1840 Direction 4 electric current density      1.E-08 A/m2     jpe   
+    1940 Line int (1 hemi): dir 4 current den      1.E-03 A/m      jpeli 
+    1850 Direction 5 electric current density      1.E-08 A/m2     jpn   
+    1950 Line int (1 hemi): dir 5 current den      1.E-03 A/m      jpnli 
+    3109 JRO parameter 10                          1.              jro10 
+    3199 JRO parameter 100                         1.              jro100
+    3110 JRO parameter 11                          1.              jro11 
+    3100 JRO normalizing factor (JRO661111A)       1.E-04          jronf1
+    1830 Direction 3 electric current density      1.E-08 A/m2     ju    
+    4143 KHA beginning centisec (UT) from log      1.E-02 s        khabcs
+    4142 KHA beginning hour/min (UT) from log      1.     mmdd     khabhm
+    4144 KHA quality code (1=A, 2=A-, 3=B, ...)    1.              khaqc 
+    4145 KHA rel annr emis rate w/o flatfld norm   1.E-01          khare1
+    4146 KHA rel annr emis rate w/o flatfld norm   1.E-03          khare3
+    3344 MLH Kind-of-data code                     1.e+00          kindat
+    3339 MLH Instrument Code                       1.e+00          kinst 
+     310 Kp Index                                  1.E-01          kp    
+     401 Lag to the first range gate               1.E-06 sec      lag1  
+    3655 SON Electron to ion energy loss rate      1.     ev/cm3-s lei   
+    3657 SON Energy loss rate (Le = Lei + Len)     1.     ev/cm3-s lein  
+    3656 SON Elec. to neutral energy loss rate     1.     ev/cm3-s len   
+    3660 SON Ion to neut energy loss rate (Lin)    1.E+01 ev/cm3-s lin   
+     218 L value in measurement volume             1.E-02          lshell
+    3327 MLH Local Time (Hours MOD 24)             1.e-03 hour     lt    
+    3628 SON E Field Magnitude (XY plane)          1.E-05 V/m      magEF 
+    3626 SON Vector Velocity Magnitude (XY plane)  1.     m/s      magvel
+      20 Month/day (universal time)                1.     mmdd     md    
+      25 Month/day (UT) of analysis date           1.     mmdd     mdanal
+      22 Model Day number of year (UT, 1=Jan 1)    1.     day      mdano 
+    3535 SON Begin month/day of composite (UT)     1.     UT       mdb   
+    3539 SON End month/day of composite (UT)       1.     UT       mde   
+     461 Millstone Hill data quality code 1        1.              mhdqc1
+     462 Millstone Hill data quality code 2        1.              mhdqc2
+     463 Millstone Hill data quality code 3        1.              mhdqc3
+     464 Millstone Hill data quality code 4        1.              mhdqc4
+     465 Millstone Hill data quality code 5        1.              mhdqc5
+    3551 SON log10 (molecular ion density)         1.E-03 lg(m-3)  midl  
+    3399 MLH parameter 100                         1.e+00          mlh100
+    3345 MLH parameter 46                          1.e+00          mlh46 
+    3349 MLH parameter 50                          1.e+00          mlh50 
+    3354 MLH parameter 55                          1.e+00          mlh55 
+    3355 MLH parameter 56                          1.e+00          mlh56 
+    3356 MLH parameter 57                          1.e+00          mlh57 
+    3357 MLH parameter 58                          1.e+00          mlh58 
+    3358 MLH parameter 59                          1.e+00          mlh59 
+    3305 MLH parameter 6                           1.e+00          mlh6  
+    3359 MLH parameter 60                          1.e+00          mlh60 
+    3360 MLH parameter 61                          1.e+00          mlh61 
+    3361 MLH parameter 62                          1.e+00          mlh62 
+    3362 MLH parameter 63                          1.e+00          mlh63 
+    3364 MLH parameter 64                          1.e+00          mlh64 
+    3365 MLH parameter 66                          1.e+00          mlh66 
+    3366 MLH parameter 67                          1.e+00          mlh67 
+    3367 MLH parameter 68                          1.e+00          mlh68 
+    3368 MLH parameter 69                          1.e+00          mlh69 
+    3370 MLH parameter 71                          1.e+00          mlh71 
+    3371 MLH parameter 72                          1.e+00          mlh72 
+    3375 MLH parameter 76                          1.e+00          mlh76 
+    3376 MLH parameter 77                          1.e+00          mlh77 
+    3378 MLH parameter 79                          1.e+00          mlh79 
+    3307 MLH parameter 8                           1.e+00          mlh8  
+    3379 MLH parameter 80                          1.e+00          mlh80 
+    3380 MLH parameter 81                          1.e+00          mlh81 
+    3381 MLH parameter 82                          1.e+00          mlh82 
+    3382 MLH parameter 83                          1.e+00          mlh83 
+    3383 MLH parameter 84                          1.e+00          mlh84 
+    3384 MLH parameter 85                          1.e+00          mlh85 
+    3387 MLH parameter 88                          1.e+00          mlh88 
+    3388 MLH parameter 89                          1.e+00          mlh89 
+    3389 MLH parameter 90                          1.e+00          mlh90 
+    3390 MLH parameter 91                          1.e+00          mlh91 
+    3391 MLH parameter 92                          1.e+00          mlh92 
+    3392 MLH parameter 93                          1.e+00          mlh93 
+    3393 MLH parameter 94                          1.e+00          mlh94 
+    3394 MLH parameter 95                          1.e+00          mlh95 
+    3395 MLH parameter 96                          1.e+00          mlh96 
+    3396 MLH parameter 97                          1.e+00          mlh97 
+    3397 MLH parameter 98                          1.e+00          mlh98 
+    3398 MLH parameter 99                          1.e+00          mlh99 
+    3346 MLH Lag spacing                           1.e-07 sec      mlhlag
+    3300 MLH Mode Letter (65-80 = A-P)             1.              mlhm  
+    3325 MLH Mode type                             1.e+00          mlhmod
+     691 Mean mol wt for ions from 28 to 32        1.E-02 AMU      mmwt30
+    3386 MLH Model Ion velocity in direction 5     1.e+00 m/s      modve 
+    3385 MLH Model Ion velocity in direction 4     1.e+00 m/s      modvs 
+     830 log10 (neutral mass density)              1.E-03 lg(Kg/m3 mol   
+    4093 MUI Ne calibration factor                 1.              munec 
+    4092 MUI QC (0-3 <=> ok-bad)                   1.              muqc1 
+    3627 SON CW angle from GM North for 3626-XY    1.E-02 deg      nangle
+     880 log10 (AR number density)                 1.E-03 lg(m-3)  narl  
+    3574 SON Neutral atmosphere model code         1.              natmc 
+     921 Number of coefficients in analysis        1.              nc    
+    3304 MLH Number calibration samples in prof    1.e+00          ncsamp
+     922 Number of directions in analysis          1.              nd    
+     510 Electron density                          1.E+09 m-3      ne    
+     512 Electron density                          1.E+08 m-3      ne8   
+    3603 SON Fit 2 log10 (ne in m-3)               1.E-03 lg(m-3)  nef2l 
+    3613 SON Fit 3 log10 (ne in m-3)               1.E-03 lg(m-3)  nef3l 
+     523 log10 (integrated electron density)       1.E-03 lg(m-2)  nehil 
+     511 Additional increment to code 510 (Ne)     1.E+05 m-3      nei   
+     520 log10 (Ne in m-3)                         1.E-03 lg(m-3)  nel   
+     522 Line integrated electron density          1.E+15 m-2      neli  
+     530 Maximum electron density                  1.E+09 m-3      nemax 
+     535 log10 (max Ne in m-3)                     1.E-03 lg(m-3)  nemaxl
+     500 Uncorrected electron density (Te/Ti=1)    1.E+09 m-3      neuc  
+     502 Uncorrected electron density              1.E+08 m-3      neuc8 
+     501 Uncorrected electron density increment    1.E+05 m-3      neuci 
+     505 log10 (uncorrected electron density)      1.E-03 lg(m-3)  neucl 
+     536 log10 (max uncorrected Ne in m-3)         1.E-03 lg(m-3)  neucml
+     531 Maximum uncorrected electron density      1.E+09 m-3      neucmx
+     905 log10 (Fe number density)                 1.E-03 lg(m-3)  nfel  
+     498 Number of frequencies used                1.              nfrequ
+    3312 MLH H Number Density                      1.e+00          nh    
+     890 log10 (HE number density)                 1.E-03 lg(m-3)  nhel  
+     925 Number of hours filled in harm anal       1.     hr       nhf   
+     900 log10 (H number density)                  1.E-03 lg(m-3)  nhl   
+    4151 NICT QC 1-h std dev rejection criteria    1.E-01          nictst
+    4152 NICT QC % threshold acceptance criteria   1.E-02  %       nictth
+    3598 SON Ion-neutral collision freq. coeff.    1.E-12 cm-3/s   niuc  
+     418 No ACF lags calculated                    1.              nlags 
+     499 Number of laser shots per second          1.     sec-1    nlshts
+     903 log10 (N(2D) number density)              1.E-03 lg(m-3)  nn2dl 
+     850 log10 (N2 number density)                 1.E-03 lg(m-3)  nn2l  
+     902 log10 (N(4S) number density)              1.E-03 lg(m-3)  nn4sl 
+     904 log10 (Na number density)                 1.E-03 lg(m-3)  nnal  
+     901 log10 (NO number density)                 1.E-03 lg(m-3)  nnol  
+    3309 MLH Number noise gates in radar sweep     1.e+00          nnrswp
+    3303 MLH Number of noise samples in profile    1.e+00          nnsamp
+     860 log10 (O2 number density)                 1.E-03 lg(m-3)  no2l  
+     870 log10 (O number density)                  1.E-03 lg(m-3)  nol   
+    3306 MLH Number profile Noise level samples    1.e+00          npnswp
+     910 log10 (Neutral pressure)                  1.E-03 lg(Pa)   npresl
+    3302 MLH Number of signal samples in profile   1.e+00          nrp   
+    3308 MLH Number of Radar Sweeps for Record     1.e+00          nrswp 
+     842 log10 (relative neutral number density)   1.E-03 lg       nrtotl
+    3347 MLH Num Samples SNR sum rule              1.e+00          nsamrl
+     417 No samples used in Fourier transform      1.              nsmfft
+    4166 EHP # of samples used for SEM-2 Hpi       1.              nsmhpi
+     422 No. samples in dir. 1 avg. (eastward)     1.              nsmpd1
+     423 No. samples in dir. 2 avg. (northward)    1.              nsmpd2
+     424 No. samples in dir. 3 avg. (upward)       1.              nsmpd3
+     114 Number of samples in range ave            1.              nsmpru
+     413 No samples available in time average      1.              nsmpta
+     415 No smpls in time avg; or 414 incremnt     1.              nsmpti
+     414 No samples used in time average           1.E+04          nsmptu
+     419 No samples used                           1.              nsmpu 
+    3348 MLH Num steps SNR sum rule                1.e+00          nstprl
+     840 log10 (neutral number density)            1.E-03 lg(m-3)  ntotl 
+    4061 AQF QC # Samples in time avg of 1411      1.              nv1411
+    4063 AQF QC # Samples in time avg of 1421      1.              nv1421
+    3565 SON log10 (obs uncertainty Ne)            1.E-03 lg(m-3)  odnel 
+    3563 SON Observed uncertainty on Te            1.              odte  
+    3561 SON Observed uncertainty on Ti            1.              odti  
+     980 2-day component period                    1.E-02 hr       p2d   
+     230 PACE magnetic azimuth                     1.E-02 deg      pacaz 
+     225 PACE magnetic latitude of meas volume     1.E-02 deg      paclat
+     245 PACE magnetic longitude of meas volume    1.E-02 deg      paclon
+    3102 JRO W beam log10(1+RxA coher. pwr/noise)  1.E-03 lg 1+SNR pacwl 
+    3101 JRO W beam log10(1+RxA incoh. pwr/noise)  1.E-03 lg 1+SNR paiwl 
+    3104 JRO W beam log10(1+RxB coher. pwr/noise)  1.E-03 lg 1+SNR pbcwl 
+    3103 JRO W beam log10(1+RxB incoh. pwr/noise)  1.E-03 lg 1+SNR pbiwl 
+    3106 JRO E beam log10(1+RxC coher. pwr/noise)  1.E-03 lg 1+SNR pccel 
+     319 Polar Cap Index                           1.E-01          pci   
+    3105 JRO E beam log10(1+RxC incoh. pwr/noise)  1.E-03 lg 1+SNR pciel 
+    2302 Potential minimum                         1.E+01 V        pcmn  
+    2303 Potential maximum                         1.E+01 V        pcmx  
+    2301 Polar cap potential difference            1.E+01 V        pcp   
+    3108 JRO E beam log10(1+RxD coher. pwr/noise)  1.E-03 lg 1+SNR pdcel 
+    3107 JRO E beam log10(1+RxD incoh. pwr/noise)  1.E-03 lg 1+SNR pdiel 
+    4003 PKR QC Avg of Galactic Noise              1.              pfgn  
+    3545 SON log10 (part flux el/cm**2-s-kev)      1.E-03 lg(e/m2s pfluxl
+    4002 PKR QC No records in noise avg            1.              pfnnr 
+    4004 PKR QC log10 (noise pwr in spectrm)       1.E-03 lg       pfpnl 
+    4005 PKR QC log10 (signl pwr in spectrm)       1.E-03 lg       pfpsl 
+    4001 PKR QC 0=Okay                             1.              pfqc  
+     650 Ion Composition - [HE+]/Ne                1.E-03          phep  
+     660 Ion Composition - [H+]/Ne                 1.E-03          php   
+    4111 PKF QC neut horiz wind fit los to az dir  1.     m/s      pkffhl
+    4112 PKF QC perp (left) compon. to code 4111   1.     m/s      pkffpn
+     402 Pulse length                              1.E-06 sec      pl    
+     690 Ion Composition - [mol wt 28 to 32]/Ne    1.E-03          pmp   
+     630 Ion Composition - [NO+]/Ne                1.E-03          pnop  
+    3301 MLH Power Normalization constant          1.e-03          pnorm 
+    3318 MLH D.P. Power Normalization constant     1.e-03          pnrmd 
+    3319 MLH Additional increment to DP Pwr Nrm C  1.e-07          pnrmdi
+    3310 MLH Mean power prof Normalizatn Const     1.e+00          pnrmmp
+    3317 MLH Reflected Power                       1.e+00          po    
+     640 Ion Composition - [O2+]/Ne                1.E-03          po2p  
+     620 Ion Composition - [O+]/Ne                 1.E-03          pop   
+    3608 SON Fit 2 composition - [o+]/ne           1.E-03          popf2 
+    3618 SON Fit 3 composition - [o+]/ne           1.E-03          popf3 
+    3316 MLH Profile Power Normalized to 1.0       1.e-03          popn  
+      97 End of event flag (0=off, 1=on)           1.              posf  
+      96 Position number within cycle              1.              posn  
+     486 Peak power                                1.     kW       power 
+     920 Pressure scale height                     1.E+01 m        psh   
+     953 log10 (12-h geopotential amplitude)       1.E-03 lg(m2/s2 pt12al
+     958 12-h max geopotential phase               1.E-03 hr       pt12p 
+    3374 MLH Plasma Temperature                    1.e+00 K        ptemp 
+    3659 SON Energy input (=Le-Hc)                 1.     ev/cm3-s qe    
+    3661 SON Joule heating (=Lin-Lei)              1.E+01 ev/cm3-s qj    
+    2152 Joule heat rate hemisphere integrated     1.E+08 W        qjouhe
+    2180 Joule energy heat rate fld-line integ.    1.E-04 W/m2     qjoulf
+    2150 Joule energy heat rate height integral    1.E-04 W/m2     qjoulh
+    2151 log10 (Joule heat rate height int.)       1.E-03 lg(W/m2) qjoull
+    2120 Joule energy specific heating rate        1.E-08 W/m3     qjoulv
+    2121 log10 (joule energy spec. heat rate)      1.E-03 lg(W/m3) qjouvl
+    2142 Particle energy heat rate hemisph.int.    1.E+08 W        qparhe
+    2140 Particle energy heat rate height int.     1.E-04 W/m2     qpart1
+    2170 Particle energy heat rate fld-line int.   1.E-04 W/m2     qpartf
+    2139 Particle energy heat rate height int.     1.E-05 W/m2     qparth
+    2141 log10 (part energy heat rate ht. int.)    1.E-03 lg(W/m2) qpartl
+    2110 Particle energy specific heating rate     1.E-08 W/m3     qpartv
+     120 Range                                     1.     km       range 
+    3341 MLH Start Range                           1.e+00 km       range1
+    3342 MLH End Range                             1.e+00 km       range2
+     121 Additional increment to range             1.E-01 m        rangei
+    2505 Relative line/band brightness             1.              rbr   
+    2555 Relative background radiance              1.              rbrad 
+    2506 log10 (Relative line/band brightness)     1.E-03 lg       rbrl  
+     494 Receiver bandwidth                        1.     kHz      rcbw  
+     492 Received doppler frequency offset         1.     Hz       rcdfo 
+     496 Receiver delay time                       1.E-06 sec      rcdt  
+    2495 log10 (Rayleigh counts)                   1.E-03 lg       rcontl
+    3595 SON Relative error in neutral atmos       1.E-03          rdna  
+    3340 MLH Logical Record Number                 1.e+00          recno 
+    4172 RFP ave hourly zero los wind              1.     m/s      rfpavh
+    4174 RFP flag (0 orig, 1 winds revised)        1.              rfpchw
+    4173 RFP los wind before zero rm (+away)       1.     m/s      rfplos
+    4171 RFP median nightly zero los wind          1.     m/s      rfpmd0
+     491 Received frequency                        1.E+05 Hz       rfreq
+     125 Width of range gate                       1.     km       rgate 
+     126 Additional increment to rnge gate width   1.E-01 m        rgatei
+     127 Range gate number                         1.              rgatn 
+     113 Additional increment to normalizing alt   1.E-01 m        rhalti
+     112 Normalizing altitude                      1.     km       rhaltn
+    2507 Relative line emission rate               1.E-01          rlep1 
+    2508 Relative emission rate                    1.E-02          rlep2 
+    2509 Relative emission rate                    1.E-03          rlep3 
+    3329 MLH Range resolution                      1.e-02 km       rngres
+    4121 IMF 1min S/C B:    Bx!Vx IDx   IDyz       1.              scb   
+    4124 IMF 1min S/C delay: d!Bx IDdel IDmeandel  1.              scdel 
+      94 Scan type (0=any,1=fixed,2=az,3=el)       1.              scntyp
+    4123 IMF 1min S/C Pos:   !IMF IDx   IDyz       1.              scpos 
+    4122 IMF 1min S/C SW:  Den!Vx IDx   IDyz       1.              scsw  
+    4060 AQF QC Standard deviation in 1411         1.E-01 m/s      sd1411
+    4062 AQF QC Standard deviation in 1421         1.E-01 m/s      sd1421
+     188 Shadow distance (l-o-s terminator dist)   1.     km       sdwd  
+     186 Earth's Shadow altitude (height)          1.     km       sdwht 
+      44 Local solar time                          1.E-03 hour     slt   
+      47 Local solar time at conjugate point       1.E-03 hour     sltc  
+      42 Local solar time diff (=SLT-UT) +E lon    1.     hhmm     sltmut
+      70 Sampling interval (time between sampls)   1.     s        smpint
+     410 Signal to noise ratio                     1.E-02          sn    
+     412 log10 (signal to noise ratio)             1.E-03 lg       snl   
+     411 Signal to noise ratio                     1.E-03          snp3  
+    4080 STM QC Solar scaling factor               1.E-04          solsf 
+    3630 SON parameter 131                         1.              son131
+    3631 SON parameter 132                         1.              son132
+    3632 SON parameter 133                         1.              son133
+    3633 SON parameter 134                         1.              son134
+    3634 SON parameter 135                         1.              son135
+    3635 SON parameter 136                         1.              son136
+    3636 SON parameter 137                         1.              son137
+    3637 SON parameter 138                         1.              son138
+    3638 SON parameter 139                         1.              son139
+    3639 SON parameter 140                         1.              son140
+    3640 SON parameter 141                         1.              son141
+    3641 SON parameter 142                         1.              son142
+    3642 SON parameter 143                         1.              son143
+    3643 SON parameter 144                         1.              son144
+    3644 SON parameter 145                         1.              son145
+    3645 SON parameter 146                         1.              son146
+    3646 SON parameter 147                         1.              son147
+    3647 SON parameter 148                         1.              son148
+    3648 SON parameter 149                         1.              son149
+    3649 SON parameter 150                         1.              son150
+    3653 SON parameter 154                         1.              son154
+    3654 SON parameter 155                         1.              son155
+    3663 SON parameter 164                         1.              son164
+    3664 SON parameter 165                         1.              son165
+    3665 SON parameter 166                         1.              son166
+    3666 SON parameter 167                         1.              son167
+    3667 SON parameter 168                         1.              son168
+    3668 SON parameter 169                         1.              son169
+    3669 SON parameter 170                         1.              son170
+    3674 SON parameter 175                         1.              son175
+    3675 SON parameter 176                         1.              son176
+    3676 SON parameter 177                         1.              son177
+    3677 SON parameter 178                         1.              son178
+    3678 SON parameter 179                         1.              son179
+    3679 SON parameter 180                         1.              son180
+    3680 SON parameter 181                         1.              son181
+    3681 SON parameter 182                         1.              son182
+    3682 SON parameter 183                         1.              son183
+    3683 SON parameter 184                         1.              son184
+    3684 SON parameter 185                         1.              son185
+    3685 SON parameter 186                         1.              son186
+    3686 SON parameter 187                         1.              son187
+    3687 SON parameter 188                         1.              son188
+    3688 SON parameter 189                         1.              son189
+    3689 SON parameter 190                         1.              son190
+    3690 SON parameter 191                         1.              son191
+    3691 SON parameter 192                         1.              son192
+    3692 SON parameter 193                         1.              son193
+    3693 SON parameter 194                         1.              son194
+    3694 SON parameter 195                         1.              son195
+    3695 SON parameter 196                         1.              son196
+    3696 SON parameter 197                         1.              son197
+    3697 SON parameter 198                         1.              son198
+    3698 SON parameter 199                         1.              son199
+    3699 SON parameter 200                         1.              son200
+    3506 SON parameter 7                           1.              sonp07
+    3507 SON parameter 8                           1.              sonp08
+    3508 SON parameter 9                           1.              sonp09
+    3509 SON parameter 10                          1.              sonp10
+     406 Spectral sampling time                    1.E-06 sec      spcst 
+    2416 Spectral displ. in vel units w arb 0      1.E-02 km/s     spdvel
+    3505 SON Source of density profile             1.              srcden
+    3501 SON EPEC E-Region source code             1.              srce  
+    3502 SON EPEC F-Region source code             1.              srcf  
+    3503 SON Source of temperature                 1.              srct  
+    3504 SON Source of velocity                    1.              srcv  
+     466 St. Santin data quality code 1            1.              ssdqc1
+     467 St. Santin data quality code 2            1.              ssdqc2
+     468 St. Santin data quality code 3            1.              ssdqc3
+     469 St. Santin data quality code 4            1.              ssdqc4
+     470 St. Santin data quality code 5            1.              ssdqc5
+     360 Sunspot number                            1.              sspotn
+    3315 MLH Signal Temperature                    1.e+00 K        stp   
+    3400 STS parameter 1                           1.              sts01 
+    3401 STS parameter 2                           1.              sts02 
+    3402 STS parameter 3                           1.              sts03 
+    3499 STS parameter100                          1.              sts100
+     181 Solar azimuth angle                       1.E-02 deg      sunaz 
+     180 Solar zenith angle                        1.E-02 deg      sunzen
+    2232 Solar Wind Plasma Density                 1.E+05 m-3      swden 
+    2236 IMF/Solar Wind Qualifier                  1.              swq   
+    2234 Solar Wind Plasma Speed                   1.E+02 m/s      swspd 
+    2244 Solar Wind velocity GSM x component       1.E+02 m/s      swvxm 
+    2246 Solar Wind velocity GSM y component       1.E+02 m/s      swvym 
+    2248 Solar Wind velocity GSM z component       1.E+02 m/s      swvzm 
+     483 Additional increment to system temp       1.E-04 K        systmi
+     482 System temperature                        1.     K        systmp
+     183 Conjugate solar zenith angle              1.E-02 deg      szenc 
+    3334 MLH Cycle Time of Experiment              1.e+00 hour     tcycle
+      80 Time delay                                1.E-01 min      td    
+      84 Daily mean time delay                     1.E-01 min      tda   
+     560 Electron temperature                      1.     K        te    
+     524 Vertically integrated electron density    1.E+15 m-2      tec   
+     525 log10 (Vert. integrated electron den.)    1.E-03 lg(m-2)  tecl  
+    3604 SON Fit 2 electron temperature, te        1.     k        tef2  
+    3614 SON Fit 3 electron temperature, te        1.     k        tef3  
+     363 Estim. Total Hemispheric Power Input      1.E+08 W        tepow 
+    4163 EHP original estim. Total Hp input        1.E+08 W        tepow1
+     490 Transmitted frequency                     1.E+05 Hz       tfreq 
+     550 Ion temperature                           1.     K        ti    
+     954 12-h ion temperature amplitude            1.E-02 K        ti12a 
+     959 12-h max ion temperature phase            1.E-03 hr       ti12p 
+     944 24-h ion temperature amplitude            1.E-02 K        ti24a 
+     949 24-h max ion temperature phase            1.E-03 hr       ti24p 
+     939 Mean ion temperature                      1.E-01 K        tia   
+    3351 MLH TI searching TI,TR,FN only            1.e+00 K        tibf  
+    3605 SON Fit 2 ion temperature, ti             1.     k        tif2  
+    3615 SON Fit 3 ion temperature, ti             1.     k        tif3  
+     820 Exospheric temperature                    1.     K        tinf  
+     821 Model Exospheric temperature              1.     K        tinfm 
+     552 Ion temperature                           1.E-01 K        tip1  
+      54 Magnetic local time                       1.E-03 hour     Tmlt  
+      73 UT of Moonrise (from US Naval Obs)        1.E-03 hour     tmris 
+      72 UT of Moonset (from US Naval Obs)         1.E-03 hour     tmset 
+     810 Neutral temperature                       1.     K        tn    
+     992 6-h neutral temperature amplitude         1.E-02 K        tn06a 
+     997 6-h max neutral temperature phase         1.E-03 hr       tn06p 
+     962 8-h neutral temperature amp               1.E-02 K        tn08a 
+     967 8-h max neutral temperature phase         1.E-03 hr       tn08p 
+     812 Neutral temperature                       1.E-01 K        tn1   
+     952 12-h neutral temperature amplitude        1.E-02 K        tn12a 
+     957 12-h max neutral temperature phase        1.E-03 hr       tn12p 
+     942 24-h neutral temperature amplitude        1.E-02 K        tn24a 
+     947 24-h max neutral temperature phase        1.E-03 hr       tn24p 
+     937 Mean neutral temperature                  1.E-01 K        tna   
+     811 Model Neutral temperature                 1.E-01 K        tnm   
+     813 Relative neutral temperature              1.              tnrel 
+     570 Temperature ratio (Te/Ti)                 1.E-03          tr    
+    3352 MLH TR searching TI,TR,FN only            1.e-03          trbf  
+    3606 SON Fit 2 temperature ratio, te/ti        1.E-03          trf2  
+    3616 SON Fit 3 temperature ratio, te/ti        1.E-03          trf3  
+    3320 MLH Transmitter phase velocity            1.e-01 m/s      trphvl
+      79 UT of Astronomical sunrise (szen=108deg)  1.E-03 hour     tsra  
+      75 UT of Civil sunrise (szen=96 deg)         1.E-03 hour     tsrc  
+      77 UT of Nautical sunrise (szen=102 deg)     1.E-03 hour     tsrn  
+      78 UT of Astronomical sunset (szen=108 deg)  1.E-03 hour     tssa  
+      74 UT of Civil sunset (szen=96 deg)          1.E-03 hour     tssc  
+      76 UT of Nautical sunset (szen=102 deg)      1.E-03 hour     tssn  
+    3513 SON Umerid from ambipolar diffusn         1.     m/s      uambi 
+    3612 SON Usability code fit 2                  1.              ucf2  
+    3622 SON Usability code fit 3                  1.              ucf3  
+    3514 SON Uambi from DNe/DH fit to ne           1.     m/s      uden1 
+    3515 SON Uambi from DNe/DH fit to ln(ne)       1.     m/s      uden2 
+    3517 SON portion of Uambi from gravity         1.     m/s      ugrav 
+    4018 UIL QC log10 (av Rayleigh) = NrmlzFctr    1.E-03 lg       uiarl 
+    4016 UIL QC log10 (F factor)                   1.E-03 lg       uiffl 
+    4015 UIL QC log10 (sodium counts)              1.E-03 lg       uinacl
+    4017 UIL QC log10 (Na returns/bkgnd noise)     1.E-03 lg       uinfl 
+    3582 SON Horizontal magn neutral wind          1.              umerid
+    3512 SON Portion of Umerid due to Vpar         1.     m/s      upar  
+    3326 MLH Universal Time (Hours MOD 24)         1.e-03 hour     ut    
+    3336 MLH Start UT (0 = 0000 1JAN50)            1.e+00 s        ut1   
+    3337 MLH End UT (0 = 0000 1JAN50)              1.e+00 s        ut2   
+     982 UT at start of 2-day comp calc            1.     hhmm     ut2dp 
+    3516 SON portion of Uambi from dTp/dH          1.     m/s      utemp 
+      34 Time past 0000 UT                         1.E-03 hour     uth   
+      36 Time past 0000 UT                         1.E+01 s        uts   
+      37 Additional increment to time past 0 UT    1.E-03 s        utsi  
+    3585 SON Correction term = Ux-Vx               1.              uxcor 
+    3586 SON Correction term = Uy-Vy               1.              uycor 
+    2532 log10 (Dissoc-Recomb 630 nm vol.emis.)    1.E-03 lgp/cm3s v630dl
+    2530 log10 (Total   630 nm volume emis.)       1.E-03 lgp/cm3s v630l 
+    2531 log10 (Thermal 630 nm volume emis.)       1.E-03 lgp/cm3s v630tl
+    3567 SON Amount subtracted from Vlos           1.     m/s      vbias 
+    3350 MLH Line of sight Doppler V(pos = away)   1.e+00 m/s      vdopp 
+    3311 MLH H+ Line of site velocity              1.e+00 m/s      vh    
+    1300 Direction 10 Ion velocity                 1.     m/s      vi10  
+    1270 Direction 7 Ion velocity                  1.     m/s      vi7   
+    1272 Direction 7 Ion velocity                  1.E-02 m/s      vi72  
+    1280 Direction 8 Ion velocity                  1.     m/s      vi8   
+    1282 Direction 8 Ion velocity                  1.E-02 m/s      vi82  
+    1290 Direction 9 Ion velocity                  1.     m/s      vi9   
+    1260 Direction 6 Ion velocity (antiparallel)   1.     m/s      viap  
+    1210 Direction 1 Ion velocity (eastward)       1.     m/s      vie   
+    1211 Direction 1 F-region ion velocity         1.     m/s      vief  
+    1220 Direction 2 Ion velocity (northward)      1.     m/s      vin   
+    1221 Direction 2 F-region ion velocity         1.     m/s      vinf  
+    1240 Direction 4 Ion velocity (perp east)      1.     m/s      vipe  
+    1241 Direction 4 Ion velocity (perp east)      1.E-01 m/s      vipe1 
+    1242 Direction 4 Ion velocity (perp east)      1.E-02 m/s      vipe2 
+    3599 SON Direction 4 F Region ion velocity     1.     m/s      vipef 
+    1250 Direction 5 Ion velocity (perp north)     1.     m/s      vipn  
+    1252 Direction 5 Ion velocity (perp north)     1.E-02 m/s      vipn2 
+    3600 SON Direction 5 F Region ion velocity     1.     m/s      vipnf 
+    1230 Direction 3 Ion velocity (up)             1.     m/s      viu   
+    4091 MUI QC Ion velocity (up from EW dirs)     1.     m/s      viuew 
+    4090 MUI QC Ion velocity (up from NS dirs)     1.     m/s      viuns 
+    2415 Local standard of rest velocity (VLSR)    1.E-02 km/s     vlsr  
+    1470 Direction 7 Neutral wind                  1.     m/s      vn7   
+    1475 Direction 7 Neutral wind horizontl comp   1.     m/s      vn7   
+    1480 Direction 8 Neutral wind                  1.     m/s      vn8   
+    1490 Direction 9 Neutral wind                  1.     m/s      vn9   
+    1460 Direction 6 Neutral wind                  1.     m/s      vnap  
+    1410 Direction 1 Neutral wind (eastward)       1.     m/s      vne   
+     990 6-h eastward neutral wind amplitude       1.E-02 m/s      vne06a
+     995 6-h max eastward neutral wind phase       1.E-03 hr       vne06p
+     960 8-h eastward neutral wind amplitude       1.E-02 m/s      vne08a
+     965 8-h max eastward neutral wind phase       1.E-03 hr       vne08p
+     950 12-h eastward neutral wind amplitude      1.E-02 m/s      vne12a
+     955 12-h max eastward neutral wind phase      1.E-03 hr       vne12p
+     940 24-h eastward neutral wind amplitude      1.E-02 m/s      vne24a
+     945 24-h max eastward neutral wind phase      1.E-03 hr       vne24p
+     943 24-h eastward neutral wind amplitude      1.E-01 m/s      vne2a1
+     970 2-dy eastward neutral wind amplitude      1.E-02 m/s      vne2da
+     975 2-dy max eastward neutral wind phase      1.E-02 hr       vne2dp
+     935 Mean eastward neutral wind                1.E-02 m/s      vnea  
+    1411 Direction 1 Neutral wind (eastward)       1.E-01 m/s      vnep1 
+    1412 Direction 1 Neutral wind (eastward)       1.E-02 m/s      vnep2 
+     926 Eastwd Residual Sqrt[1/N*sum(ui-uf)**2]   1.E-02 m/s      vneres
+     800 Line of sight neutral vel (pos = away)    1.     m/s      vnlu  
+     802 Line of sight neutral vel (pos = away)    1.E-02 m/s      vnlu2 
+     803 Line of sight neutral vel (pos = away)    1.E-03 m/s      vnlu3 
+     801 Additional increment to Neutral Vlos      1.E-04 m/s      vnlui 
+    1420 Direction 2 Neutral wind (northward)      1.     m/s      vnn   
+     991 6-h northward neutral wind amplitude      1.E-02 m/s      vnn06a
+     996 6-h max northward neutral wind phase      1.E-03 hr       vnn06p
+     961 8-h northward neutral wind amplitude      1.E-02 m/s      vnn08a
+     966 8-h max northward neutral wind phase      1.E-03 hr       vnn08p
+     951 12-h northward neutrl wind amplitude      1.E-02 m/s      vnn12a
+     956 12-h max northward neutrl wind phase      1.E-03 hr       vnn12p
+     941 24-h northwrd neutral wind amplitude      1.E-02 m/s      vnn24a
+     946 24-h max northwrd neutral wind phase      1.E-03 hr       vnn24p
+     971 2-dy northward neutrl wind amplitude      1.E-02 m/s      vnn2da
+     976 2-dy max northward neutrl wind phase      1.E-02 hr       vnn2dp
+     948 24-h northward neutral wind amplitude     1.E-01 m/s      vnn2p1
+     936 Mean northward neutral wind               1.E-02 m/s      vnna  
+    1421 Direction 2 Neutral wind (northward)      1.E-01 m/s      vnnp1 
+    1422 Direction 2 Neutral wind (northward)      1.E-02 m/s      vnnp2 
+     927 Northwd Residual Sqrt[1/N*sum(vi-vf)**2]  1.E-02 m/s      vnnres
+    1440 Direction 4 Neutral wind (perp east)      1.     m/s      vnpe  
+    1450 Direction 5 Neutral wind (perp north)     1.     m/s      vnpn  
+    1455 Direction 5 Neutral wind horizontl comp   1.     m/s      vnpnh 
+    1456 Direction 5 Neutral wind horizontl comp   1.E-01 m/s      vnpnh1
+    1430 Direction 3 Neutral wind (up)             1.E-02 m/s      vnu   
+     988 12-h upward neutral wind amplitude        1.E-04 m/s      vnu12a
+     989 12-h max upward neutral wind phase        1.E-03 hr       vnu12p
+     986 24-h upward neutral wind amplitude        1.E-04 m/s      vnu24a
+     987 24-h max upward neutral wind phase        1.E-03 hr       vnu24p
+     934 Mean upward neutral wind                  1.E-03 m/s      vnua  
+    1432 Direction 3 Corrupt Neutral wind (up)     1.E-02 m/s      vnuc  
+    1431 Direction 3 Neutral wind (up)             1.E-01 m/s      vnup1 
+     928 Upwd Residual Sqrt[1/N*sum(wi-wf)**2]     1.E-03 m/s      vnures
+     805 Neutral velocity spread                   1.E-02 m/s      vnus  
+     806 Neutral velocity spread                   1.E-03 m/s      vnus3 
+     580 Line of sight ion velocity (pos = away)   1.     m/s      vo    
+     600 Velocity direction - local azimuth        1.E-02 deg      voaz  
+     590 Bisector ion vel (bistatic sys,pos=up)    1.     m/s      vobi  
+     610 Velocity direction - local elevation      1.E-02 deg      voel  
+    3607 SON Fit 2 ion velocity (pos = away)       1.     m/s      vof2  
+    3617 SON Fit 3 ion velocity (pos = away)       1.     m/s      vof3  
+     581 Additional increment to code 580          1.E-04 m/s      voi   
+     585 Ion Velocity spread (spectral width)      1.     m/s      vos   
+    3569 SON Velocity in xy plane perp to b        1.     m/s      vperph
+    2421 Channel 1 Wavelength                      1.E-01 nm       wavl1 
+    2422 Channel 2 Wavelength                      1.E-01 nm       wavl2 
+    2423 Channel 3 Wavelength                      1.E-01 nm       wavl3 
+    2424 Channel 4 Wavelength                      1.E-01 nm       wavl4 
+    2400 Wavelength                                1.E-01 nm       wavlen
+     425 Wide reduced-chi square of fit            1.E+00          wchisq
+     426 Additional increment to wide chi square   1.E-04          wchsqi
+    2455 Refernce rel 1/2-width (arb press unit)   1.E-02          wid2  
+    2456 Relative 1/2-width deviation from 2455    1.E-02          wid2r 
+     985 12-h upward neutral wind amplitude        1.E-03 m/s      wn12a 
+     984 24-h upward neutral wind amplitude        1.E-03 m/s      wn24a 
+    3580 SON Cross correlatn on Une from signeut   1.E-04          xcfenn
+    3581 SON Total cross correlatn for Ue and Un   1.E-04          xcfent
+    3577 SON Cross correlation coefficient Une     1.E-04          xcfuen
+    3576 SON Cross correlation coefficient Uxy     1.E-04          xcfuxy
+    3578 SON Cross correlatn on Uxy from signeut   1.E-04          xcfxyn
+    3579 SON Total cross correlation for Uxy       1.E-04          xcfxyt
+     295 X Coordinate Geocentric Solar Ecliptic    1.E-02 Re       xgse  
+     283 Begin X Geocentric Solar Ecliptic         1.E-02 Re       xgseb 
+     284 End X   Geocentric Solar Ecliptic         1.E-02 Re       xgsee 
+     292 X Coord Geocentric Solar Magnetospheric   1.E-02 Re       xgsm  
+     277 Begin X Geocentric Solar Magnetospheric   1.E-02 Re       xgsmb 
+     278 End X   Geocentric Solar Magnetospheric   1.E-02 Re       xgsme 
+    3314 MLH Transmitter channel signal to noise   1.e-02          xmtsnr
+      10 Year (universal time)                     1.     yr       year  
+     296 Y Coordinate Geocentric Solar Ecliptic    1.E-02 Re       ygse  
+     285 Begin Y Geocentric Solar Ecliptic         1.E-02 Re       ygseb 
+     286 End Y   Geocentric Solar Ecliptic         1.E-02 Re       ygsee 
+     293 Y Coord Geocentric Solar Magnetospheric   1.E-02 Re       ygsm  
+     279 Begin Y Geocentric Solar Magnetospheric   1.E-02 Re       ygsmb 
+     280 End Y   Geocentric Solar Magnetospheric   1.E-02 Re       ygsme 
+      15 Year (UT) of analysis date                1.     yr       yranal
+    3534 SON Begin year of composite (UT)          1.     UT       yrcb  
+    3538 SON End year of composite (UT)            1.     UT       yrce  
+     297 Z Coordinate Geocentric Solar Ecliptic    1.E-02 Re       zgse  
+     287 Begin Z Geocentric Solar Ecliptic         1.E-02 Re       zgseb 
+     288 End Z   Geocentric Solar Ecliptic         1.E-02 Re       zgsee 
+     294 Z Coord Geocentric Solar Magnetospheric   1.E-02 Re       zgsm  
+     281 Begin Z Geocentric Solar Magnetospheric   1.E-02 Re       zgsmb 
+     282 End Z   Geocentric Solar Magnetospheric   1.E-02 Re       zgsme 
+    3623 SON Zone number for fitted data           1.              zonn  

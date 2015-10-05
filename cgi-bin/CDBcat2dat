@@ -1,0 +1,671 @@
+#!/opt/local/bin/perl
+#          Subset CEDAR DB data according to user selections made in the HTML
+#          form prepared by CDBgcat (which is launched by CDBpcat.html); usage:
+#
+#             CDBcat2dat [-h | host]
+#
+#          where
+#             -h   = help option: print this summary and quit
+#             host = host for which paths and URLs are to be defined: cedar cedar-l
+#                    This is a test mode with simulated form inputs and files created
+#                    in the current directory.
+#
+#          Command arguments are not part of normal use as a cgi-bin script.
+#
+#          SEE ALSO: ~bozo/is/READMECDB CDBmkpcat CDBmkpcwin CDBgcat
+#
+#          INSTALLATION:
+#          1. Change sh-bang line perl path: usr (SCD) <-> opt (HAO)
+#          2. Remove sh-bang line options '-Tw'; '-T' is needed during testing, but
+#             the Apache server automatically taints and treats '-T' as an error.
+#          3. Change: use lib '/fs/scd/home0/bozo/bin' (SCD) <-> '/home/bozo/bin' (HAO)
+#             or switch to commented out newer version apropos new Perl
+#          4. Define paths and URLs for a new computer in sub envcdbm of ~bozo/bin/Comboz.pm
+#          5. Make $grece using ~bozo/is/src/Makefile: make CDBgrec
+#             then copy executable from CDBBINO (defined in envcdb) to WEBBIN (defined
+#             in envcdbm)
+#
+#          MODIFICATIONS:
+#          Apr 03: Adapt to multiple installations and add test option and prthelp.
+#                  Remove HTML prints from cleanup() but still issue warns and always terminate
+#          Jun 04: Add Web login validation (check_access)
+
+#          Parse command arguments for test option before defining configuration variables
+$hopt = 0;
+$topt = 0;
+for (@ARGV) {
+   if (/^(cedar|cedar.hao)$/) {
+      $topt = 1;
+      $webh = 'cedar.hao.ucar.edu';
+   } elsif (/^(cedar-?l|cedar-l.hao)$/) {
+      $topt = 1;
+      $webh = 'cedar-l.hao.ucar.edu';
+   } elsif (/^-[hH]$/) {
+      $hopt = 1;
+      $topt = 1;
+      $webh = 'undefined_for_help_option';
+   } else {
+      die "unrecognized option: $_\n";
+   }
+}
+prthelp() if $hopt;  # after de-tainting it's okay to do help print
+
+
+#          Configuration variables
+use CGI;
+
+use lib '/home/bozo/bin';                                   # path to directory with Comboz.pm
+#se lib '/fs/scd/home0/bozo/bin';
+use Comboz;                                                 # gtail() - return path name tail (aka basename)
+envcdb() if ! $ENV{CDBDOCS};                                # define environment variables if they aren't already
+
+#--------- this breaks on cedar /opt/local/bin/perl 5.5.2 but works on bison and cedar-l (5.6.1)
+#--------- so must put up with hard-wired path and 'use' for the time being
+#require $1 if glob ('~bozo/bin/Comboz.pm') =~ /^(\S+)/ or die "CDBgcat: insecure Comboz.pm path; $!\n";
+#Comboz::envcdb() if ! $ENV{CDBBINO};                       # environment variables
+#($hkey, %cdbm) = Comboz::envcdbm();                        # paths, URLs etc. for multiple DB hosts
+
+($hkey, %cdbm) = envcdbm();                                 # paths, URLs etc. for multiple DB hosts
+$hkey  = $webh if $topt;
+
+$aka    = ($topt) ? "$ENV{CDBDOCS}/akavsns"      : "$cdbm{$hkey}{WEBDOCS}/akavsns";      # public version akavsns file
+$akax   = ($topt) ? "$ENV{PWD}/dbrdvsn.txt"      : "$cdbm{$hkey}{WEBWRD}/dbrdvsn.txt";   # akavsn excerpts file name (s.be consistent w/ $wdir)
+$catx   = ($topt) ? "$ENV{PWD}/catprtx.lst"      : "$cdbm{$hkey}{WEBWRD}/catprtx.lst";   # inventory exercpts file name (s.be consistent w/ $wdir)
+$ckacc  = "/project/cedar/bin/tools/check_access";                                       # cedar-l web login check access utility by Jose Garcia and P. West
+local(@rawCookies) = split (/; /,$ENV{'HTTP_COOKIE'});
+local(%cookies);
+foreach(@rawCookies){
+    ($key, $val) = split (/=/,$_);
+    $cookies{$key} = $val;
+} 
+$username = "undefined";
+foreach $name (keys %cookies) {
+	if ( $name eq "OpenDAP.remoteuser" )
+	{
+		$username = $cookies{$name};
+	}
+}
+$datd   = ($topt) ?  $ENV{CDBDATD}               :  $cdbm{$hkey}{WEBDATD};               # data files dir
+$grece  = ($topt) ? "$ENV{CDBBINO}/CDBgrec.exe"  : "$cdbm{$hkey}{WEBBIN}/CDBgrec.exe";   # binary to select data
+$hcrop  = 1;                                                                             # hdr/cat rec sel opt: 0 (none), 1 (match sel criteria), 2 (all), 3 (only)
+$kif    = ($topt) ? "$ENV{CDBDOCS}/kinst.file"   : "$cdbm{$hkey}{WEBDOCS}/kinst.file";   # instrument codes file
+$logf   = ($topt) ? "$ENV{PWD}/CDBlog"           : "$cdbm{$hkey}{WEBDATD}/.CDBlog";      # log file (record of data access)
+$mail   = $cdbm{$hkey}{MAIL};                                                            # path to mail command on this machine
+$mxmbt  = '1000';                                                                        # max MB total write allowed per session before quitting
+$mxmbv  = '100';                                                                         # max MB per write data volume before creating another
+$naddr  = 'bozo@ucar.edu';                                                               # email address of code maintainer
+$pcf    = ($topt) ? "$ENV{CDBDOCS}/parcods.file" : "$cdbm{$hkey}{WEBDOCS}/parcods.file"; # parameter codes file
+$redu   = "$cdbm{$hkey}{WEBHTMU}/CDBpcat.html";                                          # restart URL
+$snmt   = ($0 =~ m#/*([^/]+)$#o) ? $1 : $0;                                              # script name tail
+$tfl    = ($topt) ? "$ENV{PWD}/CDBcat2dat.tmp"   : "/tmp/$snmt.$$";                      # scratch file for input to $grece
+$wdir   = ($topt) ?  $ENV{PWD}                   :  $cdbm{$hkey}{WEBWRD};                # write selected files dir; created unless $topt
+$wdiu   = $cdbm{$hkey}{WEBWRU};                                                          # URL corresponding to $wdir
+$wfmt   = 'f';                                                                           # data write format: 'f' (DB flat), 'c' (DB character), 'b' (DB binary)
+
+
+#          de-taint configuration variables
+$>         = $<;                                   # effective user  ID = real
+$)         = $(;                                   # effective group ID = real
+$ENV{PATH} = "/bin";                               # detaint: simple path
+$ENV{IFS}  = "" if $ENV{IFS};                      # detaint: no input field seperator
+$akax      = $1 if $akax  =~ /^(\S+)/ or die "$snmt: insecure \$akax = $akax\n";
+$catx      = $1 if $catx  =~ /^(\S+)/ or die "$snmt: insecure \$catx = $catx\n";
+$ckacc     = $1 if $ckacc =~ /^(\S+)/ or die "$snmt: insecure \$ckacc = $ckacc\n";
+$datd      = $1 if $datd  =~ /^(\S+)/ or die "$snmt: insecure \$datd = $datd\n";
+$grece     = $1 if $grece =~ /^(\S+)/ or die "$snmt: insecure \$grece = $grece\n";
+$kif       = $1 if $kif   =~ /^(\S+)/ or die "$snmt: insecure \$kif  = $kif\n";
+$logf      = $1 if $logf  =~ /^(\S+)/ or die "$snmt: insecure \$logf = $logf\n";
+$mail      = $1 if $mail  =~ /^(\S+)/ or die "$snmt: insecure \$mail = $mail\n";
+$pcf       = $1 if $pcf   =~ /^(\S+)/ or die "$snmt: insecure \$pcf  = $pcf\n";
+$redu      = $1 if $redu  =~ /^(\S+)/ or die "$snmt: insecure \$redu = $redu\n";
+$tfl       = $1 if $tfl   =~ /^(\S+)/ or die "$snmt: insecure \$tfl  = $tfl\n";
+$wdir      = $1 if $wdir  =~ /^(\S+)/ or die "$snmt: insecure \$wdir = $wdir\n";
+$wdiu      = $1 if $wdiu  =~ /^(\S+)/ or die "$snmt: insecure \$wdiu = $wdiu\n";
+
+prthelp() if $hopt;  # after de-tainting it's okay to do help print
+
+#          Make file name extensions descriptions and an extensions pattern matching string
+%exth = (cbf => 'data in DB binary format',
+	 chr => 'data in DB character format',
+	 fld => 'data record description',
+	 flt => 'data in flat character format',
+	 hcr => 'DB file header/catalog records');
+$extp = join '|', keys %exth;
+
+#          Make up test inputs or obtain HTML form inputs
+if ($topt) {
+   $sof  = 'test.sof';
+   open  SOF, ">$sof" or die "$snmt can't make test file: $sof: $!\n";
+   print SOF 'H USU Mesospheric Temp Mapper CCD Imager         MIN   MIN   HEIGHT  MAG LAT\n';
+   print SOF '    BEGIN          END                   CYCLE TIME  VERT    (km)    (deg)\n';
+   print SOF '------------- -------------               TIME  RES   RES  -------- ------- VSN ALIAS\n';
+   print SOF '  DATE   TIME   DATE   TIME KINST KINDAT (min) (min) (km)  MIN MAX  MIN MAX  (AKAVSN)                   PARAMETERS\n';
+   print SOF '-------- ---- -------- ---- ----- ------ ----- ----- ----- --- ---- --- --- ---------- --------------------------------------------\n', "\n";
+   print SOF 'E19970630 0351 19980529 1022  7191  17001      1440.0        87   87  50  50 MTM970630A tn1\n', "\n";
+   close SOF;
+   $ntvl  = '-';
+   $alfl  = '0';
+   @knstl = ();
+   @ntryl = qw(1);
+} else {
+   $query = new CGI;
+   $sof   = $query->param ('sumf');         # selected inv tbl w/o HTML
+   $ntvl  = $query->param ('ntvl');         # time interval
+   $alfl  = $query->param ('allf');         # select all data flag
+   @knstl = $query->param ('kl');           # kinst list of desired insts
+   @ntryl = $query->param ('nl');           # entry list of selected data entries (indices to detailed inv)
+}
+
+#          Make text strings used multiple places
+$htmf = '</PRE></BODY></HTML>' . "\n";
+$redg = "Please email comments to $naddr";
+if ($hkey eq 'cedar.hao') {                                # old scheme on cedar
+   $redb  =   '<A HREF="' . $redu . '">try again</A>';
+   $redg .= '; <A HREF="' . $redu . '">go again</A>?';
+
+} else {                                                   # new scheme cedar-l has no restart link since it's an auxilary page
+   $redb  =                           'try again?';
+}
+$redb .= "\n";
+$redg .= "\n";
+$redf = "; notify $naddr or " . $redb . $htmf;     # early failure string written to stdout via prteo()
+
+#          Start HTML page text
+print "Content-type: text/html\n\n<HTML><HEAD><TITLE>CEDAR DATABASE</TITLE></HEAD><BODY>\n";
+print "<H1 ALIGN=center>PICK UP SELECTIONS FROM CUSTOMIZED INVENTORY</H1>\n<PRE>\n";
+
+if ($alfl || @knstl || @ntryl) {
+   print "The following list corresponds to items chosen from the customized inventory\n";
+   print "including data files and documentation (or error diagnostics):\n\n";
+} else {
+   print 'Nothing was checked in the customized inventory; please back up or ', $redb, $htmf;
+   exit;
+}
+
+#          Debug print: activate this to verify form input processing
+#print '$sof  = ', $sof, "\n";
+#print '$ntvl = ', $ntvl, "\n";
+#print '$alfl = ', $alfl, "\n";
+#print '@knstl =', join (' ', @knstl), "\n";
+#print '@ntryl =', join (' ', @ntryl), "\n", $htmf;
+#exit;
+
+#          Make the directory to hold files created and start interrupt handling
+$SIG{INT} = \&cleanup;
+if (! $topt && ! -e $wdir) {
+   mkdir ($wdir , 0777) or do {prteo ("$snmt couldn't 'mkdir $wdir': $!", $redf); exit 1};
+   chmod (0777, $wdir)  or do {prteo ("$snmt couldn't 'chmod $wdir': $!", $redf); cleanup()};
+}
+
+#          Make beg/end time strings for testing adding minutes fields to entries
+$ntvb = $ntve = $ntmb = $ntme = '';
+if (length ($ntvl) == 27) {
+   $ntvb = substr ($ntvl, 0,11);
+   $ntve = substr ($ntvl,14,11);
+   $ntmb = substr ($ntvl,11, 2);
+   $ntme = substr ($ntvl,25, 2);
+}
+
+#          Read the summary output file and extract selected entries or instrument groups,
+#          write selected entries to a text file and parse info needed for data selection.
+open SOF,  "<$sof"  or do {prteo ("$snmt can't open $sof: $!",  $redf); cleanup()};
+open CATX, ">$catx" or do {prteo ("$snmt can't open $catx: $!", $redf); cleanup()};
+
+$nk   = 0;      # no. kinsts read  (each hdr in $sof begins a new instrument)
+$nn   = 0;      # no. entries read
+$ik   = 0;      # index of current kinst in @knstl
+$in   = 0;      # index of current entry in @ntryl
+$knfl = 0;      # flag set when want all data for a kinst
+%vsnl = ();     # hash: key = alias to be read, value = array: $tbeg, $tend, $knst, $kndt, $rdnm
+%vsnn = ();     # hash: key = alias missing from DB data dir
+while (<SOF>) {
+   $hnfl = substr ($_,0,1);       # hdr/entry flag
+   $hntx = substr ($_,1);         # hdr/entry text string
+   if ($hnfl eq 'H') {            # for hdrs, ck select all entries for that kinst;
+      $nk++;
+      $knfl = 0;
+      if (@knstl && $nk == $knstl[$ik]) {
+	 $knfl = 1;
+	 $ik++;
+      }
+      ($hdtx = $hntx) =~ s/\\n/\012/g;
+      $phfl = 1;
+      next;
+   } elsif ($hnfl eq 'E') {       # for entries, ck select that entry no.
+      $nn++;
+      $sefl = 0;
+      if (@ntryl && $nn == $ntryl[$in]) {
+	 $sefl = 1;
+	 $in++;
+      }
+   } else {
+      prteo ("$snmt $sof unrecognized hdr/entry flag chr", $redf);
+      cleanup();
+   }
+   if ($alfl || $knfl || $sefl) {
+#          Store selection criteria by data volume in %vsnl
+#          Also fill in minutes when the table is blank: use $ntvl's when matching yyyymmdd:hh
+      $v    = substr ($hntx,76,10);
+      $tbeg = substr ($hntx, 0, 8) . ':' . substr ($hntx, 9,2);     # yyyymmdd:hh
+      $tend = substr ($hntx,14, 8) . ':' . substr ($hntx,23,2);
+      $tbmi = substr ($hntx,11, 2);                                 # minutes
+      $temi = substr ($hntx,25, 2);
+     ($knst = substr ($hntx,27, 6)) =~ s/\s//g;
+     ($kndt = substr ($hntx,33, 7)) =~ s/\s//g;
+      if ($tbmi eq '  ') {$tbmi = ($tbeg eq $ntvb) ? $ntmb : '00'};
+      if ($temi eq '  ') {$temi = ($tend eq $ntve) ? $ntme : '59'};
+      $tbeg .= $tbmi;
+      $tend .= $temi;
+      $v    = $1 if $v    =~ /^([A-Z]{3}\d{6}[A-Z])$/ or do {prteo ("$snmt: insecure \$v = $v"      , $redf); cleanup()};
+      $tbeg = $1 if $tbeg =~ /^(\d{8}:\d{4})$/        or do {prteo ("$snmt: insecure \$tbeg = $tbeg", $redf); cleanup()};
+      $tend = $1 if $tend =~ /^(\d{8}:\d{4})$/        or do {prteo ("$snmt: insecure \$tend = $tend", $redf); cleanup()};
+      $knst = $1 if $knst =~ /^(\d+)$/                or do {prteo ("$snmt: insecure \$knst = $knst", $redf); cleanup()};
+      $kndt = $1 if $kndt =~ /^(\d+)$/                or do {prteo ("$snmt: insecure \$kndt = $kndt", $redf); cleanup()};
+      ($vlc = $v) =~ tr/A-Z/a-z/;
+      $rdnm = "$datd/$vlc.cbf";
+      if (-e $rdnm) {
+	 push @{$vsnl{$v}}, [$tbeg, $tend, $knst, $kndt, $rdnm];
+      } else {
+	 $vsnn{$v} = "1";        # save aliases of vsns not found
+      }
+
+#          Write selected portion of inv table, inc/ pending hdr and this entry
+      if ($phfl) {
+	 print CATX $hdtx;
+	 $phfl = 0;
+      }
+      ($nttx = $hntx) =~ s/\\n/\012/g;
+      print CATX $nttx;
+   }
+}
+close CATX;
+
+#          Test: print %vsnl (hash keyed 2D array)
+#for $v (keys %vsnl) {
+#   print $v,":        No. sel. sets = ", scalar (@{$vsnl{$v}}), "\n";
+#   for $i ( 0 .. $#{$vsnl{$v}} ) {       # loop on vsn alias
+#      print "            \$i = $i\n";
+#      for $j (0 .. $#{$vsnl{$v}[$i]}) { # loop on sel set: tbeg, tend, knst, kndt, rdnm
+#         print "                      \$j, value[\$i][\$j] = ", $j," ", $vsnl{$v}[$i][$j], "\n";
+#      }
+#   }
+#}
+
+reportna () if %vsnn;             # report any missing DB read vsns
+
+#          When not test option, verify web user is logged in
+if ($topt) {
+   $logu = $ENV{USER};
+   $logh = $hkey;
+
+} else {
+
+   if ($hkey eq 'cedar.hao') {                       # patch for soon to be retired host cedar (Jun 04)
+      $logh = $ENV{REMOTE_HOST} || $ENV{REMOTE_ADDR} || 'unk_host';
+      $logu = $ENV{REMOTE_USER} || 'unk_user';
+
+   } elsif (defined $ENV{REMOTE_ADDR}) {             # normal production; $ckacc stdout is current login or 'NO_ONE'
+      $logh = $ENV{REMOTE_HOST} || $ENV{REMOTE_ADDR};
+      $logu = `$ckacc $username` or do {prteo ("$snmt: trouble running '$ckacc': $!", "\n"); cleanup()};
+      chop $logu;
+
+   } else {
+      prteo ("$snmt: undefined environment variable \$REMOTE_ADDR", "\n");
+      cleanup();
+   }
+}
+
+#          Process list of DB read volumes
+@eosl = ();                       # list for prteo of pairs of messages (stderr, stdout)
+$hitt = 0;                        # hit total volume limit flag
+@wnnf = ();                       # list of write file name and format character
+if (%vsnl) {
+#          Make an HTML table displaying prepared files
+   print '</PRE><TABLE> <TR><TD><A HREF="', $wdiu, '/', gtail ($catx), '">', gtail ($catx), '</A>',
+			   '<TD>(customized inventory table exerpts)',
+			   '<TD>',gsiz ($catx), '</TR>', "\n";
+   push @wnnf, "$catx c";
+
+   if ($logu ne 'NO_ONE') {       # login required
+
+#          Prepare for appending to log file
+      ($sec, $min, $hr, $da, $mo, $yr) = localtime (time);
+      $mo++;
+      $sec  = '0' . $1 if $sec =~ /^(\d)$/;
+      $min  = '0' . $1 if $min =~ /^(\d)$/;
+      $hr   = '0' . $1 if $hr  =~ /^(\d)$/;
+      $da   = '0' . $1 if $da  =~ /^(\d)$/;
+      $mo   = '0' . $1 if $mo  =~ /^(\d)$/;
+      $yr   = $yr + 1900;
+      $logt = $yr . $mo . $da . '.' . $hr . ':' . $min . ':' . $sec;
+      $logp = $logt . ' ' . $logh . "\t" . $logu . "\t";
+      $logo = 1;
+      $chmo = (-e $logf) ? 0 : 1;
+      open LOGF, ">>$logf" or do {$logo = 0; warn "$snmt: can't open $logf: $!"};
+      if ($chmo) {chmod (0666, $logf) or warn "$snmt: can't chmod $logf: $!"};
+
+#          Make requested data files unless not currently logged in
+#          Each iteration processes all selection sets for one DB read volume ($v)
+#          Selection sets (tbeg, tend, knst, kndt) are input via scratch file $tfl
+      for $v (sort keys %vsnl) {
+	 unlink $tfl if -e $tfl;
+	 $errs = "$snmt unable to subset " . gtail ($v);
+	 if ($hitt) {
+	    push @eosl, ["$errs; exceeded data volume per request limit", "\n"];
+	    next;
+	 }
+	 open TFL, ">$tfl" or do {push @eosl, ["$errs; can't open $tfl: $!", "\n"]; next};
+	 $logs = $v;
+	 for $i ( 0 .. $#{$vsnl{$v}} ) {
+	    for $j (0 .. 3) {
+	       print TFL      $vsnl{$v}[$i][$j],' ';
+	       $logs .= ' ' . $vsnl{$v}[$i][$j];
+	    }
+	    print TFL "\n";
+	 }
+	 close TFL;
+	 $okwi = 0;
+	 unless (defined ($pid = open KID, "-|")) {push @eosl, ["$errs; can't fork CDBgrec: $!", "\n"]; next};
+	 if ($pid) {
+	    while (<KID>) {                            # kid's stdout is write file and format flag or stop msg
+	       chop;
+	       if (/^\s*(\S+)\.($extp)\s+([bc])$/) {
+		  push @wnnf, $_;
+		  $n = "$1.$2";
+		  $t = gtail ($n);
+		  print '<TR><TD><A HREF="', $wdiu, '/', $t, '">', $t, '</A>',
+			    '<TD>(', $exth{$2}, ')',
+			    '<TD>',gsiz ($n), '</TR>', "\n";
+		  $okwi = 1;
+	       } elsif (/^STOP: mxmbt limit reached$/) {
+		  $hitt = 1;
+		  push @eosl, ["$errs; exceeded data volume per request limit", "\n"];
+	       } else {
+		  push @eosl, ["$errs: CDBgrec wrote '$_'", "\n"];
+	       }
+	    }
+	    close KID;
+	 } else {                                      # kid does the heavy lifting in a restricted shell
+	    $> = $<;
+	    $) = $(;
+	    $ENV{PATH} = "/bin";
+	    $ENV{IFS}  = "" if $ENV{IFS};
+	    exec "$grece $kif $pcf $tfl $wdir/${v}x $mxmbv $mxmbt $wfmt $vsnl{$v}[0][4] $hcrop" or
+					push @eosl, ["$errs; CDBgrec trouble: $!", "\n"];
+	 }
+	 push @eosl, ["$errs; CDBgrec complained: $!", "\n"] if $?;
+	 unlink $tfl;
+	 print LOGF $logp, $logs, "\n" if $logo && $okwi;
+      } # end of %vsnl loop
+
+      close LOGF if $logo;
+
+      if (gakatxt()) {
+	 print '<TR><TD><A HREF="', $wdiu, '/', gtail($akax), '">', gtail($akax), '</A>',
+		   '<TD>(DB file notes/caveats)',
+		   '<TD>',gsiz ($akax), '</TR>', "\n";
+      }
+   }       # end of block 'if logged in'
+
+   print "</TABLE><PRE>\n\n";
+
+   if (@eosl) {
+      for $i (0 .. $#eosl) {
+	 prteo ($eosl[$i][0], $eosl[$i][1]);
+      }
+      print "\n";
+   }
+}          # end of block 'if vsn's selected'
+
+if ($logu eq 'NO_ONE') {
+   print "To obtain data you must login (on main page); registration is prerequisite\n";
+   print "(see access form under Data Services on main page)\n";
+
+} elsif (%vsnl) {
+   if (@eosl || %vsnn) {
+      print "Trouble subsetting data; notify $naddr or ", $redb;
+   } else {
+      print $redg;
+   }
+}
+print $htmf;
+
+#          Done: Clean up unneeded files.
+#          Attempts to launch a scrubber here failed; e.g., 'sleep 3600; cleanup();'
+#          caused the browser to wait for more text and interferes with picking
+#          up the files.  Terminating this process and starting a new one with
+#          'exec scrub $wdir $sof;' didn't fool the server; the browser still waited
+#          for input.  While $sof can be deleted now, the scratch directory must be
+#          deleted by an independent process: a cron which runs CDBscrub.
+if (! $topt && -e $sof) {unlink $sof or warn "$snmt: can't unlink $sof: $!\n"};
+exit;
+
+
+#=================================================================================
+
+sub cleanup {
+#          Clean up scratch files and exit; usage:
+#
+#            cleanup ();
+#
+#          INPUTS:    signal type string from interrupt handler
+#          EXTERNALS: Globals: $snmt, $sof, $tfl, $topt, $wdir
+
+   my ($f);
+
+   warn "$snmt terminating: caught SIG$_[0]" if $#_ > -1;
+
+   if (! $topt) {
+      unlink ($sof) if -e $sof;
+      unlink ($tfl) if -e $tfl;
+      if (-d $wdir) {
+	 opendir  WDIR, $wdir or warn "$snmt cleanup can't 'opendir $wdir': $!";
+	 @files = grep !/^\.\.?$/, readdir WDIR;
+	 closedir WDIR;
+	 for $f (@files) {
+	    $f = "$wdir/$f";
+	    $f = $1 if /^(\S*)/ or do {warn "$snmt cleanup insecure \$f = '$f'"; next};
+	    unlink ($f)         or do {warn "$snmt cleanup can't unlink $f: $!"; next};
+	 }
+	 rmdir ($wdir)          or warn "$snmt cleanup can't rmdir $wdir: $!";
+      }
+   }
+   exit 1;
+}
+
+#=================================================================================
+
+sub gakatxt {
+#          Extract relevent text from akavsns into a ".doc" file.  Usage:
+#
+#            $stat = gakatxt ();
+#
+#          RETURNS:
+#            $stat = status is 1 (okay) or 0 (failed)
+#
+#          EXTERNALS:
+#            Global variables:  $aka, $akax, %vsnl, @wnnf
+#            where:
+#              $aka  = full path name of the akavsns file
+#              $akax = full path name of the file to be created
+#              %vsnl = vsn alias names list
+#              @wnnf = list of file name and types written (this is updated)
+#
+#          (This is a slight revision of excerpts from sub grec in Cmenulib.pm)
+
+   my (%dpfx, %dvsn, $dtxt, $inhd, $i, $j, $k, $l, $m, $n, $kigr, $v);
+
+#          Parse the instrument mnenonic in the vsn aliases
+   for $v (keys %vsnl) {
+      ($i = $v) =~ s/^(...).*$/$1/o;
+      $dpfx{$i} = 1 if (! $dpfx{$i});
+      $dvsn{$v} = 1;
+   }
+
+#          Build the text intro and append relevant lines from akavsns
+   $dtxt  = "This contains notes and caveats for the database files read during data\n";
+   $dtxt .= "selection.  Involved instruments are listed first then any instrument\n";
+   $dtxt .= "groups general notes, any instrument general notes and specific instrument\n";
+   $dtxt .= "data file notes.\n\n";
+   $inhd = 1;                                  # $inhd => in (reading) header lines
+   $j = $k = $l = $m = $n = 0;
+   open AKA, "<$aka";
+   while (<AKA>) {
+      if (/^\*--\s/) {$inhd = 0; $j++ ; $dtxt .= "\n" if ($j == 1)};
+      if ($inhd) {
+	 if (/^\*       (\S.*)$/) {              # remember instrument group line
+	    $i    = 0;
+	    $kigr = $_;
+	    next;
+	 }
+	 if (/^\*\s+(\S\S\S) - /) {              # inst 3 character mnemonic line
+	    if ($dpfx{$1}) {
+		if (! $i) {$i = 1; $dtxt .= $kigr};
+		$dtxt .= $_;
+	    }
+	 next;
+	 }
+      }
+      if (! $k) {                               # general inst notes
+	 while (($key,$val) = each %dpfx) {
+	    next if $val == 2;
+	    if (/^\*$key General Notes/) {
+	       $k = 1;
+	       $dpfx{$key} = 2;
+	    }
+	 }
+      }
+      if ($k) {
+	 $dtxt .= $_;
+	 $k = 0 if /^\*\s*$/;
+	 $m = 1;
+	 next;
+      }
+      if (! $l) {                               # vsn specific notes
+	 while (($key,$val) = each %dvsn) {
+	    next if $val == 2;
+	    if (/^$key\s+/) {
+	       $itxt  = "$key Specific Notes\n";
+	       $n = 0;
+	       $l = 1;
+	       $dvsn{$key} = 2;
+	    }
+	 }
+      }
+      if ($l && /^\*/) {
+	 if (/^\*\s*$/) {
+	    $l = 0;
+	    $dtxt .= $_ if ($n);
+	    next;
+	 }
+	 $n++;
+	 $dtxt .= $itxt if ($n == 1);
+	 $dtxt .= $_;
+	 $m = 1;
+      }
+   }
+   close AKA;
+   $dtxt =~ s/^\*//mg;                 # strip off leading asterisks
+
+#          Write results and remember file name and type
+   if ($m) {
+      open  DOC, ">$akax";
+      print DOC $dtxt;
+      close DOC;
+      push @wnnf, "$akax c";
+   }
+
+   return ($m);
+}
+
+#=================================================================================
+
+sub gsiz {
+#          Return the size if a file (the single input argument).
+#          Usage:
+#
+#              $siz_str = gsiz ($file);
+#
+#          INPUTS:
+#            $file = string containing a file name
+#          RETURNS:
+#            $siz  = string with embedded commas and ' Bytes' appended
+#                    or null when $file is not found
+
+   my ($file) = @_;
+   my $siz = '';
+   if (-e $file) {
+      $siz = (-s $file);
+      1 while ($siz =~ s/(\d)(\d\d\d)(?!\d)/$1,$2/);
+      $siz .= ' Bytes';
+   }
+   return $siz;
+}
+
+#=================================================================================
+
+sub prteo {
+#          Print diagnostics to stderr and stdout; usage:
+#
+#             prteo ($etxt, $otxt);
+#
+#          where
+#             $etxt = text for STDERR and STDOUT
+#             $otxt = any additional text for STDOUT
+#
+#          A newline is written to STDERR following $etxt but not STDOUT
+
+   if ($#_ > -1) {
+      warn $_[0], "\n";
+      print join ('', @_);
+   }
+}
+
+#=================================================================================
+
+sub prthelp {
+
+print "Subset CEDAR DB data according to user selections made in the HTML
+form prepared by CDBgcat (which is launched by CDBpcat.html); usage:
+
+   CDBcat2dat [-h host]
+
+where
+   -h   = help option: print this summary and quit
+   host = host for which paths and URLs are to be defined: cedar cedar-l
+	  This is a test mode with simulated form inputs and files created
+	  in the current directory.
+
+Command arguments are not part of normal use as a cgi-bin script.
+
+See also: ~bozo/is/READMECDB CDBgcat CDBmkpcat CDBmkpcwin
+";
+exit 0;
+}
+
+#=================================================================================
+
+sub reportna {
+#          Report unavailable DB files; usage
+#
+#              reportna ();
+#
+#          EXTERNALS:
+#            Global variables:  $hkey, $mail, $snmt, %vsnl, %vsnn
+
+   if (-t STDOUT) {
+      print "${snmt}:  ", (%vsnl) ? "Some d" : "D", "ata selection must wait until data volumes are copied to\ndisk for the following alias(es):\n";
+      for (sort keys %vsnn) {print "             $_\n"};
+      print "This is being reported to the database programmer\n";
+   }
+   $opath = $ENV{PATH};
+   $ENV{PATH} = "/bin";
+   open  MAILME, "|$mail -s'DB Missing VSNS' bozo\@ucar.edu";
+   print MAILME  "Missing from $hkey in $datd are data corresponding to ALIAS\n";
+   for (sort keys %vsnn) {
+      print MAILME "         $_\n";
+   }
+   close MAILME;
+   warn "$snmt: had trouble sending mail: $!\n" if $?;
+   $ENV{PATH} = $opath;
+}

@@ -1,0 +1,11 @@
+# robots.txt for http://www.example.com/
+
+User-agent: *
+Disallow: /upgrade/ # directories for mediawiki upgrades
+Disallow: /rstfl/ # restful services
+Disallow: /pml/ # provenance pages
+Disallow: /logs/ # provenance logs
+Disallow: /quicklook/ # provenance quicklook images
+Disallow: /registry/ # provenance registry information
+Disallow: /data/ # data directory
+

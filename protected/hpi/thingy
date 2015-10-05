@@ -1,0 +1,17 @@
+#!/bin/sh
+
+for i in /project/cedar/src/emery/cvs/cedar/protected/hpi/*
+do
+    bas=`basename $i`
+    if [ ! -f ${bas} ]
+    then
+	echo "no ${bas}"
+    else
+	adiff=`diff ${bas} ${i}`
+	if [ "$adiff" != "" ]
+	then
+	    echo "diff ${bas}"
+	fi
+    fi
+done
+

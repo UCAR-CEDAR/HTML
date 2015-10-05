@@ -1,0 +1,28 @@
+Surname: Sipler
+First Name: Dwight
+Status= other
+Institution: MIT Haystack Observatory
+E-mail: sipler@haystack.mit.edu
+----------------------------------------
+Title: 
+Evaluation of a Liquid Crystal Fabry-Perot for use in Lidar applications
+----------------------------------------
+Authors: 
+Dwight Sipler, Thomas Duck: MIT Haystack Observatory
+----------------------------------------
+Abstract: 
+A liquid crystal Fabry-Perot interferometer is a relatively
+new optical device which has some advantages over the
+conventional piezoelectric or pressure tuned
+interferometers. Being electrically tunable, the device can
+be easily and rapidly tuned by computer control. Since we
+have an application for this device in a Doppler lidar
+application, it was necessary to evaluate the stability and
+repeatibility of the tuning. Using a frequency stabilized
+HeNe laser, we found the device to be stable enough to use
+for Doppler measurements to within the precision of the
+measurement, equivalent to about 10 m/s.
+
+
+----------------------------------------
+Discipline Category: Instruments

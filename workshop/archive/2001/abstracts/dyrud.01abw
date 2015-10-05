@@ -1,0 +1,35 @@
+----------------------------------------
+Type of abstract: Invited for Student Workshop
+Presenter Name: Lars Dyrud
+Status of first author: student PhD
+----------------------------------------
+Title: 
+Ionospheric plasma simulations of meteor trails
+----------------------------------------
+Authors: 
+Lars Dyrud, ldyrud@bu.edu
+Meers Oppenheim, Sigrid Close, Stephen Hunt, Axel vom Endt
+----------------------------------------
+Abstract: 
+Meteor trails of ionization created from dust to sand size particles
+are frequently observed by radars at altitudes from 80 - 120 km.
+Meteor radars use the echoes from these trails to determine both
+aeronomic and meteoric properties.  We use plasma simulations of
+meteor trails to examine the factors effecting the interpretation
+of radar signals from meteor trails.  These simulations demonstrate
+that meteor trails develop a gradient drift type instability within
+a fraction of a millisecond of formation.  Instability driven
+turbulence and electrodynamics dominate the evolution of meteor
+trails.  This result requires the reevaluation of certain assumptions
+that allow for the interpretation of radar signals.  For example, we
+find that meteor trails will not track neutral wind velocities
+their initial stages of development, and diffusion in the plane
+perpendicular to the magnetic field is turbulent and occurs at a
+rate up to 10 times faster than expected from ambipolar diffusion.
+We present a tutorial on E-region plasma conditions, instability
+physics, the simulation of ionospheric plasmas, and conclude with
+results and analysis of the simulations.
+----------------------------------------
+Upper Atmosphere and Ionosphere
+Mesosphere
+Analysis Techniques

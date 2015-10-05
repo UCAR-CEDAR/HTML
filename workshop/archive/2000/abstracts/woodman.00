@@ -1,0 +1,24 @@
+Surname: Woodman
+First Name: Ronald F.
+Status= other
+Institution: Radio Observatorio de Jicamarca
+E-mail: ron@geo.igp.gob.pe
+----------------------------------------
+Title: 
+Wide-beam forming using binary phase coding
+----------------------------------------
+Authors: 
+Ronald F. Woodman
+Jorge L. Chau
+----------------------------------------
+Abstract: 
+We introduce the first antenna "compression" scheme for coherent radars. The
+idea is to transmit with a large array of coded antennas at full power, and
+later synthesize by linear superposition and proper phasing (decoding), a
+small transmitting antenna, similar to a single antenna element of the array.
+This approach allow the use of all the available power in phased array systems
+where either high power transmitters cannot be used with small antennas, or
+the transmitted power is distributed among the antenna elements. 
+----------------------------------------
+Discipline Category: Instruments
+

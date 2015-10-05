@@ -1,0 +1,37 @@
+Surname: Barakat
+First Name: Abdallah
+Status= other
+Institution: Utah State University
+E-mail: arb@theory.cass.usu.edu
+----------------------------------------
+Title: 
+The Role of Wave-Particle Interactions on Ionosphere-Magnetosphere Coupling
+----------------------------------------
+Authors: 
+A. R. Barakat and R. W. Schunk
+----------------------------------------
+Abstract: 
+
+	In the ionosphere-magnetosphere coupled system, it is generally accepted 
+that the ionosphere supplies most of the mass/momentum, while the magnetosphere 
+supplies most of the energy.  In order to address this problem, we use a 
+time-dependent generalized polar wind model that consists of a fluid-based 
+component at low altitudes and a macroscopic particle-in-cell (mac-PIC) 
+component at high altitudes.  The simulation follows a magnetic flux tube that 
+extends from ~100 km to 8 RE altitudes as it drifts across the cusp, polar cap, 
+auroral and subauroral regions.  We investigate the relative importance of the 
+WPI and the energetic electrons (of magnetospheric origin) on the ion outflow 
+and temperature in the different high-latitude regions.  The main conclusions of 
+this study are as follows:  (1) The interplay between the thermal ionospheric 
+and energetic magnetospheric electrons produces a double-layer whose strength 
+and altitude varies with time in response to the variation of th!
+e geophysical conditions; (2) The WPI influence is more pronounced on the ion 
+temperature and progressively less important on the vertical drift, u(H+), and 
+the density, n(H+), respectively;  (3) The effects of the WPI are strongest in 
+the cusp region; (4) In contrast, the presence of the magnetospheric electrons 
+is the dominant factor for the evolutions of n(H+) and u(H+) in the polar cap;  
+and (5) The profiles of n(H+) and u(H+) change more rapidly as they move from 
+the subauroral to cusp region than as they move from the cusp to the polar cap.
+
+----------------------------------------
+Discipline Category: Ionosphere

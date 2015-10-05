@@ -1,0 +1,27 @@
+Surname: Paznukhov
+First Name: Vadym
+Status= studentyes
+Institution: University of Massachusetts Lowell Center for Atmospheric Research
+E-mail: vadym_paznukhov@student.uml.edu
+----------------------------------------
+Title: 
+Digisonde Vertical Drift Velocity Measuring Technique
+----------------------------------------
+Authors: 
+V.V. Paznukhov, G.S. Sales, and B.W. Reinisch
+----------------------------------------
+Abstract: 
+This research was aimed at developing a new technique for
+measuring vertical plasma motion. Using a Digisonde, it is
+possible to derive an apparent velocity from the movement of
+plasma isodensity contours. However, this does not represent
+the true plasma drift speed since chemical processes also
+contribute to the changing plasma density contours. We solve
+the continuity equation in order to separate the plasma drift
+from the chemistry. The comparison between vertical drift
+velocities calculated by this technique and measured with the
+collocated incoherent scatter radar shows good
+correspondence.
+
+----------------------------------------
+Discipline Category: Analysis Techniques

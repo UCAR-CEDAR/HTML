@@ -1,0 +1,286 @@
+#!/opt/local/bin/perl
+#
+#          Make an HTML version of a CEDAR DB inventory table for instruments and time
+#          interval indicated by the HTML form prepared by CDBpcat.html; usage:
+#
+#             CDBgcat [-h | host]
+#
+#          where
+#             -h   = help option: print this summary and quit
+#             host = host for which paths and URLs are to be defined: cedar cedar-l
+#                    This is a test mode with simulated form inputs and files created
+#                    in the current directory.
+#
+#          Command arguments are not part of normal use as a cgi-bin script.
+#
+#          SEE ALSO:
+#          $ENV{CDBROOT}/READMECDB            - introduction to CDB code
+#          $ENV{CDBROOT}/test/CDBgcat.f       - script to test fortran source used here
+#          $ENV{CDBROOT}/docs/web/___/CDBgcat - production version copy for host ____
+#
+#          INSTALLATION:
+#            1. Change the sh-bang line perl path: 'usr' (SCD) <-> 'opt' (HAO)
+#            2. For the production version:
+#                 - Remove sh-bang line '-Tw' (needed for testing but breaks under Apache server).
+#                 - In the 'require' line below, change Comboz.pm directory (from ~bozo/bin) to
+#                   the production directory ($ENV{WEBBIN}); WEBBIN is listed by 'envls cdbm';
+#               These constitute the only (hardwired) code changes required in this file.
+#            3. Define paths and URLs for a new computer in sub envcdbm of ~bozo/bin/Comboz.pm
+#            4. Make $gcate and $cknste using $CDBROOT/src/Makefile: make CDBgcat CDBcknst
+#               then copy executables from $CDBBINO (set in Comboz::envcdb) to $WEBBIN (set in
+#               Comboz::envcdbm); alternatively, revise such paths in the Configuration variables
+#               section below.
+#
+#          MODIFICATIONS:
+#            Jul 02: After finding a bug in CDBpcat.html for multi-KINST sites,
+#                    also revised instrument list section.
+#            Mar 03: Adapt to multiple installations and add test option and prthelp
+#            Apr 03: Omit JS code defining 'isSun' (not used here)
+#            Jun 03: Tune for cedar-l: Add 'target="cedarweb_aux"' to form tag; change HREF 'instr' to 'instruments'
+#            Sep 03: - Change URL references for cedar-l in Comboz whose URL changed from 'cedar-l' to 'cedarweb'
+#                    - revise code for aliases KINSTs to refer to a single instrument; first changed CDBcknst.f
+#            Oct 04: Revise cdbm key WEBFTPA to WEBFTPU and change to fully qualified host names
+#            Dec 04: Complete changes discerning main KINST at multi-instrument sites from hardwired code to
+#                    using CDBcknst.f; update help text and INSTALLATION notes.
+#
+#          VESTIGIAL MATTER:
+#            Old installation URLs which may be handy to remember:
+#            JavaScript_URL <SCRIPT SRC="CDBpcwin.js"                                       ></SCRIPT>
+#                           <SCRIPT SRC="http://www.hao.ucar.edu/internal/bozo/CDBpcwin.js" ></SCRIPT>
+#                           <SCRIPT SRC="http://cedarweb.hao.ucar.edu/protected/CDBpcwin.js"></SCRIPT>
+#            CDBcat2dat URL <FORM action="http://www.hao.ucar.edu/internal-cgi-bin/CDBcat2dat"      ENCTYPE="multipart/form-data" METHOD="POST">
+#                           <FORM action="http://cedarweb.hao.ucar.edu/cedarweb-cgi-bin/CDBcat2dat" ENCTYPE="multipart/form-data" METHOD="POST">
+#                           <FORM action="$cat2d" ENCTYPE="multipart/form-data" METHOD="POST"><INPUT TYPE=SUBMIT VALUE="submit data request">      Jun 04
+
+#          Parse command arguments for test option before defining configuration variables
+$hopt = 0;
+$topt = 0;
+for (@ARGV) {
+   if (/^cedar(\.hao|\.hao.ucar.edu)?$/) {
+      $topt = 1;
+      $webh = 'cedar.hao.ucar.edu';
+   } elsif (/^cedar-?l(\.hao|\.hao.ucar.edu)?$/) {
+      $topt = 1;
+      $webh = 'cedar-l.hao.ucar.edu';
+   } elsif (/^-[hH]$/) {
+      $hopt = 1;
+      $topt = 1;
+      $webh = 'cedar-l.hao.ucar.edu';
+   } else {
+      die "unrecognized option: $_\n";
+   }
+}
+
+#          Configuration variables
+#equire $1 if glob ('~bozo/bin/Comboz.pm') =~ /^(\S+)/ or die "CDBgcat: insecure Comboz.pm path; $!\n";
+require '/project/cedar/bin/CDB-2.01/Comboz.pm';   # cedar-l version
+Comboz::envcdb();                                  # environment variables
+($hkey, %cdbm) = Comboz::envcdbm();                # paths, URLs etc. for multiple DB hosts
+$hkey = $webh if $topt;
+
+$cat2d  = "$cdbm{$hkey}{WEBCGIU}/CDBcat2dat";      # HREF for script CDBcat2dat
+$cknste = ($topt) ?                                # fortran executable confirm kinsts in interval
+	  "$ENV{CDBBINO}/CDBcknst.exe" :
+	  "$cdbm{$hkey}{WEBBIN}/CDBcknst.exe";
+$codr   = 'bozo_at_ucar.edu';                      # maintenence programmer's email address
+$ftpu   = $cdbm{$hkey}{WEBFTPU};                   # ftp archive directory with cat___.list
+$gcate  = ($topt) ?                                # fortran executable inventory subsetting
+	  "$ENV{CDBBINO}/CDBgcat.exe" :
+	  "$cdbm{$hkey}{WEBBIN}/CDBgcat.exe";
+$kif    = ($topt) ?                                # instrument codes file
+	  "$ENV{CDBDOCS}/kinst.file" :
+	  "$cdbm{$hkey}{WEBDOCS}/kinst.file";
+$invf   = ($topt) ?                                # sorted full inventory file
+	  "$ENV{CDBDOCS}/invsrtf.cbf" :
+	  "$cdbm{$hkey}{WEBDOCS}/invsrtf.cbf";
+$pcf    = ($topt) ?                                # parameter codes file
+	  "$ENV{CDBDOCS}/parcods.file" :
+	  "$cdbm{$hkey}{WEBDOCS}/parcods.file";
+$pcwin  = "$cdbm{$hkey}{WEBHTMU}/CDBpcwin.js";     # HREF for parcod window Javascript file
+$|      = 1;                                       # hot pipes
+$snmt   = ($0 =~ m#/*([^/]+)$#o) ? $1 : $0;        # script name tail
+$sof    = ($topt) ?                                # summary output file, invnetory table w/o HTML
+	  "$ENV{PWD}/sof" :
+	  "/tmp/$snmt.$$";
+$uknl   = $cdbm{$hkey}{WEBKNUL};                   # instrument HTML files HREF left  side
+$uknr   = $cdbm{$hkey}{WEBKNUR};                   # instrument HTML files HREF right side
+
+#print '$hkey=', $hkey, "\n";for $k1 (sort keys %cdbm){for $k2 (sort keys %{$cdbm{$k1}}){print "\$cdbm{$k1}{$k2} = $cdbm{$k1}{$k2}\n";}}
+
+#          de-taint configuration variables
+$>         = $<;                                   # effective user  ID = real
+$)         = $(;                                   # effective group ID = real
+$ENV{PATH} = "/bin";                               # detaint: simple path
+$ENV{IFS}  = "" if $ENV{IFS};                      # detaint: no input field seperator
+$cknste    = $1 if $cknste =~ /^(\S+)/ or die "$snmt: insecure \$cknste = $cknste\n";
+$codr      = $1 if $codr   =~ /^(\S+)/ or die "$snmt: insecure \$codr = $codr\n";
+$gcate     = $1 if $gcate  =~ /^(\S+)/ or die "$snmt: insecure \$gcate = $gcate\n";
+$invf      = $1 if $invf   =~ /^(\S+)/ or die "$snmt: insecure \$invf = $invf\n";
+$kif       = $1 if $kif    =~ /^(\S+)/ or die "$snmt: insecure \$kif  = $kif\n";
+$pcf       = $1 if $pcf    =~ /^(\S+)/ or die "$snmt: insecure \$pcf  = $pcf\n";
+$sof       = $1 if $sof    =~ /^(\S+)/ or die "$snmt: insecure \$sof  = $sof\n";
+$uknl      = $1 if $uknl   =~ /^(\S+)/ or die "$snmt: insecure \$uknl = $uknl\n";
+$uknr      = $1 if $uknr   =~ /^(\S+)/ or die "$snmt: insecure \$uknr = $uknr\n";
+
+prthelp() if $hopt;
+
+#          Print the introduction
+print <<"EOF";
+Content-type: text/html
+
+<HTML>
+<HEAD>
+<TITLE>CEDAR DATABASE</TITLE>
+
+<!-- JavaScript_URL --><SCRIPT SRC="$pcwin"></SCRIPT>
+
+</HEAD>
+<BODY>
+<H1 ALIGN=center>CHOOSE DATA FROM CUSTOMIZED INVENTORY</H1>
+<A NAME="TOP"></A>
+<PRE>
+Data available for the specified time interval and instruments are listed in
+the below table ordered by instrument code and begin time where each entry
+summarizes a contiguous interval (gaps < 6 hours) for one record type:
+
+    DATE TIME     UT
+    KINST         integer instrument code and a link to a description.
+    KINDAT        integer kind-of-data code.
+    CYCLE TIME    approximate time for one set of observations.
+    MIN TIME RES  smallest time (minutes) between samples.
+    MIN VERT RES  smallest vertical distance (km) between samples.
+    HEIGHT        minimum and maximum height (km) sampled.
+    VSN ALIAS     data file reference.
+    PARAMETERS    abbreviations link to definitions; the list excludes parameters
+		  for time, space, quality assurance or those with all missing
+		  values during the interval.
+
+
+EOF
+
+print 'Check (click) at least one box to choose data then return here and ',
+      '<FORM action="', $cat2d, '" ENCTYPE="multipart/form-data" METHOD="POST"><INPUT TYPE=SUBMIT VALUE="GET DATA"';
+print ' TARGET="cedarweb_aux"' if $hkey eq 'cedar-l.hao.ucar.edu';
+print ">\n";
+
+print << "EOF";
+
+Notes: A huge request can cause the server to time out and erroneously report "No
+       data were found"; try a smaller request (or email $codr).
+
+EOF
+print '       Plain text tables of all instruments are available ',
+      ($hkey eq 'cedar-l.hao.ucar.edu') ? "under 'Documents'" : "<A HREF=\"$ftpu\">here</A>", "\n\n";
+
+print "       Table contents:\n";
+
+#          Make up tests or obtain HTML form inputs:
+if ($topt) {
+   #$ntvl  = "19661111:0000-19661111:0930";     # simple case w/ small output
+   #$knst  = "10";
+
+   #$ntvl  = "19660101:0000-19661231:2400";    # 'all kinsts avail flag'
+   #$knst  = "-";
+
+   #$ntvl  = "19660101:0000-19661231:2400";    # STS w/ multiple antennae
+   #$knst  = "41,42,43";
+   #$knst  = "42,43";
+   #$knst  = "10,20,40,41,42,43";
+   #$knst  = "10";
+   #$knst  = "80";                             # also check when not avail
+
+    $ntvl  = "19780603:0000-19780603:2400";    # MLH multiple anntennae
+    $knst  = "31,32,33";
+    $knst  = "-";
+    $knst  = "30,31,32,33";
+
+   #$ntvl  = "19921123:0000-19921123:2400";    # EIS multiple anntennae
+   #$knst  = "71,74,70";
+   #$knst  = "71,74";
+   #$knst  = "74";
+   #$knst  = "-";
+   #$knst  = "70,71,72,73,74";
+} else {
+   use CGI;
+   $query = new CGI;
+   $ntvl  = $query->param ('ntvl');
+   $knst  = $query->param ('knst');
+}
+#          de-taint form variables
+$ntvl = $1 if $ntvl =~ /^(-|\d{8}:\d{4}-\d{8}:\d{4})$/ or die "$snmt: insecure \$ntvl = $ntvl\n";
+$knst = $1 if $knst =~ /^(-|(\d+,*)+)$/                or die "$snmt: insecure \$knst = $knst\n";
+
+#          Insert anchors for requested instruments or warn when not availabile
+#          using a single anchor for multi-kinst facilities
+open    PIPE, "$cknste $invf $kif $ntvl $knst |" or die "$snmt: can't run $cknste: $!\n";
+while (<PIPE>) {
+   if (/\w{3}::(0|1)::(\d{1,5},?)+::.{1,40}$/) {
+      ($abbr, $stat, $cods, $mnam) = split '::';
+      if ($stat) {
+	 print "  <A HREF=#$abbr>$abbr</A> (KINST = $cods) $mnam\n";
+      } elsif ($knst ne '-') {
+	 print "  $abbr (KINST = $cods) '$mnam' not available in interval\n";
+      }
+   } else {
+      die "$snmt unexpected $cknste output: $_\n";
+   }
+}
+close PIPE;
+
+#          Add the header used by the form processing script (CDBcat2dat) to
+#          make a plain text of the selected portion of the table.  Then add
+#          HTML comments containing an example check box
+print <<"EOF";
+
+<INPUT TYPE=hidden   NAME="sumf" VALUE="$sof">
+<INPUT TYPE=hidden   NAME="ntvl" VALUE="$ntvl">
+<INPUT TYPE=checkbox NAME="allf" VALUE="1"> Select all entries for all instruments
+
+<!--       Vary the font size based on the browser and screen size -->
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var scrnh = (window.screen.availHeight);
+//r isNav = (navigator.appName.indexOf ("Netscape")  != -1);     2004 Jun: omit most browser dependencies
+//r isIE  = (navigator.appName.indexOf ("Microsoft") != -1);
+var fntsz = new Object;
+//  fntsz.l = (scrnh > 800 && ! isIE) ? 4 : 3;
+//  fntsz.m = (scrnh > 800 && ! isIE) ? 3 : 2;
+//  fntsz.s = (scrnh > 800 && ! isIE) ? 2 : 1;
+    fntsz.l = 3;
+    fntsz.m = 2;
+    fntsz.s = 1;
+//cument.write ('<BASEFONT SIZE=', (isNav) ? fntsz.s : fntsz.m , '>');  2004 Jun: omit most browser dependencies
+document.write ('<BASEFONT SIZE=',           fntsz.s           , '>');
+// -->
+</SCRIPT>
+EOF
+
+#          Add the main table using Fortran
+$cmd = "$gcate $invf $kif $pcf $sof $ntvl $knst $uknl $uknr";
+print STDOUT `$cmd` or do {print "Unable to make the table\n"; die "$snmt: can't '$cmd': $!\n"};
+print "\n</PRE></BODY></HTML>\n";
+
+#=================================================================================
+
+sub prthelp {
+
+print "Make an HTML version of a CEDAR DB inventory table for instruments and time
+interval indicated by the HTML form prepared by CDBpcat.html; usage:
+
+   CDBgcat [-h | host]
+
+where
+   -h   = help option: print this summary and quit
+   host = host for which paths and URLs are to be defined: cedar cedar-l
+	  This is a test mode with simulated form inputs and files created
+	  in the current directory.
+
+Command arguments are not part of normal use as a cgi-bin script.
+
+SEE ALSO:
+$ENV{CDBROOT}/READMECDB            - introduction to CDB code
+$ENV{CDBROOT}/test/CDBgcat.f       - script to test fortran source used here
+$ENV{CDBROOT}/docs/web/___/CDBgcat - production version copy for host ____
+";
+exit 0;
+}

@@ -1,0 +1,241 @@
+                        CEDAR DATABASE VOLUME BY INSTRUMENT
+
+Mass store archive summary for public copy volumes in '/ISRADAR' as of May 26 12:23
+
+Incoherent Scatter RADARs  
+  ARO       1574137856  Arecibo P.R. I.S. Radar                
+  CHT        143040512  Chatanika AK I.S. Radar                
+  EIS       2934833152  EISCAT: Tromso VHF Radar               
+  ESR        203517952  Svalbard I.S. Radar                    
+  IST          1097728  Irkutsk Russia I.S. Radar              
+  JRO        157265536  Jicamarca: Paracas Peru antenna        
+  KKV           634880  Kharkov Ukraine I.S. Radar             
+  MLH       1324096512  Millstone Hill: steerable L-band ant.  
+  MUI           188416  MU I.S. Radar, Shigaraki Japan         
+  SON      10170035968  Sondrestrom I.S. Radar                 
+  STS          9760768  Saint Santin: Montpazier receiver      
+          -------------
+           16518609280
+
+Satellite Obs. and Indices  
+  EHP         65523712  Estimated Hemispheric Power            
+  EQB          2957312  Midnight Equatorward Boundary          
+  IMF        445607936  Interplanetary Mag Fld and Solar Wind  
+  PFX        512770048  Spacecraft Particle Flux               
+          -------------
+            1026859008
+
+Ground Based Indices  
+  AEI        149123072  Geophysical indices from NGDC: AE      
+  DST          5316608  Geophysical indices from NGDC: Dst     
+  GPI          2772992  Geophysical indices from NGDC: Lenhart 
+  PCV         20717568  Polar Cap Geomagnetic Index: Vostok    
+          -------------
+             177930240
+
+Model outputs  
+  ARE        143069184  AMIE Model Output                      
+  GCM        146264064  NCAR TGCM/TIGCM Model Output           
+  GSW           290816  GSWM solar diurnal & semidiurnal tides 
+  SDL           323584  Vial/Forbes Model Lunar Tides          
+  SDT          3710976  Forbes/Vial Model Semidiurnal Tides    
+          -------------
+             293658624
+
+HF or Coherent RADARs  
+  EHF        524804096  Pykkvibaer (Iceland East) HF Radar     
+  FHF        505253888  Hankasalmi Finland HF Radar            
+  GBF       1146888192  Goose Bay HF Radar                     
+  HHF        311283712  Halley Antarctica HF Radar             
+  JUL          7032832  JULIA Jicamarca Peru Coherent Radar    
+  KGF         40943616  Kerguelen Is. HF radar                 
+  KHF        452136960  Kapuskasing HF Radar                   
+  SAN         28225536  SANAE Antarctica HF Radar              
+  SHF        625782784  Saskatoon HF Radar                     
+  SYE         61947904  Syowa East (Antarctica) HF Radar       
+  SYF         59437056  Syowa Antarctica HF Radar              
+  WHF        685305856  Stokkseyri (Iceland West) HF Radar     
+          -------------
+            4449042432
+
+MST Radars  
+  ARM          9420800  Arecibo P.R. MST Radar                 
+  PKR         81682432  Poker Flat Alaska MST Radar            
+          -------------
+              91103232
+
+LF and MF RADARs  
+  ADF          7073792  Adelaide Australia MF Radar            
+  CCF            12288  Christchurch New Zealand MF Radar      
+  COF          1011712  Collm LF Radar                         
+  DAV          6991872  Davis, Antarctica MF radar             
+  KAU          4628480  Kauai, Hawaii MF RADAR                 
+  MAF            94208  Mawson Antarctica MF Radar             
+  PLR           114688  Platteville, Colorado MF RADAR         
+  RPK         69222400  Poker Flat Alaska MF Radar             
+  RTG           831488  Rarotonga Cook Islands MF RADAR        
+  RTH           929792  Rothera, Antarctica MF RADAR           
+  SAF           974848  Saskatoon Canada MF Radar              
+  SBF            36864  Scott Base Antarctica MF Radar         
+  TIR          1699840  Tirunveli India MF radar               
+  TRF           962560  Tromso Norway MF Radar                 
+  WAK         47222784  Wakkanai Japan MF radar                
+  YAM         35119104  Yamagawa Japan MF radar                
+          -------------
+             176926720
+
+Meteor Winds RADARs  
+  ASC           335872  Ascension Island Meteor RADAR          
+  ATM          2211840  Atlanta Georgia Meteor Wind Radar      
+  CIA            73728  Christmas Island ST (MEDAC) Radar      
+  DUM           114688  Durham N Hampshire Meteor Wind Radar   
+  EMR           663552  Esrange, Sweden Meteor RADAR           
+  OBN            45056  Obninsk Russia Meteor Wind Radar       
+  PLA            12288  Platteville Colorado ST (MEDAC) Radar  
+          -------------
+               3457024
+
+Digisondes  
+  QAD           983040  Qaanaaq Greenland Digisonde            
+  SSD           405504  Sondre Stromfjord Digisonde            
+          -------------
+               1388544
+
+Passive Optical Instruments  
+  AAF            94208  Ann Arbor MI Fabry-Perot Interf Sp     
+  AFP           503808  Arecibo P.R. Fabry-Perot               
+  AHF          3944448  Arrival Heights Fabry-Perot Interf Sp  
+  AQF           651264  Arequipa, Peru Fabry-Perot             
+  CFP           110592  College Fabry-Perot                    
+  DBM            77824  Daytona Beach FL, USA Michelson Inter. 
+  DVS          1769472  Davis Antarctica Spectrometer          
+  EUM            61440  Eureka, Canada Michelson Interferometer
+  FPF           782336  Fritz Peak CO Fabry-Perot Interf Sp    
+  HFP          1445888  Halley Antarctica Fabry-Perot          
+  IKF          2674688  Inuvik NWT Fabry-Perot Interferometer  
+  KHA          1064960  Kitt Pk H-alpha Fabry-Perot (WHAM)     
+  MFP          6819840  Millstone Hill Fabry-Perot             
+  MJF           819200  Mount John New Zealand Fabry-Perot     
+  MTM           126976  USU Mesospheric Temp Mapper CCD Imager 
+  P4P         12525568  Poker Flat 4 Channel Photometer        
+  PFP           851968  Peach Mountain Fabry-Perot             
+  PKF          6717440  Poker Flat AK Scanning Imaging F-P Spec
+  RBM           286720  Resolute Bay, Canada Michelson Interf. 
+  RFP          2768896  Resolute Bay Fabry-Perot Interf Sp     
+  SFM           262144  Sondrestrom Fjord Michelson Interfer.  
+  SFP          9940992  Sondre Stromfjord Fabry-Perot          
+  SPF         15683584  South Pole Fabry-Perot Interfer Spectr 
+  SPM          2760704  South Pole, Antarctica Michelson Inter.
+  STM           360448  Stockholm Sweden IR Michelson Interfer.
+  TFP          1155072  Thule Greenland Fabry-Perot            
+  WFP          1327104  Watson Lake, Canada Fabry-Perot        
+  WUP            98304  Wuppertal Germany OH Spectrometer      
+  Y4P          4456448  Fort Yukon Alaska 4 Channel Photometer 
+          -------------
+              80142336
+
+LIDARs  
+  CSL         17948672  Colorado State Sodium LIDAR            
+  UIL        477450240  U of Illinois LIDAR                    
+  USL            65536  USU ALO Rayleigh LIDAR                 
+          -------------
+             495464448
+
+Combined List  
+  AAF            94208  Ann Arbor MI Fabry-Perot Interf Sp     
+  ADF          7073792  Adelaide Australia MF Radar            
+  AEI        149123072  Geophysical indices from NGDC: AE      
+  AFP           503808  Arecibo P.R. Fabry-Perot               
+  AHF          3944448  Arrival Heights Fabry-Perot Interf Sp  
+  AQF           651264  Arequipa, Peru Fabry-Perot             
+  ARE        143069184  AMIE Model Output                      
+  ARM          9420800  Arecibo P.R. MST Radar                 
+  ARO       1574137856  Arecibo P.R. I.S. Radar                
+  ASC           335872  Ascension Island Meteor RADAR          
+  ATM          2211840  Atlanta Georgia Meteor Wind Radar      
+  CCF            12288  Christchurch New Zealand MF Radar      
+  CFP           110592  College Fabry-Perot                    
+  CHT        143040512  Chatanika AK I.S. Radar                
+  CIA            73728  Christmas Island ST (MEDAC) Radar      
+  COF          1011712  Collm LF Radar                         
+  CSL         17948672  Colorado State Sodium LIDAR            
+  DAV          6991872  Davis, Antarctica MF radar             
+  DBM            77824  Daytona Beach FL, USA Michelson Inter. 
+  DST          5316608  Geophysical indices from NGDC: Dst     
+  DUM           114688  Durham N Hampshire Meteor Wind Radar   
+  DVS          1769472  Davis Antarctica Spectrometer          
+  EHF        524804096  Pykkvibaer (Iceland East) HF Radar     
+  EHP         65523712  Estimated Hemispheric Power            
+  EIS       2934833152  EISCAT I.S. Radar                      
+  EMR           663552  Esrange, Sweden Meteor RADAR           
+  EQB          2957312  Midnight Equatorward Boundary          
+  ESR        203517952  Svalbard I.S. Radar                    
+  EUM            61440  Eureka, Canada Michelson Interferometer
+  FHF        505253888  Hankasalmi Finland HF Radar            
+  FPF           782336  Fritz Peak CO Fabry-Perot Interf Sp    
+  GBF       1146888192  Goose Bay HF Radar                     
+  GCM        146264064  NCAR TGCM/TIGCM Model Output           
+  GPI          2772992  Geophysical indices from NGDC: Lenhart 
+  GSW           290816  GSWM solar diurnal & semidiurnal tides 
+  HFP          1445888  Halley Antarctica Fabry-Perot          
+  HHF        311283712  Halley Antarctica HF Radar             
+  IKF          2674688  Inuvik NWT Fabry-Perot Interferometer  
+  IMF        445607936  Interplanetary Mag Fld and Solar Wind  
+  IST          1097728  Irkutsk Russia I.S. Radar              
+  JRO        157265536  Jicamarca Peru I.S. Radar              
+  JUL          7032832  JULIA Jicamarca Peru Coherent Radar    
+  KAU          4628480  Kauai, Hawaii MF RADAR                 
+  KGF         40943616  Kerguelen Is. HF radar                 
+  KHA          1064960  Kitt Pk H-alpha Fabry-Perot (WHAM)     
+  KHF        452136960  Kapuskasing HF Radar                   
+  KKV           634880  Kharkov Ukraine I.S. Radar             
+  MAF            94208  Mawson Antarctica MF Radar             
+  MFP          6819840  Millstone Hill Fabry-Perot             
+  MJF           819200  Mount John New Zealand Fabry-Perot     
+  MLH       1324096512  Millstone Hill I.S. Radar              
+  MTM           126976  USU Mesospheric Temp Mapper CCD Imager 
+  MUI           188416  MU I.S. Radar, Shigaraki Japan         
+  OBN            45056  Obninsk Russia Meteor Wind Radar       
+  P4P         12525568  Poker Flat 4 Channel Photometer        
+  PCV         20717568  Polar Cap Geomagnetic Index: Vostok    
+  PFP           851968  Peach Mountain Fabry-Perot             
+  PFX        512770048  Spacecraft Particle Flux               
+  PKF          6717440  Poker Flat AK Scanning Imaging F-P Spec
+  PKR         81682432  Poker Flat Alaska MST Radar            
+  PLA            12288  Platteville Colorado ST (MEDAC) Radar  
+  PLR           114688  Platteville, Colorado MF RADAR         
+  QAD           983040  Qaanaaq Greenland Digisonde            
+  RBM           286720  Resolute Bay, Canada Michelson Interf. 
+  RFP          2768896  Resolute Bay Fabry-Perot Interf Sp     
+  RPK         69222400  Poker Flat Alaska MF Radar             
+  RTG           831488  Rarotonga Cook Islands MF RADAR        
+  RTH           929792  Rothera, Antarctica MF RADAR           
+  SAF           974848  Saskatoon Canada MF Radar              
+  SAN         28225536  SANAE Antarctica HF Radar              
+  SBF            36864  Scott Base Antarctica MF Radar         
+  SDL           323584  Vial/Forbes Model Lunar Tides          
+  SDT          3710976  Forbes/Vial Model Semidiurnal Tides    
+  SFM           262144  Sondrestrom Fjord Michelson Interfer.  
+  SFP          9940992  Sondre Stromfjord Fabry-Perot          
+  SHF        625782784  Saskatoon HF Radar                     
+  SON      10170035968  Sondrestrom I.S. Radar                 
+  SPF         15683584  South Pole Fabry-Perot Interfer Spectr 
+  SPM          2760704  South Pole, Antarctica Michelson Inter.
+  SSD           405504  Sondre Stromfjord Digisonde            
+  STM           360448  Stockholm Sweden IR Michelson Interfer.
+  STS          9760768  Saint Santin I.S. Radar                
+  SYE         61947904  Syowa East (Antarctica) HF Radar       
+  SYF         59437056  Syowa Antarctica HF Radar              
+  TFP          1155072  Thule Greenland Fabry-Perot            
+  TIR          1699840  Tirunveli India MF radar               
+  TRF           962560  Tromso Norway MF Radar                 
+  UIL        477450240  U of Illinois LIDAR                    
+  USL            65536  USU ALO Rayleigh LIDAR                 
+  WAK         47222784  Wakkanai Japan MF radar                
+  WFP          1327104  Watson Lake, Canada Fabry-Perot        
+  WHF        685305856  Stokkseyri (Iceland West) HF Radar     
+  WUP            98304  Wuppertal Germany OH Spectrometer      
+  Y4P          4456448  Fort Yukon Alaska 4 Channel Photometer 
+  YAM         35119104  Yamagawa Japan MF radar                
+          -------------
+           23314581888

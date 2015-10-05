@@ -1,0 +1,520 @@
+#!/bin/sh
+#
+#	$Id: ion-p,v 1.1 2005/09/20 19:38:18 pwest Exp $
+#
+# This script determines the operating system and hardware combination
+# and overlays itself with the correct binary for the desired program.
+# The program is determined from the name by which the script is invoked.
+
+APPLICATION=`basename $0`
+APP_ARGS=
+IDL_VERSION=6.0
+ENVI_VERSION=4.0
+VIP_VERSION=1.5
+RT_VERSION=2.5
+ION_VERSION=2.0
+STUDENT_FLAG=
+
+LICENSE_NAME=license.dat
+LM_LICENSE_FILE=/opt/share/idl/license.dat
+export LM_LICENSE_FILE
+
+#INSTALL_DIR=/opt/share/idl_60
+INSTALL_DIR=/opt/share 
+
+IDLDIRECTORY_VERS=idl_${IDL_VERSION}
+IDLDIRECTORY=idl
+
+# Some applications can be invoked with or without a version suffix.
+# Recognise the versioned ones and remove the version.
+case $APPLICATION in
+"idl_$IDL_VERSION") APPLICATION=idl;;
+"idlde_$IDL_VERSION") APPLICATION=idlde;;
+"idldeclient_$IDL_VERSION") APPLICATION=idldeclient;;
+"idlrpc_$IDL_VERSION") APPLICATION=idlrpc;;
+"idlhelp_$IDL_VERSION") APPLICATION=idlhelp;;
+"idlman_$IDL_VERSION") APPLICATION=idlman;;
+"idldemo_$IDL_VERSION") APPLICATION=idldemo;;
+"rsilicense_$IDL_VERSION") APPLICATION=rsilicense;;
+"envihelp_$ENVI_VERSION") APPLICATION=envihelp;;
+"enviman_$ENVI_VERSION") APPLICATION=enviman;;
+"envi_tut_$ENVI_VERSION") APPLICATION=envi_tut;;
+"viphelp_$VIP_VERSION") APPLICATION=viphelp;;
+"rivertoolshelp_$RT_VERSION") APPLICATION=rivertoolshelp;;
+"ion-p_$ION_VERSION") APPLICATION=ion-P;;
+"ion-i_$ION_VERSION") APPLICATION=ion-I;;
+"ionhelp_$ION_VERSION") APPLICATION=ionhelp;;
+"ionman_$ION_VERSION") APPLICATION=ionman;;
+"iond_$ION_VERSION") APPLICATION=iond;;
+"ionstat_$ION_VERSION") APPLICATION=ionstat;;
+"iondown_$ION_VERSION") APPLICATION=iondown;;
+"ion_httpd_$ION_VERSION") APPLICATION=ion_httpd;;
+"ion-p") APPLICATION=ion-P;;
+"ion-i") APPLICATION=ion-I;;
+esac
+
+
+# Find the main IDL directory
+if [ "$IDL_DIR" = "" ]; then
+    for DIR in $INSTALL_DIR/$IDLDIRECTORY_VERS /usr/local/rsi/$IDLDIRECTORY_VERS . ./idl_$IDL_VERSION /usr/local/lib/$IDLDIRECTORY /usr/local/$IDLDIRECTORY /usr/local/bin/$IDLDIRECTORY
+	do
+	if [ -d $DIR ]; then
+	    if [ -f $DIR/resource/fonts/hersh1.chr ]; then
+        	IDL_DIR=$DIR
+		break
+	    fi
+        fi
+    done
+fi
+
+if [ "$IDL_DIR" = "" ]; then
+    echo "Unable to access $APPLICATION. You will have to
+define the IDL_DIR environment variable to point at the main
+IDL directory before it will work."
+    exit 1
+fi
+
+
+# If LM_LICENSE_FILE is not defined and one of the following exists
+#    $IDL_DIR/../license/license.dat     (license dir from base idl product)
+# then define LM_LICENSE_FILE. If file is not found, leave it unset.
+# If LM_LICENSE_FILE is already set, then respect that and leave it alone.  
+if [ \( "$LM_LICENSE_FILE" = "" \) ] ; then
+    if [ \( -f $IDL_DIR/../license/$LICENSE_NAME \) ] ; then
+#      default location for standard IDL distribution
+       LM_LICENSE_FILE=$IDL_DIR/../license/$LICENSE_NAME
+       export LM_LICENSE_FILE
+    fi
+fi
+
+
+if [ "$STUDENT_FLAG" != "" ]; then
+  if [ \( "$APPLICATION" = "idl" \) -o \( "$APPLICATION" = "idlde" \) -o  \( "$APPLICATION" = "idldeclient" \) ]; then
+     APP_ARGS=$STUDENT_FLAG
+  fi
+fi
+
+
+# Look for a -32 argument. If seen, take note, but don't worry
+# about removing it (idl accepts it and ignores it, allowing this
+# script to be simpler). If a platform supports both 32 and 64-bit
+# versions of our application, the default is to take the 64-bit version.
+# However, -32 says to run the 32-bit version even on a 64-bit platform
+PREFER_32=0
+for arg
+do
+  if [ "$arg" = "-32" ]; then
+    PREFER_32=1
+  fi
+done
+
+
+
+# Determine the operating system, hardware architecture, and os release
+# Make sure these agree with IDL's compiled in paths or online help
+# won't be found.
+OS=
+ARCH=
+UNAME=`uname`
+case $UNAME in
+
+    "Darwin")
+        OS="darwin"
+	ARCH=".ppc"
+	;;
+
+    "SunOS")				# Solaris
+	OS="solaris2"
+        BIN_ARCH=/usr/bin/arch
+        if [ -x /usr/bin/arch ]; then
+            BIN_ARCH=/usr/bin/arch
+        elif [ -x /usr/ucb/arch ]; then
+            BIN_ARCH=/usr/ucb/arch
+        fi
+        if [ `$BIN_ARCH` = i86pc ]; then
+          ARCH=".x86"
+	else
+	  # If the system is running the 64-bit SunOS kernel, a 64-bit
+	  # IDL is installed, and the user did not specify the -32
+	  # command argument, then run the 64-bit version. Otherwise
+	  # the 32-bit version will work on all supported platforms.
+          ARCH=".sparc"
+	  if [ \( $PREFER_32 = 0 \) -a \( -x /bin/isainfo \) \
+               -a \( -f $IDL_DIR/bin/bin.$OS.sparc64/$APPLICATION \) ]; then
+            if [ `/bin/isainfo -b` = 64 ]; then
+	      ARCH=.sparc64
+            fi
+          fi
+        fi
+	;;
+
+    "AIX")
+	OS="ibm"
+	# Under AIX, all threads must have system contention scope or IDL
+	# will not run reliably. If AIXTHREAD_SCOPE is set to S, then we
+	# are fine without changing anything. Otherwise, we set
+	# AIXTHREAD_SCOPE to force that, and IDL_SAVE_AIXTHREAD_SCOPE
+	# is used to remember the previous setting. Once IDL is running,
+	# it reads IDL_SAVE_AIXTHREAD_SCOPE and uses its value to reset
+	# AIXTHREAD_SCOPE back to its original value. In this way, IDL can
+	# run properly, but does not alter the global environment for any
+	# programs that it forks.
+	if [ "$AIXTHREAD_SCOPE" = "S" ]; then
+	  unset IDL_SAVE_AIXTHREAD_SCOPE
+	else
+	  IDL_SAVE_AIXTHREAD_SCOPE=$AIXTHREAD_SCOPE
+	  export IDL_SAVE_AIXTHREAD_SCOPE
+	  AIXTHREAD_SCOPE=S
+	  export AIXTHREAD_SCOPE
+	fi
+        # For a 64-bit program to run, both the hardware and software
+        # must support 64-bit operation. You will notice that on other
+        # platforms we test for this, and quietly roll over to 32-bit
+        # operation if 64-bit support is not present. I have not yet
+        # found a reliable shell-scriptable test for this ability on
+        # AIX, although I have found several that are either not
+        # 100% reliable or which require superuser privs to work.
+        # Therefore, for now this script assumes that users won't
+        # install 64-bit IDL on a system that can't support it, and that
+        # this already minor issue will disappear completely as
+        # 32-bit only hardware becomes more and more rare.
+	if [ \( $PREFER_32 = 0 \) \
+            -a \( -f $IDL_DIR/bin/bin.$OS.rs6000_64/$APPLICATION \) ]; then
+	    ARCH=.rs6000_64
+        fi
+	;;
+
+    "HP-UX")
+	OS="hp"
+	if [ \( $PREFER_32 = 0 \) -a \( -x /bin/getconf \) \
+            -a \( -f $IDL_DIR/bin/bin.$OS.pa64/$APPLICATION \) ]; then
+            if [ `/bin/getconf KERNEL_BITS` = 64 ]; then
+	      ARCH=.pa64
+            fi
+          fi
+	;;
+
+    "IRIX"|"IRIX6"|"IRIX64")
+        # 32-bit kernels reply with IRIX. The other variants come from
+        # kernels that are capable of running 64-bit binaries.
+	OS="sgi"
+	if [ \( $PREFER_32 = 0 \) -a \( "$UNAME" != "IRIX" \) \
+            -a \( -f $IDL_DIR/bin/bin.$OS.mips64/$APPLICATION \) ]; then
+	    ARCH=.mips64
+          fi
+	;;
+
+    "OSF1") OS="alpha";;
+
+    "Linux")
+	OS="linux"
+        ARCH=".x86"
+        if [ -x /bin/arch ]; then
+          if [ `/bin/arch` = alpha ]; then
+            ARCH=.alpha
+            if [ "$APPLICATION" = "rsilicense" ]; then
+	       echo "$APPLICATION: is not supported on this system architecture. Please contact RSI Technical Support for a license."
+               exit 1
+            elif [ \( "$APPLICATION" = "idlde" \) -o \( "$APPLICATION" = "idl" \) -o \( "$APPLICATION" = "idldeclient" \) -o \( "$APPLICATION" = "idlrpc" \) ]; then
+               APP_ARGS=-genver
+            fi
+          fi
+        fi
+	;;
+		
+    *)
+	echo "$APPLICATION: Unable to recognize system architecture."
+	exit 1
+	;;
+
+esac
+
+# Now we have everything we need to construct the path to the bin directory
+BIN_DIR=$IDL_DIR/bin/bin.$OS$ARCH
+
+
+# Add the bin directory to the library search path
+case $OS in
+    "darwin")
+	if [ "$DYLD_LIBRARY_PATH" = "" ]; then
+	    DYLD_LIBRARY_PATH="$BIN_DIR"
+	else
+	    DYLD_LIBRARY_PATH="$BIN_DIR:$DYLD_LIBRARY_PATH"
+	fi
+	export DYLD_LIBRARY_PATH
+	;;
+
+
+    "hp")
+        NEW_TEXT="/usr/lib/X11R6:/usr/lib/X11R5:/usr/lib/X11R4:/usr/lib/Motif1.2:$BIN_DIR:$BIN_DIR/dm/lib"
+	if [ "$SHLIB_PATH" = "" ]; then
+	    SHLIB_PATH="$NEW_TEXT"
+	  else
+	    SHLIB_PATH="$NEW_TEXT:$SHLIB_PATH"
+	fi
+
+        #  Append the Sybase lib directory if Sybase set for Dataminer
+        if [ "$SYBASE" != "" ]; then
+             SHLIB_PATH="$SYBASE/lib:$SHLIB_PATH"
+        fi
+
+	#  Append the Oracle lib directory if ORACLE_HOME set for Dataminer
+        if [ "$ORACLE_HOME" != "" ]; then 
+             SHLIB_PATH="$ORACLE_HOME/lib:$SHLIB_PATH"
+	fi
+	export SHLIB_PATH
+	;;
+
+
+    "ibm")
+        NEW_TEXT="/lib:/usr/lib:$BIN_DIR:$BIN_DIR/dm/lib"
+	if [ "$LIBPATH" = "" ]; then
+	    LIBPATH="$NEW_TEXT"
+	else
+	    LIBPATH="$NEW_TEXT:$LIBPATH"
+	fi
+
+	#  Append the Oracle lib directory if ORACLE_HOME set for Dataminer
+        if [ "$ORACLE_HOME" != "" ]; then 
+             LIBPATH="$ORACLE_HOME/lib:$LIBPATH"
+        fi
+        #  Append the Sybase lib directory if Sybase set for Dataminer
+        if [ "$SYBASE" != "" ]; then
+             LIBPATH="$SYBASE/lib:$LIBPATH"
+        fi
+	export LIBPATH
+	;;
+
+
+    "linux")
+        NEW_TEXT="$BIN_DIR:$BIN_DIR/dm/lib"
+	if [ "$LD_LIBRARY_PATH" = "" ]; then
+	    LD_LIBRARY_PATH="$NEW_TEXT"
+	else
+	    LD_LIBRARY_PATH="$NEW_TEXT:$LD_LIBRARY_PATH"
+	fi
+
+        #  Append the Sybase lib directory if Sybase set for Dataminer
+        if [ "$SYBASE" != "" ]; then
+             LD_LIBRARY_PATH="$SYBASE/lib:$LD_LIBRARY_PATH"
+        fi
+	export LD_LIBRARY_PATH
+
+	#  Append the Oracle lib directory if ORACLE_HOME set for Dataminer
+        if [ "$ORACLE_HOME" != "" ]; then 
+             LD_LIBRARY_PATH="$ORACLE_HOME/lib:$LD_LIBRARY_PATH"
+	fi
+
+        if [ "$IDLJAVAB_LIB_LOCATION" != "" ]; then 
+             LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$IDLJAVAB_LIB_LOCATION:$IDLJAVAB_LIB_LOCATION/..:$IDLJAVAB_LIB_LOCATION/../native_threads"
+	fi
+
+	export LD_LIBRARY_PATH
+	;;
+
+
+    "sgi")
+        if [ "$ARCH" = ".mips64" ]; then
+	    if [ "$LD_LIBRARY64_PATH" = "" ]; then
+		LD_LIBRARY64_PATH="$BIN_DIR"
+	    else
+		LD_LIBRARY64_PATH="$BIN_DIR:$LD_LIBRARY64_PATH"
+	    fi
+	    export LD_LIBRARY64_PATH
+	else			# 32-bit executable
+	    NEW_TEXT="$BIN_DIR:$BIN_DIR/dm/lib"
+	    if [ "$LD_LIBRARYN32_PATH" = "" ]; then
+		LD_LIBRARYN32_PATH="$NEW_TEXT"
+	    else
+		LD_LIBRARYN32_PATH="$NEW_TEXT:$LD_LIBRARYN32_PATH"
+	    fi
+
+	    #  Append the Sybase lib directory if Sybase set for Dataminer
+	    if [ "$SYBASE" != "" ]; then
+                 LD_LIBRARYN32_PATH="$SYBASE/lib:$LD_LIBRARYN32_PATH"
+	    fi
+
+
+	    #  Append the Oracle lib directory if ORACLE_HOME set for Dataminer
+	    #  NOTE: The user must set Oracle N32 home.
+	    if [ "$ORACLE_N32_HOME" != "" ]; then
+		LD_LIBRARYN32_PATH="$ORACLE_N32_HOME/lib32:$LD_LIBRARYN32_PATH"
+	    fi
+	    export LD_LIBRARYN32_PATH
+        fi
+	;;
+
+
+    "solaris2")
+        NEW_TEXT="$BIN_DIR:$BIN_DIR/dm/lib:/usr/openwin/lib:/usr/dt/lib"
+	if [ "$LD_LIBRARY_PATH" = "" ]; then
+	    LD_LIBRARY_PATH="$NEW_TEXT"
+	else
+	    LD_LIBRARY_PATH="$NEW_TEXT:$LD_LIBRARY_PATH"
+	fi
+
+        #  Append the Sybase lib directory if Sybase set for Dataminer
+        if [ "$SYBASE" != "" ]; then
+             LD_LIBRARY_PATH="$SYBASE/lib:$LD_LIBRARY_PATH"
+        fi
+	export LD_LIBRARY_PATH
+
+	#  Append the Oracle lib directory if ORACLE_HOME set for Dataminer
+        if [ "$ORACLE_HOME" != "" ]; then 
+             LD_LIBRARY_PATH="$ORACLE_HOME/lib:$LD_LIBRARY_PATH"
+	fi
+
+        if [ "$IDLJAVAB_LIB_LOCATION" != "" ]; then 
+             LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$IDLJAVAB_LIB_LOCATION:$IDLJAVAB_LIB_LOCATION/..:$IDLJAVAB_LIB_LOCATION/../native_threads"
+	fi
+
+	export LD_LIBRARY_PATH
+	;;
+
+
+    *)
+	if [ "$LD_LIBRARY_PATH" = "" ]; then
+	    LD_LIBRARY_PATH="$BIN_DIR"
+	else
+	    LD_LIBRARY_PATH="$BIN_DIR:$LD_LIBRARY_PATH"
+	fi
+	export LD_LIBRARY_PATH
+	;;
+esac
+
+
+# Add the IDL bin directory to the path so that idlde will always find idl
+PATH=$IDL_DIR/bin:$PATH
+export PATH IDL_DIR 
+
+# For the various help commands, construct their help file argument, and
+# then turn the APPLICATION into acroread. This is the free Adobe Acrobat
+# Reader, which must be installed and available in our users path. acroread
+# is not contained within the BIN_DIR, because that would violate Adobe's
+# license.
+if [ \( "$APPLICATION" = "idlhelp" \) -o \( "$APPLICATION" = "idlman" \) ]; then
+  REAL_APPLICATION=$APPLICATION
+  APPLICATION=acroread
+  APP_ARGS=$IDL_DIR/help/onlguide.pdf
+fi
+
+if [ \( "$APPLICATION" = "envihelp" \) -o \( "$APPLICATION" = "enviman" \) ]; then
+  REAL_APPLICATION=$APPLICATION
+  APPLICATION=acroread
+  APP_ARGS=$IDL_DIR/products/envi_$ENVI_VERSION/help/onlguide.pdf
+fi
+
+if [ "$APPLICATION" = "envi_tut" ]; then
+  REAL_APPLICATION=$APPLICATION
+  APPLICATION=acroread
+  APP_ARGS=$IDL_DIR/products/envi_$ENVI_VERSION/help/tutorial.pdf
+fi
+
+if [ \( "$APPLICATION" = "ionhelp" \) -o \( "$APPLICATION" = "ionman" \) ]; then
+  REAL_APPLICATION=$APPLICATION
+  APPLICATION=acroread
+  APP_ARGS=$IDL_DIR/help/onlguide.pdf
+fi
+
+if [ "$APPLICATION" = "viphelp" ]; then
+  REAL_APPLICATION=$APPLICATION
+  APPLICATION=acroread
+  APP_ARGS=$IDL_DIR/products/vip_$VIP_VERSION/help/onlguide.pdf
+fi
+
+
+if [ "$APPLICATION" = "rivertoolshelp" ]; then
+  REAL_APPLICATION=$APPLICATION
+  APPLICATION=acroread
+  APP_ARGS=$IDL_DIR/products/rivertools_$RT_VERSION/help/onlguide.pdf
+fi
+
+
+if [ "$APPLICATION" = "acroread" ]; then
+    # See if the Acrobat Reader is installed, and print a helpful message
+    # if not. If so, then run it as a child without waiting for it.
+    ACRO_OK=0
+    for ACRODIR in `echo $PATH | sed 's/:/ /g'` ; do
+	if [ -x $ACRODIR/acroread ]; then
+	    ACRO_OK=1
+	    break
+        fi
+    done
+    if [ "$ACRO_OK" = "1" ]; then
+        # If the user provided arguments, they are the names of IDL
+        # books, without path information or file extensions. Turn them
+        # into full paths, and use them in place of the default APP_ARGS
+        # that was set above. If no arguments are present, APP_ARGS
+        # already contains the path of the book to open.
+        if [ "$*" != "" ]; then
+	    APP_ARGS=""
+	    for FILE in $*; do
+	       if [ -f $IDL_DIR/help/$FILE.pdf ]; then
+	           APP_ARGS=" $APP_ARGS $IDL_DIR/help/$FILE.pdf"
+	       else
+	         echo "$REAL_APPLICATION: File not found: $FILE"
+	       fi
+	    done
+	    if [ "$APP_ARGS" = "" ]; then
+	        exit 1
+	    fi
+	fi
+
+        acroread $APP_ARGS &
+        exit 0
+    else
+        echo "$REAL_APPLICATION: This command reqiures acroread, The free
+        Adobe Acrobat Reader, to be installed on your system and
+        accessible via your PATH environment variable. Acroread is
+        available at http://www.adobe.com."
+        exit 1
+    fi
+fi
+
+if [ "$APPLICATION" = "iond" -o "$APPLICATION" = "ionstat" -o "$APPLICATION" = "iondown" -o "$APPLICATION" = "ion_httpd" ]; then
+
+ if [ "$APPLICATION" = "iond" -a "$OS" = "alpha" ]; then
+    exec $IDL_DIR/products/ion_$ION_VERSION/ion_java/bin/bin.$OS$ARCH/$APPLICATION $* < /dev/null > /dev/null 2>&1
+
+    # We shouldn't get here unless there was an error.
+    echo "$APPLICATION is not available for this system ($OS$ARCH)"
+    exit 1
+ fi
+
+    exec $IDL_DIR/products/ion_$ION_VERSION/ion_java/bin/bin.$OS$ARCH/$APPLICATION $* $APP_ARGS
+
+
+    # We shouldn't get here unless there was an error.
+    echo "$APPLICATION is not available for this system ($OS$ARCH)"
+    exit 1
+fi
+
+if [ "$APPLICATION" = "ion-P" -o "$APPLICATION" = "ion-I" ]; then
+  if [ \(  -f /bin/dirname \) -o \(  -f /usr/5bin/dirname \) ]; then
+     CGIBIN_DIR=`dirname $0`
+  else
+     CGIBIN_DIR=`echo $0 | awk -F\/ '{if(NF==1)
+     printf(".\n");else{for(i=1;i<NF;i++){if(i>1)printf("%s","/"); printf("%s",$i);}printf("\n")}}'`
+  fi
+
+  ION_DIR=$IDL_DIR/products/ion_$ION_VERSION
+
+  # Add the IDL bin directory to the path so that idlde will always find idl
+  PATH=$CGIBIN_DIR:$PATH
+
+  # Add the path for finding the DLM's
+  IDL_DLM_PATH=".:$BIN_DIR"
+  export PATH IDL_DIR ION_DIR IDL_DLM_PATH
+
+  exec $CGIBIN_DIR/$APPLICATION
+
+    # We shouldn't get here unless there was an error.
+    echo "$APPLICATION is not available for this system ($OS/$ARCH)"
+    exit 1
+fi
+
+exec $BIN_DIR/$APPLICATION $* $APP_ARGS
+
+# We shouldn't get here unless there was an error.
+echo "$APPLICATION is not available for this system ($OS$ARCH)"
+exit 1

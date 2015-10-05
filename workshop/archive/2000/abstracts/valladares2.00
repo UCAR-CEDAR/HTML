@@ -1,0 +1,36 @@
+Surname: Valladares
+First Name: Cesar E.
+Status= other
+Institution: Boston College
+E-mail: cesar@dL5000.bc.edu
+----------------------------------------
+Title: 
+Numerical modeling of Jicamarca densities and GPS TEC values
+----------------------------------------
+Authors: 
+C. E. Valladares, and R. F. Woodman
+----------------------------------------
+Abstract: 
+This paper presents the analysis of data collected by the Jicamarca radar and 
+the numerical modeling of the densities measured at this site.  The combined 
+analysis-modeling has been performed for three data periods (November 23-25, 
+1992, February 1-4, 1995, and May 1-5, 1995).  Density profiles were obtained 
+from power profiles and normalized by the peak density measured by the local 
+digisonde.  Profiles of vertical drifts have been also extracted from the 
+Jicamarca phase measurements of the incoherent scatter signal.  We have used the 
+Jicamarca vertical drifts to run the low-latitude part of the global theoretical 
+ionospheric model (GTIM).  The model runs have been conducted first using drifts 
+values averaged in altitude and then using the drift profiles.  In general the 
+agreement between the modeled and the measured peak density is very good.  A 
+better agreement is achieved using drift profiles instead of the averaged 
+values.  We also present TEC values measured from a new G!
+PS station located at Iquitos, Peru (Lat. = 03&#61616; 46.0 S, Long = 73&#61616; 
+16.5 W, Alt =135.0 m). Data collected from this station reflect the typical 
+diurnal pattern of TEC variations seen at low-latitude stations. TEC depletions 
+were observed on some of the nights.  The GTIM model also provides the densities 
+at latitudes between +20&#61616; and -20&#61616; from the magnetic equator.  
+This allows us to model TEC values of stations located away from the magnetic 
+equator such as Iquitos.  We also present a comparison of modeled TEC values and 
+measurements of TEC at stations away from the equator.
+----------------------------------------
+Discipline Category: Ionosphere

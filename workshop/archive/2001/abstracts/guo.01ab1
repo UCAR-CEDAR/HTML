@@ -1,0 +1,64 @@
+----------------------------------------
+Type of abstract: Contributed
+Presenter Name: Jian-shan Guo
+Status of first author: non-student  
+----------------------------------------
+Title: 
+Study of equator-ward transmission of polar disturbances 
+--Data assimilative approach
+
+----------------------------------------
+Authors: 
+Jian-shan Guo*  She-ping Shang  Man-lian Zhang  Hong Zheng
+Xi-gui Luo  Jiankui Shi  and  Qing-yi Zhang
+
+Laboratory of Space Weather Study, 
+Center for Space Science and Applied Research, 
+Chinese Academy of Sciences
+guo's Email: guojs@center.cssar.ac.cn
+
+----------------------------------------
+Abstract: 
+We discuss the properties of one-dimensional ionospheric 
+dynamic transportation based on computer simulation to look 
+into the role of data assimilation in atmospheric dynamics 
+study in this paper. The physical problem is aimed at the 
+equator-ward transmission of polar disturbances with multi-
+frequency components along meridian chain in China region in 
+a simplified situation. The initial condition is not considered 
+that is corresponding to the case of stationary disturbance last 
+more than several hours. The observables are ion concentration 
+at different locations, where meridian observatory is located, 
+along geomagnetic latitude. These observables are subject to 
+the ionospheric dynamic equation. On the other hand the ion 
+concentration as an observable is interfered by noises 
+(instrument error plus environment noise). Here the data 
+assimilation is refer to as that the solution must be subject to 
+the coordinate variation of the variables under the control of 
+the dynamic equation and closest to the optimized values of the 
+measured parameters. The noise model is supposed to be 
+independent of measured observables, and normal distribution 
+with zero average, and covariance of ?. The problem then can 
+be described mathematically as solving dynamic equation by 
+optimum seeking method. The results based on simulated data 
+show that the assimilative solution could be consistent with the 
+accurate one as closed as one wish, and the extent of the 
+consistence depends on the extent of knowledge one obtained 
+of statistic characteristics of the measured data. The sought 
+coefficients of the terms of a series solution reveal the 
+harmonious components of the simulated disturbances. The 
+wave component with wavelength of about a quarter attenuates 
+too rapidly (90%) to propagate to middle latitude but the one 
+with about an hour propagates to middle latitude attenuating 
+63% under the real ionospheric condition. The larger 
+wavelength the smaller attenuation. In more realistic cases 
+multiple ion transmission needs to consider the interaction 
+between the ions and neutral particles, and this leads to a 
+complex problem of multi-dynamic equations and multiple 
+restrictions in computing technique, and needs to be studied in 
+more detail further. 
+
+----------------------------------------
+Space Weather (part of S-RAMP/SCOSTEP)
+Upper Atmosphere and Ionosphere
+Analysis Techniques

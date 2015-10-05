@@ -1,0 +1,6 @@
+1,5d0
+< The tape recorder fails towards the end of DMSP missions.  F11 and F12
+< show these effects in 2000.  Cut F11 off after day 53 (Feb 22) so days 54-137
+< are missing.  Cut F12 off after day 324 (Nov 19) so days 325-366 are missing.
+< Days Oct 12-Nov 19 (days 286-324) still show some large and small F12 values,
+< so cut F12 off after day 285.  F12 all bad in 2001 and 2002.

@@ -1,0 +1,26 @@
+Surname: Wright
+First Name: John William
+Status= other
+Institution: NGDC (retired)
+E-mail: bwright@ngdc.noaa.gov
+----------------------------------------
+Title: 
+SWIFT - ITCI: Space Weather Ionospheric Forecasting Tools – an Ionosonde 
+Thermospheric Composition Index
+----------------------------------------
+Authors: 
+J W Wright and R O Conkright
+National Geophysical Data Center, NOAA, Boulder Colorado, 80301 USA
+----------------------------------------
+Abstract: 
+We address the need for an easily observable indicator of
+thermospheric state, and particularly, one sensitive to the
+neutral concentration ratio, [O]/[N2]. There is a firm basis to expect that the 
+sunrise increase of foF2 might provide an index for [O]/[N2]. We present the 
+global morphology of an index defined from the rate of change of foF2^2 with 
+cos(solar zenith angle) after normalization by the F10.7 solar flux. It displays 
+many known features of thermospheric [O]/[N2], including seasonal and geographic 
+variability according to ESRO4 satellite data and the MSIS-90 model, and (in an 
+example) magnetic storm dependences.
+----------------------------------------
+Discipline Category: Thermosphere

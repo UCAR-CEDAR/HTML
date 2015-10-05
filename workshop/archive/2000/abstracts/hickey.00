@@ -1,0 +1,30 @@
+Surname: Hickey
+First Name: Michael
+Status= other
+Institution: Clemson University
+E-mail: hickey@hubcap.clemson.edu
+----------------------------------------
+Title: 
+The Numerical Simulation of Gravity Wave Packets and Their
+Effects on the OI 5577 Airglow
+----------------------------------------
+Authors: 
+Michael P. Hickey
+Richard L. Walterscheid
+Philip G. Richards
+----------------------------------------
+Abstract: 
+The propagation of a Gaussian wave packet (comprised of as
+many as 2000 individual monochromatic waves) through the
+atmosphere is simulated using a spectral approach. Each of
+the constituent waves is simulated using our full-wave
+model. We assume a source height of 15 km. The perturbation
+velocities, temperature, and density are input to a 2-D,
+time-dependent, nonlinear chemistry model to simulate
+variations in minor species and the OI 5577 airglow. In
+addition to the fluctuating part, the response also consists
+of a secular part forced by wave transience and wave
+dissipation. We study two different wave packets and their
+effects on the airglow and on the O distribution.
+----------------------------------------
+Discipline Category: Mesosphere

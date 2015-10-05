@@ -1,0 +1,81 @@
+#  
+# ION Script resource file 
+#
+# ION Script Version
+VERSION = 2.0
+
+# *** Images ***
+
+# Image Width
+Image Width = 320
+
+# Image Height
+Image Height = 256
+
+# Image Label
+Image Label = ION Image
+
+# Link Border
+Link Border = 1
+
+# Direct Graphics Image Type
+GR1 Type = PNG8 
+
+# Object Graphics Image Type
+GR2 Type = JPEG24
+
+# *** URLs ***
+
+# Image Server URL
+Image Server URL = http://cedarweb.hao.ucar.edu/cgi-bin/ion-i
+
+# Data Server URL
+Data Server URL = http://cedarweb.hao.ucar.edu/cgi-bin/ion-i
+
+# ION Script Parser URL
+Parser URL = http://cedarweb.hao.ucar.edu/cgi-bin/ion-p
+
+# *** Files ***
+
+# IDL Search Path
+IDL Path = +/opt/share/idl_6.0/products/ion_2.0/ion_script:/project/cedar/html/ion
+
+# ION Search Path
+ION File Path = .:/opt/share/idl_6.0/products/ion_2.0/ion_script/examples:/project/cedar/html/ion:/project/cedar/html/htdocs:/cedar/d/kolinski
+
+# Where IDL creates temporary graphic and text files
+ION Temp Location = /tmp/
+
+# Text  Extensions
+Text Exts = txt,text
+
+# ION  Extensions
+ION Exts = ion,html
+
+# Redirect Protocols
+Redir Protos = http
+
+# *** Format ***
+
+# Use <PRE> with Text Files
+Pre Txt = t
+
+# Default of PRE=TRUE for <ION_DATA_OUT>
+Pre DO = t
+
+# Include (c) when displaying .COPYRIGHT
+Use Copy = t
+
+# *** Debug ***
+
+# Location for debug log FIles
+ION Debug Location = ./
+
+# Format for ion-i log files
+ION Debug Filename = ion-out%d.txt
+
+# Syntax errors from ion-p can be returned to the browser.
+# Valid options are OFF, COMMENT or PRE
+ION Debug Syntax = OFF
+
+

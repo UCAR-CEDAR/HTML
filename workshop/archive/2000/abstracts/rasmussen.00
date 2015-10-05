@@ -1,0 +1,27 @@
+Surname: Rasmussen
+First Name: Beatrice K.
+Status= studentyes
+Institution: University of Texas at Dallas
+E-mail: bearas@utdallas.edu
+----------------------------------------
+Title: 
+Results of a Neural Network Prediction Study
+for Equatorial Spread-F
+----------------------------------------
+Authors: 
+Beatrice K. Rasmussen
+Greg Earle
+----------------------------------------
+Abstract: 
+Neural network algorithms have been used in conjunction
+with DMSP satellite data in a study of Equatorial Spread-F
+(ESF) over Ascension Island.  DSMP satellite data were
+processed and provided as inputs to the networks to deter-
+mine if ESF prediction was possible.  Results of the neural
+network studies suggest that the pre-sunset topside
+ionospheric densities, temperatures, and velocities are not
+significantly preconditioned for post-sunset ESF develop-
+ment.  A possible explanation is presented as to the 
+reliability of this approach as a predictor of ESF.
+----------------------------------------
+Discipline Category: Ionosphere

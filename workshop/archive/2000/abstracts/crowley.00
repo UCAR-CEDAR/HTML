@@ -1,0 +1,36 @@
+Surname: CROWLEY
+First Name: GEOFF
+Status= other
+Institution: Southwest Research Institute
+E-mail: CROWLEY@PICARD.SPACE.SWRI.EDU
+----------------------------------------
+Title: 
+Global Conductances from AMIE using POLAR UVI images
+----------------------------------------
+Authors: 
+Geoff Crowley, Thomas J. Immel, Aaron J. Ridley, Delores J. Knipp, Dirk 
+Lummerzheim, Jeff Thayer, F. Rich and Arthur D. Richmond
+----------------------------------------
+Abstract: 
+The Assimilative Mapping of Ionospheric Electrodynamics (AMIE) procedure 
+provides global maps of high latitude electric fields and conductances, from 
+which the simple Joule heating (neglecting neutral wind effects) can be 
+obtained. To determine whether these estimates are realistic, it is important to 
+determine the accuracy of the AMIE conductances and electric fields. 
+Historically, conductance data have been especially difficult to obtain for 
+ingestion into AMIE, but recent POLAR UVI images have provided conductances on a 
+global scale that can be ingested into AMIE. This paper demonstrates the 
+sensitivity of the conductances derived by AMIE to the inclusion of conductances 
+inferred from UVI, magnetometers and DMSP particle data for the May 1998 storm. 
+The AMIE runs are tuned such that the dayside ionospheric conductances compare 
+favorably with height-integrated values derived from measurements by the 
+Sondrestrom incoherent scatter radar. The UVI images promise to dramatically!
+ improve the AMIE conductance and electric field distributions, and subsequently 
+Joule heating by providing conductance estimates where no other data are 
+available. The significant changes in AMIE conductances caused by the 
+introduction of UVI data are described here. In addition, this paper provides 
+the first validation of the UVI conductances by comparing them with conductances 
+derived from DMSP particle data. Good agreement is obtained between the UVI and 
+DMSP estimates.
+----------------------------------------
+Discipline Category: Ionosphere

@@ -1,0 +1,106 @@
+
+                              1950-2008:  5----5----6----6----7----7----8----8----9----9----0----0---
+ ------------- INSTRUMENT -------------   0----5----0----5----0----5----0----5----0----5----0----5---
+ Jicamarca Peru I.S. Radar                                2**4              34A5A747775463866697AA1 
+ Arecibo P.R. I.S. Radar                                  5A*531A 4995   *B*99BA988898B5 1362 1 
+ MU I.S. Radar, Shigaraki Japan                                               48B9A**897 
+ Millstone Hill I.S. Radar                                            11 4A*AB*8BBBB3 7A2697773  1 
+ Saint Santin I.S. Radar                                  9*B***B6**A*9AA99 AAB3 
+ Kharkov Ukraine I.S. Radar                                                                   1 
+ Chatanika AK I.S. Radar                                            26B7*A2 
+ Irkutsk Russia I.S. Radar                                                                 5675 
+ EISCAT I.S. Radar                                                          36A6887797B7BB93 
+ Sondrestrom I.S. Radar                                                    9*B87898498*8*89877777655 
+ Svalbard I.S. Radar                                                                     397A*5 
+ Interplanetary Mag Fld and Solar Wind                 2*******************************************4 
+ Spacecraft Particle Flux                                                                 6*******1 
+ Estimated Hemispheric Power                                          2*****************************5 
+ Midnight Equatorward Boundary                                             *************************5 
+ Geophysical indices from NGDC: Lenhart             ************************************************4 
+ Geophysical indices from NGDC: AE                                    **********6 ****** 
+ Geophysical indices from NGDC: Dst              ***************************************************5 
+ Polar Cap Geomagnetic Index: Vostok                                  **   **********81*1****** 
+ NCAR TGCM/TIGCM Model Output                                       3  3 
+ AMIE Model Output                                                          1 1 1 113 
+ Forbes/Vial Model Semidiurnal Tides                                            * 
+ Vial/Forbes Model Lunar Tides                                                       * 
+ GSWM solar diurnal & semidiurnal tides                                                4 
+ Halley Antarctica HF Radar                                                       1111 11  12 
+ SANAE Antarctica HF Radar                                                                 1 
+ Syowa Antarctica HF Radar                                                             1   1 
+ Syowa East (Antarctica) HF Radar                                                          1 
+ Kerguelen Is. HF radar                                                                     1 
+ JULIA Jicamarca Peru Coherent Radar                                                         5A**B8 
+ Kapuskasing HF Radar                                                                224235 
+ Saskatoon HF Radar                                                                  224235 
+ Goose Bay HF Radar                                                             2 233424235 
+ Hankasalmi Finland HF Radar                                                           1235 
+ Stokkseyri (Iceland West) HF Radar                                                    4235 
+ Pykkvibaer (Iceland East) HF Radar                                                     235 
+ Arecibo P.R. MST Radar                                                          3 
+ Poker Flat Alaska MST Radar                                           B*B***6 
+ Scott Base Antarctica MF Radar                                                 121 
+ Davis, Antarctica MF radar                                                                  1**1 
+ Mawson Antarctica MF Radar                                                 7*****B 
+ Rothera, Antarctica MF RADAR                                                                 B**1 
+ Christchurch New Zealand MF Radar                                             2 
+ Adelaide Australia MF Radar                                                   2223          1***1 
+ Rarotonga Cook Islands MF RADAR                                                              **7 
+ Tirunveli India MF radar                                                                    1* 
+ Kauai, Hawaii MF RADAR                                                           4**************1 
+ Yamagawa Japan MF radar                                                                  4****72 
+ Platteville, Colorado MF RADAR                                                               3 
+ Wakkanai Japan MF radar                                                                 1**B**7*3 
+ Collm LF Radar                                                                1121  ***************5 
+ Saskatoon Canada MF Radar                                                     2222           ***A 
+ Poker Flat Alaska MF Radar                                                               3******6 
+ Tromso Norway MF Radar                                                        2221           ***9 
+ Ascension Island Meteor RADAR                                                                *7 
+ Atlanta Georgia Meteor Wind Radar                                5BAB716**998B4 
+ Durham N Hampshire Meteor Wind Radar                                   *      11 1 
+ Obninsk Russia Meteor Wind Radar                                                             6 
+ Esrange, Sweden Meteor RADAR                                                                 ***1 
+ Christmas Island ST (MEDAC) Radar                                              49 *1 
+ Platteville Colorado ST (MEDAC) Radar                                          1 
+
+                              1950-2008:  5----5----6----6----7----7----8----8----9----9----0----0---
+ ------------- INSTRUMENT -------------   0----5----0----5----0----5----0----5----0----5----0----5---
+ Sondre Stromfjord Digisonde                                                         * 
+ Qaanaaq Greenland Digisonde                                                     *   * 
+ Davis Antarctica Spectrometer                                                    8   4988999999 
+ Wuppertal Germany OH Spectrometer                                      48*A4  8**A**************** 
+ Poker Flat 4 Channel Photometer                                                             54 
+ Fort Yukon Alaska 4 Channel Photometer                                                      14 
+ South Pole Fabry-Perot Interfer Spectr                                          62666665666 
+ Arrival Heights Fabry-Perot Interf Sp                                                        7777 
+ Halley Antarctica Fabry-Perot                                                  55536776254 
+ Mount John New Zealand Fabry-Perot                                                BB** 7 
+ Arequipa, Peru Fabry-Perot                                                72 7 799     7888 
+ Arecibo P.R. Fabry-Perot                                               754423456154512 3694 
+ Kitt Pk H-alpha Fabry-Perot (WHAM)                                                      5 433 1314 
+ Fritz Peak CO Fabry-Perot Interf Sp                             6*B*******AB5 
+ Ann Arbor MI Fabry-Perot Interf Sp                                           98 
+ Peach Mountain Fabry-Perot                                                          83 
+ Millstone Hill Fabry-Perot                                                      BA****B7*69**B 
+ Watson Lake, Canada Fabry-Perot                                                   24 
+ College Fabry-Perot                                                     253 
+ Poker Flat AK Scanning Imaging F-P Spec                                                      4 
+ Sondre Stromfjord Fabry-Perot                                             43  7888A5695      154 
+ Inuvik NWT Fabry-Perot Interferometer                                                      469894 
+ Resolute Bay Fabry-Perot Interf Sp                                                            277761 
+ Thule Greenland Fabry-Perot                                                   323 
+ South Pole, Antarctica Michelson Inter.                                            1  44454  66 
+ Daytona Beach FL, USA Michelson Inter.                                                      7 
+ Stockholm Sweden IR Michelson Interfer.                                             8*1 
+ Sondrestrom Fjord Michelson Interfer.                                                   4432 4 
+ Resolute Bay, Canada Michelson Interf.                                                 3    1 
+ Eureka, Canada Michelson Interferometer                                              2 
+ U of Illinois LIDAR                                                             4297   9*3 
+ Colorado State Sodium LIDAR                                                      2B*******3  **B9A 
+ USU ALO Rayleigh LIDAR                                                                   1 
+ USU Mesospheric Temp Mapper CCD Imager                                                  75   6*3 
+
+
+ Each line displays for one instrument, the number of months with observations
+ in the indicated year where:  Blank = none, 1-9 = 1-9, A = 10, B = 11, * = 12 
+ < before (or > after) the time interval indicates data beyond the time limits
